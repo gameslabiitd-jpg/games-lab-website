@@ -52,7 +52,7 @@ export default function AboutPage() {
         </ScrollReveal>
 
         {/* Hero image */}
-        <ScrollReveal>
+        <ScrollReveal direction="scale">
           <div className="relative w-full aspect-[21/8] rounded-[20px] overflow-hidden bg-brand-muted mb-20">
             <Image
               src="/images/game1.jpg"
@@ -85,7 +85,7 @@ export default function AboutPage() {
 
         {/* Mission */}
         <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
-          <ScrollReveal>
+          <ScrollReveal direction="left">
             <h2 className="text-[32px] font-black text-ink mb-4">Our Mission</h2>
             <p className="text-[16px] text-ink-mid leading-[1.8]">
               We believe that play is a powerful lens through which to understand human behaviour,
@@ -94,7 +94,7 @@ export default function AboutPage() {
               artefacts that matter beyond the academy.
             </p>
           </ScrollReveal>
-          <ScrollReveal delay={120}>
+          <ScrollReveal direction="right" delay={120}>
             <div className="relative aspect-square rounded-[20px] overflow-hidden bg-brand-muted">
               <Image
                 src="/images/research/research2.jpg"

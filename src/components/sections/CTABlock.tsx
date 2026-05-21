@@ -17,7 +17,7 @@ export default function CTABlock() {
           </p>
           <a
             href="mailto:info@games.iitd.ac.in"
-            className="inline-flex items-center gap-3 bg-brand-accent text-brand-dark font-bold text-[15px] px-8 py-4 rounded-full hover:bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(190,159,255,0.4)]"
+            className="inline-flex items-center gap-3 bg-brand-accent text-brand-dark font-bold text-[15px] px-8 py-4 rounded-full hover:bg-white transition-[background-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(190,159,255,0.4)]"
           >
             Get in Touch
             <span className="text-[20px] leading-none">→</span>

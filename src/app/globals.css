@@ -39,6 +39,10 @@
 
 html { scroll-behavior: smooth; }
 
+/* ── Global typography polish ─────────────────────────────── */
+h1, h2, h3, h4 { text-wrap: balance; }
+p { text-wrap: pretty; }
+
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
@@ -70,10 +74,57 @@ a { color: inherit; text-decoration: none; }
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
+/* Directional reveal variants */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-36px);
+  transition:
+    opacity   0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+.reveal-left.is-visible { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(36px);
+  transition:
+    opacity   0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+.reveal-right.is-visible { opacity: 1; transform: translateX(0); }
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition:
+    opacity   0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+.reveal-scale.is-visible { opacity: 1; transform: scale(1); }
+
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 0.75s ease;
+}
+.reveal-fade.is-visible { opacity: 1; }
+
+/* ============================================================
+   GLOBAL FOCUS-VISIBLE RING
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid #6D46C2;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 /* ============================================================
    CARD HOVER LIFT
    ============================================================ */
 .card-lift {
+  cursor: pointer;
   transition:
     transform  0.35s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -152,7 +203,11 @@ a { color: inherit; text-decoration: none; }
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
-  .reveal { opacity: 1; transform: none; }
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale,
+  .reveal-fade { opacity: 1; transform: none; }
   .marquee-inner { animation: none; }
 }
 

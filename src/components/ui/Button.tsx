@@ -14,7 +14,7 @@ interface ButtonProps {
 }
 
 const base =
-  "inline-flex items-center justify-center font-semibold font-sans cursor-pointer transition-all duration-300 select-none"
+  "inline-flex items-center justify-center font-semibold font-sans cursor-pointer transition-[background-color,border-color,color,transform,box-shadow] duration-300 select-none"
 
 const variants = {
   primary:

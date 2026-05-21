@@ -80,7 +80,7 @@ export default function Navbar() {
                 {/* Animated underline */}
                 <span
                   className={cn(
-                    "absolute -bottom-1 left-0 h-[2.5px] bg-brand rounded-full transition-all duration-300",
+                    "absolute -bottom-1 left-0 h-[2.5px] bg-brand rounded-full transition-[width] duration-300",
                     active ? "w-full" : "w-0"
                   )}
                 />
@@ -92,7 +92,7 @@ export default function Navbar() {
         {/* CTA — desktop */}
         <a
           href="mailto:info@games.iitd.ac.in"
-          className="hidden md:inline-flex items-center text-[14px] font-semibold text-brand border-2 border-brand px-4 py-2 rounded-full hover:bg-brand hover:text-white transition-all duration-250 whitespace-nowrap"
+          className="hidden md:inline-flex items-center text-[14px] font-semibold text-brand border-2 border-brand px-4 py-2 rounded-full hover:bg-brand hover:text-white transition-[background-color,color] duration-200 whitespace-nowrap"
         >
           info@games.iitd.ac.in
         </a>
@@ -106,19 +106,19 @@ export default function Navbar() {
         >
           <span
             className={cn(
-              "block h-0.5 bg-ink-dark rounded-full transition-all duration-300",
+              "block h-0.5 bg-ink-dark rounded-full transition-[transform,opacity,width] duration-300",
               menuOpen ? "rotate-45 translate-y-[7px] w-6" : "w-6"
             )}
           />
           <span
             className={cn(
-              "block h-0.5 bg-ink-dark rounded-full transition-all duration-300",
+              "block h-0.5 bg-ink-dark rounded-full transition-[transform,opacity,width] duration-300",
               menuOpen ? "opacity-0 w-4" : "w-4"
             )}
           />
           <span
             className={cn(
-              "block h-0.5 bg-ink-dark rounded-full transition-all duration-300",
+              "block h-0.5 bg-ink-dark rounded-full transition-[transform,opacity,width] duration-300",
               menuOpen ? "-rotate-45 -translate-y-[7px] w-6" : "w-6"
             )}
           />
@@ -129,7 +129,7 @@ export default function Navbar() {
       <div
         className={cn(
           "md:hidden absolute top-[76px] left-4 right-4 bg-white rounded-2xl shadow-[0_12px_32px_rgba(15,13,20,0.12)] overflow-hidden",
-          "transition-all duration-300 origin-top",
+          "transition-[opacity,transform] duration-300 origin-top",
           menuOpen ? "opacity-100 scale-y-100 pointer-events-auto" : "opacity-0 scale-y-95 pointer-events-none"
         )}
       >
@@ -139,7 +139,7 @@ export default function Navbar() {
               <Link
                 href={href}
                 className={cn(
-                  "block text-[15px] font-semibold px-4 py-3 rounded-xl transition-all duration-200",
+                  "block text-[15px] font-semibold px-4 py-3 rounded-xl transition-[background-color,color] duration-200",
                   pathname === href
                     ? "text-brand bg-brand-muted"
                     : "text-ink-dark hover:text-brand hover:bg-brand-subtle"

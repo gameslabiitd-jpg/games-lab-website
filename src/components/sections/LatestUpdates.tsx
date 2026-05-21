@@ -11,7 +11,7 @@ export default function LatestUpdates() {
   return (
     <section className="w-[88%] max-w-[1500px] mx-auto py-16 grid md:grid-cols-2 gap-16 items-start">
       {/* Left: About snippet */}
-      <ScrollReveal>
+      <ScrollReveal direction="left">
         <h2 className="text-[28px] font-black text-ink leading-tight mb-5">
           Intersection of Play,<br />Design &amp; Impact
         </h2>
@@ -32,7 +32,7 @@ export default function LatestUpdates() {
       </ScrollReveal>
 
       {/* Right: Latest news */}
-      <ScrollReveal delay={100}>
+      <ScrollReveal direction="right" delay={100}>
         <h2 className="text-[28px] font-black text-ink leading-tight mb-5">Latest Updates</h2>
         <div className="flex flex-col gap-3 mb-6">
           {items.map((item, i) => (

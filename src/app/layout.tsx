@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Lexend } from "next/font/google"
 import "./globals.css"
 import LenisProvider from "@/components/animations/LenisProvider"
+import ScrollProgressBar from "@/components/animations/ScrollProgressBar"
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
 
@@ -37,6 +38,7 @@ export default function RootLayout({
     <html lang="en" className={lexend.variable}>
       <body className="min-h-screen flex flex-col font-sans">
         <LenisProvider>
+          <ScrollProgressBar />
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
