@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Lexend } from "next/font/google"
+import { Lexend, EB_Garamond } from "next/font/google"
 import "./globals.css"
 import LenisProvider from "@/components/animations/LenisProvider"
 import ScrollProgressBar from "@/components/animations/ScrollProgressBar"
@@ -11,6 +11,13 @@ const lexend = Lexend({
   variable: "--font-lexend",
   display: "swap",
   weight: ["300", "400", "500", "600", "700", "800", "900"],
+})
+
+const garamond = EB_Garamond({
+  subsets: ["latin"],
+  variable: "--font-garamond",
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 })
 
 export const metadata: Metadata = {
@@ -35,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={lexend.variable}>
+    <html lang="en" className={`${lexend.variable} ${garamond.variable}`}>
       <body className="min-h-screen flex flex-col font-sans">
         <LenisProvider>
           <ScrollProgressBar />

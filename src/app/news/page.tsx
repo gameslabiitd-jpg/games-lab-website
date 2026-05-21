@@ -16,16 +16,19 @@ export default function NewsPage() {
 
   return (
     <>
-      <div className="w-[88%] max-w-[1500px] mx-auto pt-32 pb-20">
+      <div className="w-[88%] max-w-[1500px] mx-auto pt-36 pb-20">
         {/* Header */}
         <ScrollReveal>
-          <p className="text-[13px] uppercase tracking-[0.14em] text-brand font-semibold mb-3">
+          <p className="text-[11px] uppercase tracking-[0.28em] text-brand-accent font-semibold font-sans mb-5">
             What&apos;s Happening
           </p>
-          <h1 className="text-[48px] md:text-[60px] font-black text-ink leading-[1.08] tracking-tight mb-4">
+          <h1
+            className="font-display font-bold text-ink leading-[0.9] tracking-tight mb-6"
+            style={{ fontSize: "clamp(52px, 8vw, 96px)" }}
+          >
             News &amp; Updates
           </h1>
-          <p className="text-[17px] text-ink-mid leading-[1.75] max-w-[540px] mb-12">
+          <p className="text-[17px] text-ink-mid leading-[1.8] max-w-[540px] mb-14">
             Conferences, publications, events, and happenings from around the lab.
           </p>
         </ScrollReveal>
@@ -33,7 +36,7 @@ export default function NewsPage() {
         {/* Featured */}
         {featured && (
           <ScrollReveal>
-            <div className="relative w-full rounded-[20px] overflow-hidden bg-brand-dark mb-10 card-lift group cursor-pointer">
+            <div className="relative w-full rounded-[12px] overflow-hidden bg-brand-dark mb-10 card-lift group cursor-pointer">
               <div className="absolute inset-0">
                 <Image
                   src={featured.image}
@@ -44,41 +47,45 @@ export default function NewsPage() {
                   priority
                 />
               </div>
-              <div className="relative p-10 md:p-14 min-h-[300px] flex flex-col justify-end">
-                <Tag label={featured.tag} className="mb-3" />
-                <h2 className="text-[32px] md:text-[42px] font-black text-white leading-tight mb-2">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="relative p-10 md:p-14 min-h-[320px] flex flex-col justify-end">
+                <Tag label={featured.tag} className="mb-4" />
+                <h2 className="font-display text-[34px] md:text-[46px] text-white leading-tight mb-3">
                   {featured.title}
                 </h2>
-                <p className="text-white/70 text-[15px] max-w-[560px] leading-relaxed mb-3">
+                <p className="text-white/65 text-[15px] max-w-[540px] leading-relaxed mb-3">
                   {featured.description}
                 </p>
-                <p className="text-white/40 text-[13px]">{featured.date}</p>
+                <p className="text-white/35 text-[13px] font-sans">{featured.date}</p>
               </div>
             </div>
           </ScrollReveal>
         )}
 
         {/* News grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {rest.map((item, i) => (
             <ScrollReveal key={item.id} delay={i * 70}>
-              <div className="bg-white rounded-[14px] overflow-hidden shadow-[0_4px_14px_rgba(15,13,20,0.07)] card-lift flex flex-col">
-                <div className="relative w-full aspect-video overflow-hidden bg-brand-muted">
+              <div className="bg-surface border border-ink-border rounded-[10px] overflow-hidden card-lift hover:border-brand/40 flex flex-col">
+                <div className="relative w-full aspect-video overflow-hidden bg-white/4">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
                     className="object-cover card-img-zoom"
                     sizes="(max-width:640px) 100vw,(max-width:1024px) 50vw,33vw"
+                    loading="lazy"
                   />
                 </div>
                 <div className="p-5 flex flex-col flex-1">
-                  <Tag label={item.tag} className="mb-2.5" />
-                  <h3 className="text-[15px] font-bold text-ink mb-2 leading-snug">{item.title}</h3>
+                  <Tag label={item.tag} className="mb-3" />
+                  <h3 className="text-[15px] font-semibold font-sans text-ink mb-2 leading-snug">
+                    {item.title}
+                  </h3>
                   <p className="text-[13px] text-ink-soft leading-relaxed flex-1 m-0">
                     {item.description}
                   </p>
-                  <p className="text-[11px] text-ink-soft mt-3 pt-3 border-t border-ink-border">
+                  <p className="text-[11px] text-ink-soft mt-4 pt-3 border-t border-ink-border font-sans">
                     {item.date}
                   </p>
                 </div>

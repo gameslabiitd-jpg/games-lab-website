@@ -1,123 +1,82 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react"
-import { AnimatePresence, motion } from "motion/react"
-import { gsap, ScrollTrigger } from "@/lib/gsap"
-
-const textTimeline = [
-  { time: 0.0,  title: "Lab.",                 sub: "Where Play Meets Purpose!" },
-  { time: 0.23, title: "Gaming.",              sub: "Designing meaningful play that drives learning, empathy, and change" },
-  { time: 0.52, title: "Augmented-Reality.",   sub: "Expanding perception through interactive overlays that blend digital with real" },
-  { time: 0.77, title: "Mixed-Reality.",       sub: "Creating hybrid environments where virtual and physical worlds converge" },
-  { time: 1.02, title: "Experiences.",         sub: "Crafting immersive narratives that connect design, behaviour, and emotion" },
-  { time: 1.25, title: "Simulations.",         sub: "Transforming research and data into interactive, learn-by-doing environments" },
-  { time: 1.50, title: "Lab.",                 sub: "Where Play Meets Purpose!" },
-]
+import Link from "next/link"
 
 export default function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const videoRef     = useRef<HTMLVideoElement>(null)
-  const cueRef       = useRef<HTMLDivElement>(null)
-
-  const [textIdx, setTextIdx]     = useState(0)
-  const [showCue, setShowCue]     = useState(true)
-
-  useEffect(() => {
-    const video = videoRef.current
-    const container = containerRef.current
-    if (!video || !container) return
-
-    const ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: container,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 0.8,
-        onUpdate: (self) => {
-          // Drive video currentTime from scroll progress
-          if (video.readyState >= 1 && video.duration) {
-            video.currentTime = video.duration * self.progress
-          }
-
-          // Map currentTime → text phase
-          const t = video.currentTime
-          let idx = 0
-          for (let i = textTimeline.length - 1; i >= 0; i--) {
-            if (t >= textTimeline[i].time) { idx = i; break }
-          }
-          setTextIdx(idx)
-
-          // Hide scroll cue once we've started scrolling
-          setShowCue(self.progress < 0.05)
-        },
-      })
-    }, container)
-
-    return () => ctx.revert()
-  }, [])
-
-  const current = textTimeline[textIdx]
-
   return (
-    <div ref={containerRef} className="hero-track">
-      <div className="hero-pin pt-20">
-        {/* Video */}
-        <div className="hero-video-shell">
-          <video
-            ref={videoRef}
-            src="/videos/fingers464.mp4"
-            muted
-            playsInline
-            preload="auto"
-            aria-hidden="true"
-          />
-        </div>
+    <section className="hero-section">
+      {/* Cinematic video — screen-blended ghost on dark background */}
+      <video
+        className="hero-video-bg"
+        src="/videos/fingers464.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-hidden="true"
+      />
 
-        {/* Animated text */}
-        <div className="hero-text-shell">
-          <AnimatePresence mode="wait">
-            <motion.h1
-              key={current.title}
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -14 }}
-              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[80px] md:text-[96px] font-black text-ink leading-none tracking-tight m-0"
-            >
-              {current.title}
-            </motion.h1>
-          </AnimatePresence>
+      {/* Bottom vignette */}
+      <div className="hero-overlay" aria-hidden="true" />
 
-          <AnimatePresence mode="wait">
-            <motion.p
-              key={current.sub}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1], delay: 0.06 }}
-              className="text-[16px] md:text-[18px] text-ink-mid mt-4 max-w-[540px] mx-auto leading-relaxed"
-            >
-              {current.sub}
-            </motion.p>
-          </AnimatePresence>
-        </div>
+      {/* Spacer — pushes text block to bottom third */}
+      <div className="flex-1" />
 
-        {/* Scroll cue */}
-        <div
-          ref={cueRef}
-          className="hero-scroll-cue"
-          style={{ opacity: showCue ? 1 : 0 }}
+      {/* Content — editorial, anchored to lower portion */}
+      <div className="relative z-10 w-[88%] max-w-[1500px] mx-auto pb-20 pt-8">
+        {/* Overline */}
+        <p className="text-[10px] uppercase tracking-[0.32em] text-brand-accent font-semibold mb-7 font-sans">
+          IIT Delhi &nbsp;·&nbsp; Game Design Lab
+        </p>
+
+        {/* Display heading — EB Garamond, editorial scale */}
+        <h1
+          className="font-display font-bold text-ink leading-[0.88] tracking-tight mb-10"
+          style={{ fontSize: "clamp(60px, 9.5vw, 140px)" }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/arrow-down.webp"
-            alt="Scroll to explore"
-            width={56}
-            height={56}
-            style={{ mixBlendMode: "multiply" }}
-          />
+          Where Play<br />
+          Meets Purpose.
+        </h1>
+
+        {/* Sub-row: description + CTAs */}
+        <div className="flex flex-col md:flex-row items-start md:items-end gap-8 md:gap-16">
+          <p className="text-[16px] md:text-[17px] text-ink-mid leading-[1.75] max-w-[400px] m-0">
+            Researching interactive media, games, and immersive storytelling
+            for meaningful change in education, health, and society.
+          </p>
+
+          <div className="flex flex-wrap gap-4 shrink-0">
+            <Link
+              href="/research"
+              className="inline-flex items-center gap-2.5 bg-brand text-white font-semibold text-[13px] px-6 py-3 rounded-full font-sans
+                         transition-[background-color,transform,box-shadow] duration-300
+                         hover:bg-brand-hover hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(139,92,246,0.35)]"
+            >
+              Explore Research
+              <span aria-hidden className="text-[16px] leading-none">→</span>
+            </Link>
+            <Link
+              href="/games"
+              className="inline-flex items-center border border-white/25 text-white/75 font-semibold text-[13px] px-6 py-3 rounded-full font-sans
+                         transition-[background-color,border-color,color,transform] duration-300
+                         hover:bg-white/8 hover:border-white/40 hover:text-white hover:-translate-y-0.5"
+            >
+              View Games
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Scroll cue — sits naturally at the base of the section */}
+      <div
+        className="relative z-10 flex flex-col items-center gap-2 pb-7"
+        aria-hidden="true"
+      >
+        <span className="text-[9px] uppercase tracking-[0.28em] text-white/25 font-sans">
+          Scroll
+        </span>
+        <div className="hero-scroll-line" />
+      </div>
+    </section>
   )
 }

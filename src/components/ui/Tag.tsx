@@ -3,12 +3,12 @@ import { cn } from "@/lib/cn"
 type TagVariant = "research" | "conference" | "event" | "game" | "publication" | "default"
 
 const variantStyles: Record<TagVariant, string> = {
-  research:    "bg-brand-muted text-brand",
-  conference:  "bg-[#E0F0FF] text-[#1D6FB8]",
-  event:       "bg-[#E8F5E9] text-[#2E7D32]",
-  game:        "bg-[#FFF0E0] text-[#C27046]",
-  publication: "bg-[#E0F4FF] text-[#46829C]",
-  default:     "bg-ink-faint text-ink-mid",
+  research:    "bg-violet-500/15 text-violet-300",
+  conference:  "bg-blue-500/15   text-blue-300",
+  event:       "bg-emerald-500/15 text-emerald-300",
+  game:        "bg-orange-500/15 text-orange-300",
+  publication: "bg-cyan-500/15   text-cyan-300",
+  default:     "bg-white/8       text-white/55",
 }
 
 function toVariant(tag: string): TagVariant {
@@ -32,7 +32,7 @@ export default function Tag({ label, variant, className }: TagProps) {
   return (
     <span
       className={cn(
-        "inline-block text-[11px] font-semibold px-[9px] py-[3px] rounded-full tracking-wide uppercase",
+        "inline-block text-[10px] font-semibold font-sans px-2.5 py-1 rounded-full tracking-wider uppercase",
         variantStyles[v],
         className
       )}

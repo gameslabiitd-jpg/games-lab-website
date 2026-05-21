@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Image from "next/image"
 import { cn } from "@/lib/cn"
 
 interface ButtonProps {
@@ -14,15 +13,15 @@ interface ButtonProps {
 }
 
 const base =
-  "inline-flex items-center justify-center font-semibold font-sans cursor-pointer transition-[background-color,border-color,color,transform,box-shadow] duration-300 select-none"
+  "inline-flex items-center justify-center font-semibold font-sans cursor-pointer select-none transition-[background-color,border-color,color,transform,box-shadow] duration-300"
 
 const variants = {
   primary:
-    "bg-brand text-white border-2 border-brand px-5 py-3 rounded-full hover:bg-brand-hover hover:border-brand-hover hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(109,70,194,0.3)]",
+    "bg-brand text-white border border-brand px-6 py-3 rounded-full text-[14px] hover:bg-brand-hover hover:border-brand-hover hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(139,92,246,0.35)]",
   outline:
-    "bg-transparent text-brand border-2 border-brand pl-6 pr-3 py-3 rounded-full hover:bg-brand hover:text-white hover:-translate-y-0.5 hover:shadow-[0_6px_14px_rgba(109,70,194,0.22)]",
+    "bg-transparent text-brand-accent border border-brand/50 px-6 py-3 rounded-full text-[14px] hover:bg-brand hover:border-brand hover:text-white hover:-translate-y-0.5 hover:shadow-[0_6px_18px_rgba(139,92,246,0.25)]",
   ghost:
-    "text-brand bg-transparent border-0 px-0 py-1 hover:text-brand-hover underline-offset-4 hover:underline",
+    "text-brand-accent bg-transparent border-0 px-0 py-1 text-[14px] hover:text-white underline-offset-4 hover:underline",
 }
 
 export default function Button({
@@ -41,9 +40,7 @@ export default function Button({
     <>
       <span>{children}</span>
       {withArrow && variant !== "ghost" && (
-        <span className="ml-2 w-7 h-7 rounded-full bg-current bg-opacity-10 flex items-center justify-center shrink-0">
-          <Image src="/images/icon-arrow.svg" alt="" width={14} height={14} />
-        </span>
+        <span aria-hidden className="ml-2 text-[16px] leading-none opacity-70">→</span>
       )}
     </>
   )
