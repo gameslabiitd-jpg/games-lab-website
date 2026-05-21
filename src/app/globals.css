@@ -26,12 +26,25 @@
   /* Surface layers */
   --color-surface:    #0F0D18;
   --color-surface-2:  #161226;
+
+  /* ── Scholarly Print palette (NEW) ───────────────────────── */
+  --color-paper:      #FBF7EE;   /* warm off-white */
+  --color-paper-2:    #F2EBD9;   /* slightly darker paper */
+  --color-paper-3:    #E8DFC6;   /* deeper warm cream */
+  --color-ink-deep:   #161310;   /* near-black, warm */
+  --color-ink-body:   #4A4338;   /* warm dark gray for body */
+  --color-ink-meta:   #8A7F6E;   /* warm gray for metadata */
+  --color-rule:       #D8CFB8;   /* warm rule line */
+  --color-rule-soft:  rgba(22, 19, 16, 0.08);
+  --color-accent-red: #A0182B;   /* deep brand red */
+  --color-accent-ink: #1B2A4E;   /* deep ink-blue accent */
+  --color-marigold:   #C77B2C;   /* warm ochre — playful moments */
 }
 
 /* Fonts */
 @theme inline {
-  --font-sans:    var(--font-lexend),   "Lexend",      system-ui, sans-serif;
-  --font-display: var(--font-garamond), "EB Garamond", Georgia,   serif;
+  --font-sans:    var(--font-lexend),     "Lexend",           system-ui, sans-serif;
+  --font-display: var(--font-instrument), "Instrument Serif", Georgia,   serif;
 }
 
 /* ============================================================
@@ -162,59 +175,80 @@ a { color: inherit; text-decoration: none; }
 .marquee-inner:hover { animation-play-state: paused; }
 
 /* ============================================================
-   HERO — cinematic full-bleed
+   SCHOLARLY HERO — light, type-driven
    ============================================================ */
-.hero-section {
+.scholarly-page {
+  background-color: var(--color-paper);
+  color: var(--color-ink-body);
+}
+
+.scholarly-section {
   position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--color-paper);
   overflow: hidden;
 }
-.hero-video-bg {
+
+/* Subtle paper grain on the page background */
+.paper-grain::before {
+  content: "";
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  mix-blend-mode: screen;
-  opacity: 0.14;
   pointer-events: none;
-}
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(7, 5, 12, 0.35) 0%,
-    rgba(7, 5, 12, 0.10) 40%,
-    rgba(7, 5, 12, 0.72) 100%
-  );
-  pointer-events: none;
-}
-.hero-content {
-  position: relative;
-  z-index: 10;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding-bottom: 7rem;
-  padding-top: 8rem;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(22, 19, 16, 0.018) 0%, transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(22, 19, 16, 0.022) 0%, transparent 50%);
 }
 
-/* Scroll cue — animated line */
-@keyframes scroll-cue-pulse {
-  0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
-  40%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
-  60%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+/* ── Word-stagger reveal — fires once on first paint ──────── */
+@keyframes word-rise {
+  0%   { opacity: 0; transform: translateY(0.45em); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.word-rise > span {
+  display: inline-block;
+  opacity: 0;
+  animation: word-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Index marker — small caps + monospaced number feel via tabular nums */
+.index-mark {
+  font-feature-settings: "tnum" 1, "ss01" 1;
+  letter-spacing: 0.04em;
+}
+
+/* Italic-as-feature display moment */
+.display-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Editorial drop-rule under sections */
+.rule-deep {
+  background: var(--color-ink-deep);
+}
+.rule-soft {
+  background: var(--color-rule);
+}
+
+/* Marquee scroll cue — quiet, just a hairline */
+@keyframes hairline-drop {
+  0%   { transform: scaleY(0); transform-origin: top;    opacity: 0; }
+  35%  { transform: scaleY(1); transform-origin: top;    opacity: 1; }
+  65%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
   100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
 }
-.hero-scroll-line {
+.hairline-cue {
   width: 1px;
-  height: 48px;
-  background: rgba(196, 181, 253, 0.4);
-  animation: scroll-cue-pulse 2.2s ease-in-out infinite;
+  height: 56px;
+  background: var(--color-ink-deep);
+  opacity: 0.45;
+  animation: hairline-drop 2.4s ease-in-out infinite;
 }
 
 /* ============================================================
