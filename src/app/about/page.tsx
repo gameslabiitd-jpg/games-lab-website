@@ -38,9 +38,6 @@ export default function AboutPage() {
 
         {/* Hero */}
         <ScrollReveal>
-          <p className="text-[11px] uppercase tracking-[0.28em] text-brand-accent font-semibold font-sans mb-5">
-            About the Lab
-          </p>
           <h1
             className="font-display font-bold text-ink leading-[0.9] tracking-tight mb-7"
             style={{ fontSize: "clamp(52px, 8vw, 96px)" }}
@@ -70,9 +67,6 @@ export default function AboutPage() {
 
         {/* What We Do */}
         <ScrollReveal>
-          <p className="text-[11px] uppercase tracking-[0.25em] text-brand-accent font-semibold font-sans mb-4">
-            What We Do
-          </p>
           <h2 className="font-display text-[40px] md:text-[52px] text-ink mb-12">Areas of Work</h2>
         </ScrollReveal>
 
@@ -93,9 +87,6 @@ export default function AboutPage() {
         {/* Mission */}
         <div className="grid md:grid-cols-2 gap-16 items-center mb-24">
           <ScrollReveal direction="left">
-            <p className="text-[11px] uppercase tracking-[0.25em] text-brand-accent font-semibold font-sans mb-4">
-              Our Mission
-            </p>
             <h2 className="font-display text-[40px] text-ink mb-5">Why We Do It</h2>
             <p className="text-[16px] text-ink-mid leading-[1.85]">
               We believe that play is a powerful lens through which to understand human behaviour,
@@ -121,9 +112,6 @@ export default function AboutPage() {
         {/* Values */}
         <ScrollReveal>
           <div className="border border-white/8 rounded-[12px] p-10 md:p-16">
-            <p className="text-[11px] uppercase tracking-[0.25em] text-brand-accent font-semibold font-sans mb-4 text-center">
-              Our Values
-            </p>
             <h2 className="font-display text-[40px] md:text-[52px] text-ink mb-4 text-center">
               What Drives Us
             </h2>

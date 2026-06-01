@@ -33,20 +33,21 @@ export default function Navbar() {
       <div
         className={cn(
           "relative w-full max-w-[1500px] h-[60px] rounded-2xl flex items-center justify-between px-6",
-          "border border-white/10 border-b border-b-brand/40",
-          "transition-[background-color,box-shadow,backdrop-filter] duration-400",
+          "border transition-[box-shadow,border-color] duration-400",
+          // Solid pill — readable on any page background (light or dark)
+          "bg-[#FAFAF7] border-[#161310]/12",
           scrolled
-            ? "bg-[rgba(7,5,12,0.85)] backdrop-blur-xl shadow-[0_4px_32px_rgba(0,0,0,0.5)]"
-            : "bg-[rgba(7,5,12,0.4)] backdrop-blur-md"
+            ? "shadow-[0_6px_28px_rgba(22,19,16,0.18)]"
+            : "shadow-[0_2px_14px_rgba(22,19,16,0.10)]"
         )}
       >
-        {/* Logo */}
+        {/* Logo — original GAMES Lab brand mark */}
         <Link href="/" className="shrink-0">
           <Image
-            src="/images/logo-white.svg"
+            src="/images/Brand/Logo.svg"
             alt="GAMES Lab IIT Delhi"
             width={120}
-            height={40}
+            height={38}
             priority
           />
         </Link>
@@ -60,15 +61,15 @@ export default function Navbar() {
                 <Link
                   href={href}
                   className={cn(
-                    "text-[14px] font-semibold font-sans transition-colors duration-200",
-                    active ? "text-white" : "text-white/70 hover:text-white"
+                    "text-[14px] font-medium font-sans transition-colors duration-200",
+                    active ? "text-[#161310]" : "text-[#161310]/80 hover:text-[#161310]"
                   )}
                 >
                   {label}
                 </Link>
                 <span
                   className={cn(
-                    "absolute -bottom-1 left-0 h-px bg-brand-accent rounded-full transition-[width] duration-300",
+                    "absolute -bottom-1 left-0 h-0.5 bg-[#161310] rounded-full transition-[width] duration-300",
                     active ? "w-full" : "w-0"
                   )}
                 />
@@ -80,10 +81,10 @@ export default function Navbar() {
         {/* CTA — desktop */}
         <a
           href="mailto:info@games.iitd.ac.in"
-          className="hidden md:inline-flex items-center text-[13px] font-semibold font-sans
-                     text-brand-accent border border-brand/50 px-4 py-2 rounded-full
+          className="hidden md:inline-flex items-center text-[13px] font-medium font-sans
+                     text-[#161310] border border-[#161310]/45 px-4 py-2 rounded-full
                      transition-[background-color,border-color,color] duration-200
-                     hover:bg-brand hover:border-brand hover:text-white whitespace-nowrap"
+                     hover:bg-[#161310] hover:border-[#161310] hover:text-[#FAFAF7] whitespace-nowrap"
         >
           info@games.iitd.ac.in
         </a>
@@ -96,37 +97,38 @@ export default function Navbar() {
           className="md:hidden flex flex-col justify-center gap-[5px] w-8 h-8 ml-auto cursor-pointer"
         >
           <span className={cn(
-            "block h-px bg-white/70 rounded-full transition-[transform,opacity,width] duration-300",
+            "block h-px bg-[#161310]/70 rounded-full transition-[transform,opacity,width] duration-300",
             menuOpen ? "rotate-45 translate-y-[6px] w-6" : "w-6"
           )} />
           <span className={cn(
-            "block h-px bg-white/70 rounded-full transition-[transform,opacity,width] duration-300",
+            "block h-px bg-[#161310]/70 rounded-full transition-[transform,opacity,width] duration-300",
             menuOpen ? "opacity-0 w-4" : "w-4"
           )} />
           <span className={cn(
-            "block h-px bg-white/70 rounded-full transition-[transform,opacity,width] duration-300",
+            "block h-px bg-[#161310]/70 rounded-full transition-[transform,opacity,width] duration-300",
             menuOpen ? "-rotate-45 -translate-y-[6px] w-6" : "w-6"
           )} />
         </button>
       </div>
 
-      {/* Mobile dropdown */}
+      {/* Mobile dropdown — light theme to match the pill */}
       <div className={cn(
         "md:hidden absolute top-[72px] left-5 right-5",
-        "bg-[rgba(15,13,24,0.96)] backdrop-blur-xl rounded-2xl border border-white/10",
+        "bg-[#FAFAF7] rounded-2xl border border-[#161310]/12 shadow-[0_8px_28px_rgba(22,19,16,0.18)]",
         "overflow-hidden transition-[opacity,transform] duration-300 origin-top",
         menuOpen ? "opacity-100 scale-y-100 pointer-events-auto" : "opacity-0 scale-y-95 pointer-events-none"
-      )}>
+      )}
+      style={{ overscrollBehavior: "contain" }}>
         <ul className="list-none m-0 p-4 flex flex-col gap-1">
           {navLinks.map(({ label, href }) => (
             <li key={href}>
               <Link
                 href={href}
                 className={cn(
-                  "block text-[15px] font-semibold font-sans px-4 py-3 rounded-xl transition-[background-color,color] duration-200",
+                  "block text-[15px] font-medium font-sans px-4 py-3 rounded-xl transition-[background-color,color] duration-200",
                   pathname === href
-                    ? "text-white bg-white/8"
-                    : "text-white/60 hover:text-white hover:bg-white/5"
+                    ? "text-[#161310] bg-[#161310]/8"
+                    : "text-[#161310]/75 hover:text-[#161310] hover:bg-[#161310]/5"
                 )}
               >
                 {label}
@@ -136,7 +138,7 @@ export default function Navbar() {
           <li className="mt-2">
             <a
               href="mailto:info@games.iitd.ac.in"
-              className="block text-center text-[14px] font-semibold text-white bg-brand px-4 py-3 rounded-xl font-sans"
+              className="block text-center text-[14px] font-medium text-[#FAFAF7] bg-[#161310] px-4 py-3 rounded-xl font-sans hover:opacity-90 transition-opacity"
             >
               info@games.iitd.ac.in
             </a>

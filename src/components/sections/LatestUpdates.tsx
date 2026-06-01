@@ -13,9 +13,6 @@ export default function LatestUpdates() {
 
       {/* Left: About snippet */}
       <ScrollReveal direction="left">
-        <p className="text-[11px] uppercase tracking-[0.25em] text-brand-accent font-semibold font-sans mb-4">
-          About the Lab
-        </p>
         <h2 className="font-display text-[38px] md:text-[48px] text-ink leading-tight mb-6">
           Intersection of Play,<br />Design &amp; Impact
         </h2>
@@ -38,9 +35,6 @@ export default function LatestUpdates() {
 
       {/* Right: Latest news */}
       <ScrollReveal direction="right" delay={100}>
-        <p className="text-[11px] uppercase tracking-[0.25em] text-brand-accent font-semibold font-sans mb-4">
-          Updates
-        </p>
         <h2 className="font-display text-[38px] md:text-[48px] text-ink leading-tight mb-6">Latest Updates</h2>
         <div className="flex flex-col gap-3 mb-7">
           {items.map((item, i) => (

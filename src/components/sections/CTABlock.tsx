@@ -13,9 +13,6 @@ export default function CTABlock() {
           <div className="grid md:grid-cols-[1fr_auto] gap-12 items-end">
             {/* Left: text block */}
             <div>
-              <p className="text-[11px] uppercase tracking-[0.28em] text-brand-accent font-semibold font-sans mb-6">
-                Let&apos;s Build Together
-              </p>
               <h2 className="font-display text-[52px] md:text-[80px] text-ink leading-[0.9] tracking-tight m-0">
                 Interested in<br />collaborating<br />with us?
               </h2>

@@ -1,24 +1,16 @@
 import type { Metadata } from "next"
-import { Lexend, Instrument_Serif } from "next/font/google"
+import { Inter } from "next/font/google"
 import "./globals.css"
 import LenisProvider from "@/components/animations/LenisProvider"
 import ScrollProgressBar from "@/components/animations/ScrollProgressBar"
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
 
-const lexend = Lexend({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-lexend",
+  variable: "--font-inter",
   display: "swap",
   weight: ["300", "400", "500", "600", "700", "800", "900"],
-})
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  variable: "--font-instrument",
-  display: "swap",
-  weight: ["400"],
-  style: ["normal", "italic"],
 })
 
 export const metadata: Metadata = {
@@ -43,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${lexend.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" className={inter.variable}>
       <body className="min-h-screen flex flex-col font-sans">
         <LenisProvider>
           <ScrollProgressBar />

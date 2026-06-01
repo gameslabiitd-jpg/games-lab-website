@@ -56,9 +56,6 @@ export default function HighlightedWorks() {
       {/* Section header */}
       <div className="flex items-end justify-between mb-12">
         <div>
-          <p className="text-[11px] uppercase tracking-[0.25em] text-brand-accent font-semibold font-sans mb-3">
-            Selected Work
-          </p>
           <h2 className="font-display text-[42px] md:text-[52px] text-ink leading-tight m-0">
             Highlighted Projects
           </h2>

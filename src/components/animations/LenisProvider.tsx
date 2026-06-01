@@ -27,6 +27,8 @@ export default function LenisProvider({
       touchMultiplier: 2,
     })
     lenisRef.current = lenis
+    // Expose instance so the hero scroll-scrub can pause/resume it.
+    ;(window as unknown as { __lenis?: Lenis }).__lenis = lenis
 
     // Sync Lenis scroll events → GSAP ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update)
@@ -38,6 +40,7 @@ export default function LenisProvider({
     gsap.ticker.lagSmoothing(0)
 
     return () => {
+      ;(window as unknown as { __lenis?: Lenis | null }).__lenis = null
       lenis.destroy()
       lenisRef.current = null
     }

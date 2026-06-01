@@ -19,9 +19,6 @@ export default function NewsPage() {
       <div className="w-[88%] max-w-[1500px] mx-auto pt-36 pb-20">
         {/* Header */}
         <ScrollReveal>
-          <p className="text-[11px] uppercase tracking-[0.28em] text-brand-accent font-semibold font-sans mb-5">
-            What&apos;s Happening
-          </p>
           <h1
             className="font-display font-bold text-ink leading-[0.9] tracking-tight mb-6"
             style={{ fontSize: "clamp(52px, 8vw, 96px)" }}

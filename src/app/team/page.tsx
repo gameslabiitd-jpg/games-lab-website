@@ -20,9 +20,6 @@ export default function TeamPage() {
       <div className="w-[88%] max-w-[1500px] mx-auto pt-36 pb-20">
         {/* Header */}
         <ScrollReveal>
-          <p className="text-[11px] uppercase tracking-[0.28em] text-brand-accent font-semibold font-sans mb-5">
-            The People
-          </p>
           <h1
             className="font-display font-bold text-ink leading-[0.9] tracking-tight mb-6"
             style={{ fontSize: "clamp(52px, 8vw, 96px)" }}
@@ -42,9 +39,6 @@ export default function TeamPage() {
                 <Image src={f.image} alt={f.name} fill className="object-cover" sizes="130px" />
               </div>
               <div>
-                <p className="text-[11px] uppercase tracking-[0.22em] text-brand-accent font-semibold font-sans mb-2">
-                  Faculty Director
-                </p>
                 <h2 className="font-display text-[32px] text-ink mb-1">{f.name}</h2>
                 <p className="text-[14px] text-ink-soft font-sans mb-4">{f.role}</p>
                 <p className="text-[15px] text-ink-mid leading-relaxed max-w-[540px]">{f.bio}</p>

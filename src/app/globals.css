@@ -43,8 +43,8 @@
 
 /* Fonts */
 @theme inline {
-  --font-sans:    var(--font-lexend),     "Lexend",           system-ui, sans-serif;
-  --font-display: var(--font-instrument), "Instrument Serif", Georgia,   serif;
+  --font-sans:    var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-display: var(--font-inter), "Inter", system-ui, sans-serif;
 }
 
 /* ============================================================
