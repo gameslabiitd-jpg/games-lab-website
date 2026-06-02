@@ -1,21 +1,15 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { GooeyFilter } from "@/components/ui/gooey-filter"
+import { PixelTrail } from "@/components/ui/pixel-trail"
+import { useScreenSize } from "@/hooks/use-screen-size"
 
 /**
- * Hero v7 — scroll-scrub video with the original timeline, plus safety hatches.
- *
- * What changed vs v6 (the "stuck forever" build):
- *   - Scrub model is cumulative delta → progress, not per-event time addition.
- *     Trackpads (small frequent deltas) and mouse wheels (big deltas) now
- *     reach completion in the same total scroll distance.
- *   - Hard safety net: if locked for > 6s with no completion, force release.
- *   - Escape key, click-to-skip on the scroll indicator, and tap-on-video
- *     all release the lock immediately.
- *   - If component mounts with scrollY > 60 (back nav, refresh mid-page),
- *     don't lock at all.
- *   - prefers-reduced-motion: no lock, video stays at frame 0, normal scroll.
- *   - `complete` is state (not a ref) so the scroll indicator actually fades.
+ * Hallmark · genre: editorial · macrostructure: Marquee Hero · design-system: design.md
+ * Cream scroll-scrub hero with cursor-driven gooey pixel trail behind
+ * the centerpiece. The trail layer sits at z-0, content stays at z-10+.
+ * See design.md for the locked system.
  */
 
 type LenisLike = { stop: () => void; start: () => void }
@@ -30,37 +24,36 @@ const timeline = [
   { time: 1.50, title: "Lab.",               subtitle: "Where Play Meets Purpose!" },
 ]
 
-/** Total scroll distance (in px-equivalent) needed to scrub the whole video. */
 const SCROLL_DISTANCE = 1200
-/** After this long, give up and release the lock so the user is never trapped. */
-const MAX_LOCK_MS = 6000
+/** Idle timeout — lock auto-releases after this much time WITHOUT user
+ *  activity. Active scrollers never hit it. Slow scrollers reset it on
+ *  every wheel/touch/key event. */
+const IDLE_RELEASE_MS = 10000
 
 export default function Hero() {
-  const videoRef     = useRef<HTMLVideoElement>(null)
-  const accumDelta   = useRef(0)
-  const ticking      = useRef(false)
-  const completeRef  = useRef(false)
-  const lockedRef    = useRef(false)
-  const lenisRef     = useRef<LenisLike | null>(null)
+  const videoRef    = useRef<HTMLVideoElement>(null)
+  const accumDelta  = useRef(0)
+  const ticking     = useRef(false)
+  const completeRef = useRef(false)
+  const lockedRef   = useRef(false)
+  const lenisRef    = useRef<LenisLike | null>(null)
 
-  const [text, setText] = useState({
-    title:    timeline[0].title,
-    subtitle: timeline[0].subtitle,
-  })
+  const [text, setText]         = useState({ title: timeline[0].title, subtitle: timeline[0].subtitle })
   const [complete, setComplete] = useState(false)
+
+  // Coarser pixels on mobile (touch can't drive a hover trail meaningfully,
+  // but the resize-on-rotate cost stays cheap).
+  const screen = useScreenSize()
+  const pixelSize = screen.lessThan("md") ? 28 : 36
 
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
 
-    // Respect reduced motion — no lock, no scrub.
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-
-    // Don't lock if user is already past the hero (back-nav, deep refresh).
+    const reducedMotion   = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     const startedScrolled = window.scrollY > 60
-
-    const shouldLock = !reducedMotion && !startedScrolled
-    const lenis = (window as unknown as { __lenis?: LenisLike }).__lenis ?? null
+    const shouldLock      = !reducedMotion && !startedScrolled
+    const lenis           = (window as unknown as { __lenis?: LenisLike }).__lenis ?? null
     lenisRef.current = lenis
 
     const release = () => {
@@ -77,15 +70,20 @@ export default function Hero() {
       document.body.style.overflow = "hidden"
       lenis?.stop()
     } else {
-      // We're not locking. Skip straight to "complete" so the indicator hides.
       completeRef.current = true
       setComplete(true)
     }
 
-    // Hard safety net — never trap the user longer than MAX_LOCK_MS.
-    const safetyTimer = window.setTimeout(() => {
-      if (!completeRef.current) release()
-    }, MAX_LOCK_MS)
+    /* Idle-reset safety timer — fires only after IDLE_RELEASE_MS of no
+       user input. Active scrollers continually push it forward. */
+    let safetyTimerId: number | null = null
+    const armSafetyTimer = () => {
+      if (safetyTimerId !== null) window.clearTimeout(safetyTimerId)
+      safetyTimerId = window.setTimeout(() => {
+        if (!completeRef.current) release()
+      }, IDLE_RELEASE_MS)
+    }
+    armSafetyTimer()
 
     const findEntry = (t: number) => {
       for (let i = timeline.length - 1; i >= 0; i--) {
@@ -106,7 +104,9 @@ export default function Hero() {
 
       const e = findEntry(t)
       setText((prev) =>
-        prev.title === e.title && prev.subtitle === e.subtitle ? prev : { title: e.title, subtitle: e.subtitle }
+        prev.title === e.title && prev.subtitle === e.subtitle
+          ? prev
+          : { title: e.title, subtitle: e.subtitle }
       )
 
       if (progress >= 1) release()
@@ -125,6 +125,7 @@ export default function Hero() {
       e.preventDefault()
       accumDelta.current += e.deltaY
       if (accumDelta.current < 0) accumDelta.current = 0
+      armSafetyTimer()
       requestTick()
     }
 
@@ -140,19 +141,19 @@ export default function Hero() {
       e.preventDefault()
       accumDelta.current += dy * 2.5
       if (accumDelta.current < 0) accumDelta.current = 0
+      armSafetyTimer()
       requestTick()
     }
 
     const onKey = (e: KeyboardEvent) => {
-      // Escape skips the intro entirely.
       if (e.key === "Escape" && lockedRef.current) {
         release()
         return
       }
-      // PageDown / Space / ArrowDown still scrub forward while locked.
       if (lockedRef.current && (e.key === " " || e.key === "PageDown" || e.key === "ArrowDown")) {
         e.preventDefault()
         accumDelta.current += 200
+        armSafetyTimer()
         requestTick()
       }
     }
@@ -162,37 +163,57 @@ export default function Hero() {
     window.addEventListener("touchmove",  onTouchMove,  { passive: false })
     window.addEventListener("keydown",    onKey)
 
-    // Cleanup
     return () => {
-      window.clearTimeout(safetyTimer)
+      if (safetyTimerId !== null) window.clearTimeout(safetyTimerId)
       window.removeEventListener("wheel",      onWheel)
       window.removeEventListener("touchstart", onTouchStart)
       window.removeEventListener("touchmove",  onTouchMove)
       window.removeEventListener("keydown",    onKey)
-      // Always restore — leaving body locked across unmount would brick the app.
       document.body.style.overflow = ""
       lenis?.start()
       lockedRef.current = false
     }
   }, [])
 
-  // Click-to-skip on the scroll indicator
   const skipIntro = () => {
     if (completeRef.current) return
     completeRef.current = true
     document.body.style.overflow = ""
     lenisRef.current?.start()
     setComplete(true)
-    // Scroll user just past the hero
     window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
   }
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center bg-[#FAFAF7] text-[#161310] overflow-hidden">
-      <div className="pt-28 md:pt-32" />
+    <section
+      data-hero
+      className="relative min-h-dvh flex flex-col items-center justify-center bg-paper text-ink overflow-hidden"
+    >
+      {/* Gooey-merged cursor trail — sits at z-0 behind all content.
+          The SVG filter def is hidden; PixelTrail's grid is what gets
+          filtered via inline style on its wrapper. */}
+      <GooeyFilter id="hero-goo" strength={6} />
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        aria-hidden="true"
+      >
+        <div
+          className="absolute inset-0 pointer-events-auto"
+          style={{ filter: "url(#hero-goo)" }}
+        >
+          <PixelTrail
+            pixelSize={pixelSize}
+            fadeDuration={700}
+            delay={80}
+            pixelClassName="bg-ink"
+          />
+        </div>
+      </div>
 
-      {/* Scrub video — multiply blend over light paper drops the white video bg */}
-      <div className="w-[78%] md:w-[70%] max-w-[1000px] mx-auto">
+      <div className="relative z-10 pt-28 md:pt-32" />
+
+      {/* Scroll-scrub video — dark logo content sits naturally on cream. */}
+      <div className="relative z-10 w-[78%] md:w-[70%] max-w-[1000px] mx-auto">
         <video
           ref={videoRef}
           muted
@@ -201,30 +222,27 @@ export default function Hero() {
           width={1000}
           height={563}
           aria-hidden="true"
-          className="w-full rounded-[14px] block"
-          style={{ mixBlendMode: "multiply" }}
+          className="w-full block"
         >
-          <source src="/videos/fingers464.mp4" type="video/mp4" />
+          <source src="/videos/fingers464.webm" type="video/webm" />
+          <source src="/videos/fingers464.mp4"  type="video/mp4"  />
         </video>
       </div>
 
-      {/* Timeline-driven headline + subtitle. aria-live so AT users hear the changes. */}
-      <div className="text-center px-6 -mt-6 md:-mt-10" aria-live="polite">
+      {/* Timeline-driven headline + subtitle */}
+      <div className="relative z-10 text-center px-6 -mt-6 md:-mt-10" aria-live="polite">
         <h1
-          className="font-sans font-black tracking-tight leading-none m-0"
+          className="font-sans font-black tracking-[-0.02em] leading-[0.95] m-0 text-ink"
           style={{ fontSize: "clamp(44px, 8vw, 96px)" }}
         >
           {text.title}
         </h1>
-        <p
-          className="font-sans text-[16px] md:text-[18px] mt-4 max-w-[640px] mx-auto m-0"
-          style={{ color: "#4A4338" }}
-        >
+        <p className="font-sans text-md md:text-lg mt-4 max-w-[640px] mx-auto m-0 text-ink-2/80">
           {text.subtitle}
         </p>
       </div>
 
-      {/* Click-to-skip scroll indicator. Now actually fades because `complete` is state. */}
+      {/* Scroll cue — ink-tone for the cream hero */}
       <button
         type="button"
         onClick={skipIntro}
@@ -233,10 +251,7 @@ export default function Hero() {
                     transition-opacity duration-500 cursor-pointer bg-transparent border-0 p-2
                     ${complete ? "opacity-0 pointer-events-none" : "opacity-100"}`}
       >
-        <span className="text-[10px] uppercase tracking-[0.32em] text-[#161310]/60 font-semibold">
-          Scroll · or press Esc
-        </span>
-        <div className="w-px h-12 bg-[#161310]/50" />
+        <div className="w-px h-12 bg-ink/40" />
       </button>
     </section>
   )
