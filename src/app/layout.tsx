@@ -13,6 +13,7 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 })
 
+
 export const metadata: Metadata = {
   title: {
     default: "GAMES Lab — IIT Delhi",
@@ -35,8 +36,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="min-h-screen flex flex-col font-sans">
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
+      {/* suppressHydrationWarning on <body> — browser extensions
+          (Bitdefender's bis_register, Grammarly's __processed_*, etc.)
+          inject attributes after SSR. Without this, every page logs
+          a hydration mismatch and the extension's DOM drift cascades
+          into `removeChild` errors when sections unmount. */}
+      <body className="min-h-screen flex flex-col font-sans" suppressHydrationWarning>
         <LenisProvider>
           <ScrollProgressBar />
           <Navbar />

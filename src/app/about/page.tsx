@@ -1,10 +1,9 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import ScrollReveal from "@/components/animations/ScrollReveal"
 import CTABlock from "@/components/sections/CTABlock"
 import { TiltCard } from "@/components/ui/tilt-card"
-import { Counter } from "@/components/ui/counter"
 import { PinnedHorizontal } from "@/components/ui/pinned-horizontal"
+import { StatsFlipboard } from "@/components/about/stats-flipboard"
 
 /**
  * Hallmark · genre: editorial · macrostructure: Long Document · designed-as-app
@@ -24,13 +23,6 @@ export const metadata: Metadata = {
   description:
     "GAMES Lab at IIT Delhi — our mission, research-through-design methodology, funded projects, facilities, and outputs.",
 }
-
-const stats = [
-  { number: 4,   pad: 2, label: "Funded projects" },
-  { number: 3,   pad: 2, label: "Application areas" },
-  { number: 14,  pad: 2, label: "Tabletop games" },
-  { number: "∞", pad: 2, label: "Playtests" },
-] as const
 
 const keywordMarquee = [
   "Research-through-design", "Embodied learning", "Tabletop", "Augmented reality",
@@ -72,58 +64,20 @@ const fundedProjects = [
 export default function AboutPage() {
   return (
     <>
-      {/* ── Hero lede ──────────────────────────────────────────── */}
-      <div className="w-[90%] max-w-[1500px] mx-auto pt-36 pb-16 md:pb-24">
-        <ScrollReveal>
-          <h1
-            className="font-sans font-extrabold text-ink leading-[0.92] tracking-[-0.03em] mb-8 m-0"
-            style={{ fontSize: "clamp(56px, 9vw, 120px)" }}
-          >
-            Where play<br />meets purpose.
-          </h1>
-        </ScrollReveal>
-      </div>
-
-      {/* ── Single hero image (21:8) — the original pattern ────── */}
-      <div className="w-[90%] max-w-[1500px] mx-auto mb-32 md:mb-40">
-        <ScrollReveal>
-          <div className="relative w-full aspect-[21/8] rounded-[10px] overflow-hidden bg-paper-3">
-            <Image
-              src="/images/game1.jpg"
-              alt="GAMES Lab researchers and students collaborating at IIT Delhi"
-              fill
-              className="object-cover"
-              sizes="100vw"
-              priority
-            />
-          </div>
-        </ScrollReveal>
-      </div>
-
-      {/* ── Stats — counters tick up on entry ──────────────────── */}
-      <div className="w-[90%] max-w-[1500px] mx-auto mb-36 md:mb-48">
-        <ScrollReveal>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 border-t border-rule pt-10">
-            {stats.map((s) => (
-              <div key={s.label} className="flex flex-col">
-                <span
-                  className="font-sans font-extrabold text-ink leading-none tracking-[-0.04em] tabular-nums block"
-                  style={{ fontSize: "clamp(48px, 7vw, 96px)" }}
-                >
-                  <Counter
-                    to={s.number}
-                    pad={s.pad}
-                    duration={typeof s.number === "number" && s.number > 10 ? 1800 : 1300}
-                  />
-                </span>
-                <span className="mt-3 text-xs md:text-sm font-sans font-medium text-ink-3 tracking-[0.04em]">
-                  {s.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
-      </div>
+      {/* ── Full-screen split-flap hero ──────────────────────────
+          The flipboard IS the hero. min-h-dvh so it claims the full
+          viewport, centered horizontally + vertically. The board cycles
+          identity → stats every 8s, so anyone who lingers sees both
+          framings. Bottom-anchored "About" credit gives the page a
+          masthead feel without competing with the board. */}
+      <section className="relative min-h-dvh w-full flex flex-col items-center justify-center pt-28 pb-20 mb-24 md:mb-32 overflow-hidden">
+        <div className="w-full">
+          <StatsFlipboard />
+        </div>
+        <p className="absolute bottom-8 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.32em] font-semibold font-sans text-ink-3 m-0 pointer-events-none">
+          About · GAMES Lab IIT Delhi
+        </p>
+      </section>
 
       {/* ── Pull quote — verbatim from source ──────────────────── */}
       <div className="w-[90%] max-w-[1500px] mx-auto mb-24 md:mb-32">
@@ -209,7 +163,7 @@ export default function AboutPage() {
         </ScrollReveal>
       </div>
 
-      <PinnedHorizontal cellWidth="80vw" gap="3vw" className="mb-36 md:mb-48 h-[80vh] min-h-[520px] flex items-center">
+      <PinnedHorizontal cellWidth="80vw" gap="3vw" className="mb-36 md:mb-48">
         {verticals.map((v) => (
           <TiltCard key={v.label} max={4} className="h-full max-h-[560px]">
             <div className="relative bg-paper-2 rounded-[14px] p-10 md:p-16 h-full overflow-hidden flex flex-col justify-end">

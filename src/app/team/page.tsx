@@ -1,12 +1,20 @@
 import type { Metadata } from "next"
 import Image from "next/image"
-import Link from "next/link"
 import { team } from "@/data/team"
 import ScrollReveal from "@/components/animations/ScrollReveal"
 import CTABlock from "@/components/sections/CTABlock"
+import { MemberList } from "@/components/team/member-list"
 
 /**
- * Hallmark · genre: editorial · macrostructure: Long Document (catalog) · design-system: design.md · designed-as-app
+ * Hallmark · genre: editorial · macrostructure: Long Document
+ *
+ * Avant-garde team page:
+ *   - Minimal display hero: "People." — no description, no labels
+ *   - Faculty: full-bleed bg-ink section, contained inner layout.
+ *       Huge name + small portrait (150-200px) bottom-aligned in a row.
+ *       Bio + raw email below. No chips, no eyebrows, no CTA labels.
+ *   - Lab members: unchanged — big-type list + cursor portrait reveal
+ *   - Alumni: compact ticker cards (only renders if non-empty)
  */
 
 export const metadata: Metadata = {
@@ -21,97 +29,142 @@ export default function TeamPage() {
 
   return (
     <>
-      <div className="w-[90%] max-w-[1400px] mx-auto pt-36 pb-20">
-        <ScrollReveal>
-          <h1
-            className="font-sans font-extrabold text-ink leading-[0.92] tracking-[-0.02em] mb-6"
-            style={{ fontSize: "clamp(52px, 8vw, 96px)" }}
+      {/* ── Faculty — opens the page. Name IS the headline. ──────
+          Portrait is a small absolute accent (top-right), ~190px.
+          Content clears it with md:pr-[240px].
+          Name at full editorial scale — nothing competes with it.
+          Role, bio, email stack below in reading order. */}
+      {faculty.map((f) => {
+        const nameParts = f.name.split(" ")
+        const firstName = nameParts[0]
+        const lastName  = nameParts.slice(1).join(" ")
+        return (
+          <section
+            key={f.id}
+            className="relative w-[90%] max-w-[1500px] mx-auto pt-36 pb-0 mb-32 md:mb-44"
           >
-            Our team
-          </h1>
-          <p className="text-lg text-ink-2 leading-[1.75] max-w-[580px] mb-16">
-            Researchers, designers, and builders united by a love of play and a drive for impact.
-          </p>
-        </ScrollReveal>
-
-        {/* Faculty */}
-        {faculty.map((f) => (
-          <ScrollReveal key={f.id}>
-            <div className="bg-paper border border-rule rounded-[12px] p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start mb-16 card-lift hover:border-ink/30">
-              <div className="relative w-[130px] h-[130px] rounded-full overflow-hidden bg-paper-3 shrink-0 ring-1 ring-ink/8">
-                <Image src={f.image} alt={f.name} fill className="object-cover" sizes="130px" />
+            {/* Portrait — desktop: absolute accent, top-right.
+                top-36 (144px) matches pt-36 so it sits flush with content start. */}
+            <div className="hidden md:block absolute top-36 right-0 w-[190px]">
+              <div className="relative w-full aspect-[3/4] rounded-[12px] overflow-hidden bg-paper-3">
+                <Image
+                  src={f.image}
+                  alt={f.name}
+                  fill
+                  className="object-cover object-top"
+                  sizes="190px"
+                  priority
+                />
               </div>
-              <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-ink-3 font-semibold font-sans mb-2">
-                  Faculty Director
+            </div>
+
+            {/* Portrait — mobile: inline before name */}
+            <div className="md:hidden relative w-[130px] aspect-[3/4] rounded-[10px] overflow-hidden bg-paper-3 mb-8">
+              <Image
+                src={f.image}
+                alt={f.name}
+                fill
+                className="object-cover object-top"
+                sizes="130px"
+                priority
+              />
+            </div>
+
+            {/* Content — right-padded on desktop to clear the portrait */}
+            <div className="md:pr-[230px]">
+
+              <ScrollReveal direction="up">
+                <h1
+                  className="font-sans font-extrabold text-ink leading-[0.88]
+                             tracking-[-0.045em] m-0 mb-6"
+                  style={{ fontSize: "clamp(72px, 11vw, 170px)" }}
+                >
+                  {firstName}
+                  {lastName && (
+                    <>
+                      <br />
+                      {lastName}
+                    </>
+                  )}
+                </h1>
+              </ScrollReveal>
+
+              <ScrollReveal direction="up" delay={80}>
+                <p className="text-sm md:text-md text-ink-3 font-sans m-0 mb-12 md:mb-16">
+                  {f.role}
                 </p>
-                <h2 className="font-sans font-extrabold text-ink leading-tight mb-1 text-2xl md:text-3xl">{f.name}</h2>
-                <p className="text-sm text-ink-3 font-sans mb-4">{f.role}</p>
-                <p className="text-md text-ink-2 leading-relaxed max-w-[540px]">{f.bio}</p>
+              </ScrollReveal>
+
+              <ScrollReveal direction="up" delay={160}>
+                {f.bio && (
+                  <p className="text-md md:text-lg text-ink-2 leading-[1.72]
+                                max-w-[60ch] m-0 mb-8">
+                    {f.bio}
+                  </p>
+                )}
                 {f.email && (
                   <a
                     href={`mailto:${f.email}`}
-                    className="inline-block mt-4 text-sm text-ink font-medium font-sans underline underline-offset-4 decoration-ink/30 hover:decoration-ink transition-colors"
+                    className="font-mono text-sm text-ink-3
+                               hover:text-ink transition-colors duration-500"
+                    style={{ transitionTimingFunction: "cubic-bezier(0.65,0,0.35,1)" }}
                   >
                     {f.email}
                   </a>
                 )}
-              </div>
-            </div>
-          </ScrollReveal>
-        ))}
+              </ScrollReveal>
 
-        {/* Lab Members */}
+            </div>
+          </section>
+        )
+      })}
+
+      {/* ── Lab Members — big-type roster with cursor portrait ─── */}
+      <section className="w-[90%] max-w-[1500px] mx-auto mb-36 md:mb-48">
         <ScrollReveal>
-          <h2 className="font-sans font-extrabold text-ink leading-[0.95] tracking-tight mb-10 text-3xl">Lab members</h2>
+          <div className="mb-10 md:mb-14 border-b border-rule pb-6">
+            <h2
+              className="font-sans font-extrabold text-ink leading-[0.92] tracking-[-0.03em] m-0"
+              style={{ fontSize: "clamp(32px, 4.2vw, 60px)" }}
+            >
+              Lab members
+            </h2>
+          </div>
         </ScrollReveal>
-        <div className="flex flex-wrap justify-center md:justify-start gap-10 mb-24">
-          {members.map((m, i) => (
-            <ScrollReveal key={m.id} delay={i * 60}>
-              <Link
-                href={`/team/${m.id}`}
-                className="flex flex-col items-center gap-3 group cursor-pointer no-underline"
-              >
-                <div
-                  className="relative w-[108px] h-[108px] rounded-full overflow-hidden bg-paper-3 ring-1 ring-ink/10
-                             group-hover:ring-ink/30 group-hover:-translate-y-1
-                             transition-[transform,box-shadow] duration-300"
-                >
-                  <Image src={m.image} alt={m.name} fill className="object-cover" sizes="108px" />
-                </div>
-                <div className="text-center">
-                  <p className="text-sm font-semibold font-sans text-ink m-0">{m.name}</p>
-                  <p className="text-xs text-ink-3 font-sans m-0 mt-0.5">{m.role}</p>
-                </div>
-              </Link>
-            </ScrollReveal>
-          ))}
-        </div>
 
-        {/* Alumni */}
-        {alumni.length > 0 && (
-          <>
-            <ScrollReveal>
-              <h2 className="font-sans font-extrabold text-ink leading-[0.95] tracking-tight mb-8 text-3xl">Alumni</h2>
-            </ScrollReveal>
-            <div className="flex flex-wrap gap-3">
-              {alumni.map((m, i) => (
-                <ScrollReveal key={m.id} delay={i * 50}>
-                  <div className="flex items-center gap-3 bg-paper border border-rule rounded-[8px] px-4 py-3">
-                    <div className="relative w-9 h-9 rounded-full overflow-hidden bg-paper-3 shrink-0">
-                      <Image src={m.image} alt={m.name} fill className="object-cover" sizes="36px" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold font-sans text-ink m-0">{m.name}</p>
-                      <p className="text-xs text-ink-3 font-sans m-0">{m.role}</p>
-                    </div>
+        <MemberList members={members} />
+      </section>
+
+      {/* ── Alumni — compact, only renders when non-empty ─────── */}
+      {alumni.length > 0 && (
+        <section className="w-[90%] max-w-[1500px] mx-auto mb-36 md:mb-48">
+          <ScrollReveal>
+            <h2
+              className="font-sans font-extrabold text-ink leading-[0.92] tracking-[-0.03em] m-0 mb-10"
+              style={{ fontSize: "clamp(32px, 4.2vw, 60px)" }}
+            >
+              Alumni
+            </h2>
+          </ScrollReveal>
+
+          <div className="flex flex-wrap gap-3">
+            {alumni.map((m, i) => (
+              <ScrollReveal key={m.id} delay={i * 50}>
+                <div className="flex items-center gap-3 bg-paper-2 rounded-full pl-2 pr-5 py-2">
+                  <div className="relative w-9 h-9 rounded-full overflow-hidden bg-paper-3 shrink-0">
+                    <Image src={m.image} alt={m.name} fill className="object-cover" sizes="36px" />
                   </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </>
-        )}
-      </div>
+                  <div>
+                    <p className="text-sm font-semibold font-sans text-ink m-0 leading-tight">{m.name}</p>
+                    <p className="text-xs text-ink-3 font-sans m-0">{m.role}</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </section>
+      )}
+
       <CTABlock />
     </>
   )

@@ -17,13 +17,15 @@ export type TeamMember = {
 export const team: TeamMember[] = [
   // ── Faculty ──────────────────────────────────────────────
   {
-    id: "faculty-director",
-    name: "Prof. [Name]",          // TODO: add faculty name
-    role: "Director, GAMES Lab",
-    image: "/images/team1.jpg",    // TODO: add faculty headshot to /public/images/Team/
-    bio: "Professor at IIT Delhi, leading research in game design, immersive media, and interactive storytelling.",
+    id: "aakash-johry",
+    name: "Aakash Johry",
+    role: "Faculty · GAMES Lab, IIT Delhi",
+    image: "/images/Team/Aakash.jpg",
+    bio:
+      "Aakash leads the GAMES Lab at IIT Delhi, where his research investigates how games, immersive media, and tangible interfaces can drive learning, behaviour change, accessibility, and well-being. His work bridges design, HCI, and social impact — translating play into a tool for real-world outcomes.",
     email: "info@games.iitd.ac.in",
-    specialisation: "Game Design, Immersive Media, Interactive Storytelling",
+    specialisation: "Game Design · Immersive Media · Accessibility · Interactive Storytelling",
+    skills: ["Game Design", "HCI", "Accessibility", "Research-through-design"],
     isFaculty: true,
   },
 
@@ -55,21 +57,6 @@ export const team: TeamMember[] = [
         title: "Gamifying Mental Well-Being Assessment",
         venue: "Book Chapter, 2025",
         year: "2025",
-      },
-    ],
-  },
-  {
-    id: "aakash",
-    name: "Aakash Johry",
-    role: "Research Member",
-    image: "/images/Team/Aakash.jpg",
-    specialisation: "Accessibility, Language Learning",
-    skills: ["Accessibility Design", "Mobile UX", "Hindi Language Apps"],
-    publications: [
-      {
-        title: "Designing Pachi",
-        venue: "Book Chapter, 2024",
-        year: "2024",
       },
     ],
   },
