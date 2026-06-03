@@ -23,49 +23,52 @@ export const team: TeamMember[] = [
     image: "/images/Team/Aakash.jpg",
     bio:
       "Aakash leads the GAMES Lab at IIT Delhi, where his research investigates how games, immersive media, and tangible interfaces can drive learning, behaviour change, accessibility, and well-being. His work bridges design, HCI, and social impact — translating play into a tool for real-world outcomes.",
-    email: "info@games.iitd.ac.in",
+    email: "gameslabiitd@gmail.com",
     specialisation: "Game Design · Immersive Media · Accessibility · Interactive Storytelling",
     skills: ["Game Design", "HCI", "Accessibility", "Research-through-design"],
     isFaculty: true,
   },
 
-  // ── PhD Students & Research Members ──────────────────────
+  // ── Research Scholars ────────────────────────────────────
   {
     id: "krishnadas",
-    name: "Krishnadas",
-    role: "PhD Researcher",
+    name: "Krishnadas M",
+    role: "Research Scholar",
     image: "/images/Team/Krish.jpg",
-    specialisation: "Game-based Learning, Mental Well-Being",
-    skills: ["Game Design", "UX Research", "Unity"],
+    linkedin: "https://www.linkedin.com/in/krishnadas-m-484a55291",
+    specialisation: "Virtual Reality · Experiential Learning · Space Science Education",
+    skills: ["Visual Communication", "Virtual Reality", "Game Design", "Music Production", "Photography"],
     publications: [
       {
         title: "Gamifying Mental Well-Being Assessment",
-        venue: "Book Chapter, 2025",
+        venue: "Conference Paper, 2025",
         year: "2025",
       },
     ],
   },
   {
     id: "harsh",
-    name: "Harsh",
-    role: "PhD Researcher",
+    name: "Harsh Mohan Shrivastava",
+    role: "Research Scholar",
     image: "/images/Team/Harsh.jpg",
-    specialisation: "Gamification, Assessment Design",
-    skills: ["Gamification", "Interaction Design", "Research Methods"],
+    linkedin: "https://www.linkedin.com/in/harshmohaan",
+    specialisation: "Data and Design · Participatory Approaches · Design for Disability · Games for Learning",
+    skills: ["Data-Enabled Design", "Co-Design", "Inclusive Design", "Assistive Technology", "Game-Based Learning", "HCI"],
     publications: [
       {
         title: "Gamifying Mental Well-Being Assessment",
-        venue: "Book Chapter, 2025",
+        venue: "Conference Paper, 2025",
         year: "2025",
       },
     ],
   },
   {
     id: "juben",
-    name: "Juben",
-    role: "Research Member",
+    name: "Juben Basumatary",
+    role: "Research Scholar",
     image: "/images/Team/Juben.jpg",
-    specialisation: "Immersive Media, AR/VR",
-    skills: ["AR/VR", "Unity", "Interaction Design"],
+    linkedin: "https://www.linkedin.com/in/juben-basumatary-866a01215/",
+    specialisation: "Leveraging digital tools to make elderly lives more meaningful, independent, and connected.",
+    skills: ["AR", "VR", "MR", "Game Design", "Assistive Technology", "Behavioral Markers"],
   },
 ]

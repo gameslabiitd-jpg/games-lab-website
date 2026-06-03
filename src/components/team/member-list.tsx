@@ -1,61 +1,20 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import Image from "next/image"
+import { useState } from "react"
 import Link from "next/link"
 import type { TeamMember } from "@/data/team"
 
 /**
  * MemberList — avant-garde editorial roster.
  *
- * Big-type name list (one row per member) with a cursor-following portrait
- * that fades in when you hover a row. The portrait tracks mouse position
- * via rAF lerp at 0.15 ease, sitting at a permanent -3° tilt for a
- * polaroid feel.
+ * Big-type name list (one row per member). Hovering a row dims the others
+ * and nudges the active name to the right for an editorial highlight.
  *
- * On touch / reduced-motion / no hover: the portrait is hidden and rows
- * still navigate to the member detail page on tap.
+ * On touch / reduced-motion: rows still navigate to the member detail
+ * page on tap; the dim/nudge are pointer-driven enhancements.
  */
 export function MemberList({ members }: { members: TeamMember[] }) {
   const [hovered, setHovered] = useState<TeamMember | null>(null)
-  const portraitRef = useRef<HTMLDivElement>(null)
-
-  // Cursor follower — runs once, owns its own rAF loop.
-  useEffect(() => {
-    if (typeof window === "undefined") return
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    if (reduced) return
-
-    const portrait = portraitRef.current
-    if (!portrait) return
-
-    const target = { x: 0, y: 0 }
-    const pos    = { x: 0, y: 0 }
-    let rafId = 0
-
-    const onMove = (e: MouseEvent) => {
-      target.x = e.clientX
-      target.y = e.clientY
-    }
-
-    const tick = () => {
-      // Lerp toward cursor at 0.15 — feels weighty without lagging
-      pos.x += (target.x - pos.x) * 0.15
-      pos.y += (target.y - pos.y) * 0.15
-      // Translate so the portrait CENTER sits at the cursor (offset by half its size)
-      portrait.style.transform =
-        `translate3d(${pos.x - 110}px, ${pos.y - 130}px, 0) rotate(-3deg)`
-      rafId = requestAnimationFrame(tick)
-    }
-
-    window.addEventListener("mousemove", onMove)
-    rafId = requestAnimationFrame(tick)
-
-    return () => {
-      window.removeEventListener("mousemove", onMove)
-      cancelAnimationFrame(rafId)
-    }
-  }, [])
 
   return (
     <>
@@ -80,13 +39,10 @@ export function MemberList({ members }: { members: TeamMember[] }) {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3
-                    className="font-sans font-extrabold text-ink tracking-[-0.03em] leading-[0.9] m-0
+                    className="t-h3 font-sans font-extrabold text-ink tracking-[-0.03em] leading-[0.9] m-0
                                transition-transform duration-[500ms]
                                group-hover:translate-x-2 md:group-hover:translate-x-4"
-                    style={{
-                      fontSize: "clamp(36px, 7vw, 96px)",
-                      transitionTimingFunction: "cubic-bezier(0.65,0,0.35,1)",
-                    }}
+                    style={{ transitionTimingFunction: "cubic-bezier(0.65,0,0.35,1)" }}
                   >
                     {m.name}
                   </h3>
@@ -103,30 +59,6 @@ export function MemberList({ members }: { members: TeamMember[] }) {
           )
         })}
       </ul>
-
-      {/* Cursor-following portrait — fades in only when a row is hovered.
-          pointer-events-none so it doesn't steal hover from the rows. */}
-      <div
-        ref={portraitRef}
-        aria-hidden="true"
-        className={`hidden md:block pointer-events-none fixed top-0 left-0 z-30
-                    transition-opacity duration-300 ease-out
-                    ${hovered ? "opacity-100" : "opacity-0"}`}
-        style={{ width: 220, height: 260, willChange: "transform" }}
-      >
-        <div className="relative w-full h-full rounded-[10px] overflow-hidden bg-paper-3
-                        shadow-[0_24px_60px_rgba(22,19,16,0.28)]">
-          {hovered && (
-            <Image
-              src={hovered.image}
-              alt=""
-              fill
-              className="object-cover"
-              sizes="220px"
-            />
-          )}
-        </div>
-      </div>
     </>
   )
 }

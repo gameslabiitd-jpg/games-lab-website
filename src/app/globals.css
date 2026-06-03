@@ -108,6 +108,25 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ============================================================
+   TYPE SCALE — ONE source of truth for heading sizes.
+   Font-size only, so existing leading and tracking utilities still
+   apply (Tailwind utilities outrank @layer components). Use these
+   classes instead of inline clamp() so sizes stay consistent site-wide.
+   ============================================================ */
+@layer components {
+  /* Page heroes & top-level display statements */
+  .t-display { font-size: clamp(26px, 3.1vw, 40px); }
+  /* Section headings (h2) */
+  .t-h2      { font-size: clamp(19px, 2.1vw, 27px); }
+  /* Big-type list / roster names (sub-display) */
+  .t-h3      { font-size: clamp(21px, 2.4vw, 31px); }
+  /* Pull quotes */
+  .t-quote   { font-size: clamp(18px, 2vw, 26px); }
+  /* Editorial row / card titles */
+  .t-title   { font-size: clamp(16px, 1.6vw, 21px); }
+}
+
+/* ============================================================
    REVEAL — single fade-up pattern, used site-wide
    ============================================================ */
 .reveal {
@@ -168,23 +187,6 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ============================================================
-   MARQUEE
-   ============================================================ */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-.marquee-track {
-  overflow: hidden;
-  white-space: nowrap;
-}
-.marquee-inner {
-  display: inline-flex;
-  animation: marquee 40s linear infinite;
-}
-.marquee-inner:hover { animation-play-state: paused; }
-
-/* ============================================================
    REDUCED MOTION
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
@@ -200,5 +202,4 @@ a { color: inherit; text-decoration: none; }
     opacity: 1;
     transform: none;
   }
-  .marquee-inner { animation: none; }
 }

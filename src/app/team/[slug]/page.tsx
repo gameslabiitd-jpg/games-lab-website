@@ -30,7 +30,7 @@ export default async function MemberPage({ params }: { params: Params }) {
   if (!member) notFound()
 
   return (
-    <div className="w-[90%] max-w-[920px] mx-auto pt-36 pb-20">
+    <div className="w-[90%] max-w-[920px] mx-auto pt-20 pb-12">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-ink-3 font-sans mb-10">
         <Link href="/team" className="hover:text-ink transition-colors">Team</Link>

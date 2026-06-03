@@ -32,7 +32,7 @@ import { cn } from "@/lib/cn"
 const navLinks = [
   { label: "Home",     href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Research", href: "/research" },
+  { label: "Publications", href: "/publications" },
   { label: "Games",    href: "/games" },
   { label: "Team",     href: "/team" },
 ]
@@ -174,8 +174,8 @@ function ContactCTA() {
 
   return (
     <motion.a
-      href="mailto:info@games.iitd.ac.in"
-      aria-label="Contact GAMES Lab at info@games.iitd.ac.in"
+      href="mailto:gameslabiitd@gmail.com"
+      aria-label="Contact GAMES Lab at gameslabiitd@gmail.com"
       className="relative hidden md:inline-flex items-center gap-1.5 overflow-hidden
                  border border-ink/30 px-5 py-[9px] rounded-full
                  text-[13px] font-medium font-sans tracking-[-0.005em] cursor-pointer"
@@ -278,7 +278,7 @@ export default function Navbar() {
                 width={112}
                 height={36}
                 priority
-                className="opacity-100 hover:opacity-70 transition-opacity duration-300"
+                className="h-auto w-[112px] opacity-100 hover:opacity-70 transition-opacity duration-300"
               />
             </Link>
           </motion.div>
@@ -396,12 +396,12 @@ export default function Navbar() {
                 transition={{ delay: navLinks.length * 0.045 + 0.04 }}
               >
                 <a
-                  href="mailto:info@games.iitd.ac.in"
+                  href="mailto:gameslabiitd@gmail.com"
                   className="flex items-center justify-between px-4 py-3 rounded-xl
                              text-sm font-medium font-sans bg-ink text-paper
                              hover:opacity-85 transition-opacity duration-150"
                 >
-                  <span>info@games.iitd.ac.in</span>
+                  <span>gameslabiitd@gmail.com</span>
                   <span aria-hidden="true" className="opacity-60">→</span>
                 </a>
               </motion.li>

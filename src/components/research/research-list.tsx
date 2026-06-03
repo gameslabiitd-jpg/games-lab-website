@@ -1,7 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState, useMemo } from "react"
-import Image from "next/image"
+import { useState, useMemo } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import type { Research } from "@/data/research"
 import Tag from "@/components/ui/Tag"
@@ -15,14 +14,11 @@ const EASE_IO  = "cubic-bezier(0.65,0,0.35,1)"
  * Features:
  *  - Tag filter pills with AnimatePresence in/out
  *  - Hover: non-hovered rows dim to 28%, active row title nudges right
- *  - Cursor-following landscape image card (rAF lerp, 2° tilt, same
- *    pattern as MemberList on the team page)
  *  - Empty-state message when a filter returns no results
  */
 export function ResearchList({ items }: { items: Research[] }) {
   const [hovered,   setHovered]   = useState<Research | null>(null)
   const [activeTag, setActiveTag] = useState<string | null>(null)
-  const imageRef = useRef<HTMLDivElement>(null)
 
   /* Collect unique tags */
   const allTags = useMemo(() => {
@@ -36,35 +32,6 @@ export function ResearchList({ items }: { items: Research[] }) {
     () => activeTag ? items.filter(r => r.tags.includes(activeTag)) : items,
     [items, activeTag]
   )
-
-  /* Cursor-following image — rAF lerp loop */
-  useEffect(() => {
-    if (typeof window === "undefined") return
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
-
-    const el = imageRef.current
-    if (!el) return
-
-    const target = { x: 300, y: 300 }
-    const pos    = { x: 300, y: 300 }
-    let rafId = 0
-
-    const onMove = (e: MouseEvent) => { target.x = e.clientX; target.y = e.clientY }
-
-    const tick = () => {
-      pos.x += (target.x - pos.x) * 0.11
-      pos.y += (target.y - pos.y) * 0.11
-      el.style.transform = `translate3d(${pos.x - 120}px,${pos.y - 90}px,0) rotate(2deg)`
-      rafId = requestAnimationFrame(tick)
-    }
-
-    window.addEventListener("mousemove", onMove)
-    rafId = requestAnimationFrame(tick)
-    return () => {
-      window.removeEventListener("mousemove", onMove)
-      cancelAnimationFrame(rafId)
-    }
-  }, [])
 
   return (
     <>
@@ -141,10 +108,7 @@ export function ResearchList({ items }: { items: Research[] }) {
                           transition: `transform 420ms ${EASE_IO}`,
                         }}
                       >
-                        <h2
-                          className="font-sans font-extrabold text-ink leading-[1.05] tracking-[-0.025em] m-0 mb-3"
-                          style={{ fontSize: "clamp(20px, 2.6vw, 34px)" }}
-                        >
+                        <h2 className="t-title font-sans font-extrabold text-ink leading-[1.05] tracking-[-0.025em] m-0 mb-3">
                           {item.link ? (
                             <a
                               href={item.link}
@@ -192,27 +156,6 @@ export function ResearchList({ items }: { items: Research[] }) {
           )}
         </AnimatePresence>
       </ul>
-
-      {/* ── Cursor-following image preview ──────────────────── */}
-      <div
-        ref={imageRef}
-        aria-hidden="true"
-        className={[
-          "hidden md:block pointer-events-none fixed top-0 left-0 z-30",
-          "transition-opacity duration-300 ease-out",
-          hovered ? "opacity-100" : "opacity-0",
-        ].join(" ")}
-        style={{ width: 240, height: 180, willChange: "transform" }}
-      >
-        <div
-          className="relative w-full h-full rounded-[10px] overflow-hidden bg-paper-3"
-          style={{ boxShadow: "0 20px 56px rgba(22,19,16,0.22), 0 4px 12px rgba(22,19,16,0.10)" }}
-        >
-          {hovered && (
-            <Image src={hovered.image} alt="" fill className="object-cover" sizes="240px" />
-          )}
-        </div>
-      </div>
     </>
   )
 }

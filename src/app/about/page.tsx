@@ -1,8 +1,6 @@
 import type { Metadata } from "next"
 import ScrollReveal from "@/components/animations/ScrollReveal"
 import CTABlock from "@/components/sections/CTABlock"
-import { TiltCard } from "@/components/ui/tilt-card"
-import { PinnedHorizontal } from "@/components/ui/pinned-horizontal"
 import { StatsFlipboard } from "@/components/about/stats-flipboard"
 
 /**
@@ -23,12 +21,6 @@ export const metadata: Metadata = {
   description:
     "GAMES Lab at IIT Delhi — our mission, research-through-design methodology, funded projects, facilities, and outputs.",
 }
-
-const keywordMarquee = [
-  "Research-through-design", "Embodied learning", "Tabletop", "Augmented reality",
-  "Mixed reality", "Behaviour change", "Empathy", "Accessibility", "Game jams",
-  "Tangible interfaces", "Motion capture", "IIT Delhi", "Serious games", "Play",
-]
 
 /** Verbatim from source copy. */
 const verticals = [
@@ -70,7 +62,7 @@ export default function AboutPage() {
           identity → stats every 8s, so anyone who lingers sees both
           framings. Bottom-anchored "About" credit gives the page a
           masthead feel without competing with the board. */}
-      <section className="relative min-h-dvh w-full flex flex-col items-center justify-center pt-28 pb-20 mb-24 md:mb-32 overflow-hidden">
+      <section className="relative min-h-dvh w-full flex flex-col items-center justify-center pt-28 pb-20 mb-10 md:mb-14 overflow-hidden">
         <div className="w-full">
           <StatsFlipboard />
         </div>
@@ -80,13 +72,10 @@ export default function AboutPage() {
       </section>
 
       {/* ── Pull quote — verbatim from source ──────────────────── */}
-      <div className="w-[90%] max-w-[1500px] mx-auto mb-24 md:mb-32">
+      <div className="w-[90%] max-w-[1500px] mx-auto mb-12 md:mb-16">
         <ScrollReveal>
           <blockquote className="max-w-[920px] m-0">
-            <p
-              className="font-sans font-extrabold text-ink leading-[1.08] tracking-[-0.02em] mb-6 m-0"
-              style={{ fontSize: "clamp(28px, 4vw, 52px)" }}
-            >
+            <p className="t-quote font-sans font-extrabold text-ink leading-[1.12] tracking-[-0.02em] mb-6 m-0">
               &ldquo;Play is the foundation of learning, creativity,
               self-expression, and constructive problem-solving.&rdquo;
             </p>
@@ -97,26 +86,11 @@ export default function AboutPage() {
         </ScrollReveal>
       </div>
 
-      {/* ── Keyword marquee ────────────────────────────────────── */}
-      <div className="marquee-track border-y border-rule py-5 bg-paper-2/40 mb-36 md:mb-48">
-        <div className="marquee-inner" aria-hidden="true">
-          {[...keywordMarquee, ...keywordMarquee].map((kw, i) => (
-            <span key={i} className="inline-flex items-center shrink-0">
-              <span className="text-md md:text-lg font-medium font-sans text-ink-2 px-7">{kw}</span>
-              <span className="text-accent text-md font-bold" aria-hidden>✦</span>
-            </span>
-          ))}
-        </div>
-      </div>
-
       {/* ── Mission — verbatim from source ─────────────────────── */}
-      <div className="w-[90%] max-w-[1500px] mx-auto mb-36 md:mb-48">
-        <div className="grid md:grid-cols-12 gap-12 md:gap-20 items-start">
+      <div className="w-[90%] max-w-[1500px] mx-auto mb-10 md:mb-14">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
           <ScrollReveal className="md:col-span-5">
-            <h2
-              className="font-sans font-extrabold text-ink leading-[0.95] tracking-[-0.02em] m-0"
-              style={{ fontSize: "clamp(32px, 4.2vw, 60px)" }}
-            >
+            <h2 className="t-h2 font-sans font-extrabold text-ink leading-[0.95] tracking-[-0.02em] m-0">
               Our mission
             </h2>
           </ScrollReveal>
@@ -148,65 +122,51 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* ── Application verticals → pinned horizontal ──────────── */}
-      <div className="w-[90%] max-w-[1500px] mx-auto mb-12 md:mb-16">
+      {/* ── Application verticals — static editorial grid ──────────
+          Replaced the pinned horizontal-scroll section with a calm
+          three-up grid that matches the rest of the page's rhythm. */}
+      <div className="w-[90%] max-w-[1500px] mx-auto mb-10 md:mb-14">
         <ScrollReveal>
-          <h2
-            className="font-sans font-extrabold text-ink leading-[0.95] tracking-[-0.02em] m-0"
-            style={{ fontSize: "clamp(32px, 4.2vw, 60px)" }}
-          >
+          <h2 className="t-h2 font-sans font-extrabold text-ink leading-[0.95] tracking-[-0.02em] m-0 mb-5 md:mb-7">
             Application verticals
           </h2>
-          <p className="mt-6 text-md md:text-lg text-ink-3 font-sans m-0">
-            Scroll → to traverse the three verticals
-          </p>
         </ScrollReveal>
+
+        <div className="grid gap-5 md:grid-cols-3">
+          {verticals.map((v, i) => (
+            <ScrollReveal key={v.label} delay={i * 80}>
+              <div className="relative h-full bg-paper-2 rounded-[14px] p-8 md:p-10 overflow-hidden">
+                <span
+                  className="absolute right-5 top-1 font-extrabold text-ink/[0.06] select-none pointer-events-none leading-none"
+                  style={{ fontSize: "clamp(96px, 12vw, 150px)" }}
+                  aria-hidden="true"
+                >
+                  {v.label}
+                </span>
+                <div className="relative">
+                  <p className="text-xs uppercase tracking-[0.2em] font-semibold text-ink-3 mb-3 font-sans">
+                    Vertical {v.label}
+                  </p>
+                  <h3 className="t-title font-sans font-extrabold text-ink leading-[1.05] tracking-[-0.02em] mb-4 m-0">
+                    {v.title}
+                  </h3>
+                  <p className="text-md text-ink-2 leading-[1.6] m-0">
+                    {v.desc}
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
       </div>
 
-      <PinnedHorizontal cellWidth="80vw" gap="3vw" className="mb-36 md:mb-48">
-        {verticals.map((v) => (
-          <TiltCard key={v.label} max={4} className="h-full max-h-[560px]">
-            <div className="relative bg-paper-2 rounded-[14px] p-10 md:p-16 h-full overflow-hidden flex flex-col justify-end">
-              <span
-                className="absolute right-6 top-2 font-extrabold text-ink/[0.06] select-none pointer-events-none"
-                style={{
-                  fontSize: "clamp(180px, 30vw, 480px)",
-                  lineHeight: 1,
-                  transform: "translateZ(20px)",
-                }}
-                aria-hidden="true"
-              >
-                {v.label}
-              </span>
-              <div className="relative max-w-[640px]" style={{ transform: "translateZ(10px)" }}>
-                <p className="text-xs uppercase tracking-[0.2em] font-semibold text-ink-3 mb-3 font-sans">
-                  Vertical {v.label}
-                </p>
-                <h3
-                  className="font-sans font-extrabold text-ink leading-[0.95] tracking-[-0.02em] mb-6 m-0"
-                  style={{ fontSize: "clamp(40px, 5.5vw, 80px)" }}
-                >
-                  {v.title}
-                </h3>
-                <p className="text-md md:text-lg text-ink-2 leading-[1.6] m-0 max-w-[52ch]">
-                  {v.desc}
-                </p>
-              </div>
-            </div>
-          </TiltCard>
-        ))}
-      </PinnedHorizontal>
-
       {/* ── Funded projects — verbatim from source ─────────────── */}
-      <div className="w-[90%] max-w-[1500px] mx-auto mb-36 md:mb-48">
+      <div className="w-[90%] max-w-[1500px] mx-auto mb-10 md:mb-14">
         <ScrollReveal>
-          <h2
-            className="font-sans font-extrabold text-ink leading-[0.95] tracking-[-0.02em] mb-6 m-0"
-            style={{ fontSize: "clamp(32px, 4.2vw, 60px)" }}
-          >
+          <h2 className="t-h2 font-sans font-extrabold text-ink leading-[0.95] tracking-[-0.02em] mb-6 m-0">
             Funded projects
           </h2>
-          <p className="text-md md:text-lg text-ink-2 leading-[1.6] max-w-[62ch] mb-12 md:mb-16 m-0">
+          <p className="text-md md:text-lg text-ink-2 leading-[1.6] max-w-[62ch] mb-7 md:mb-9 m-0">
             The lab is engaged in funded project, focusing on research, design,
             development, and societal impact. Some of the recent projects are as
             follows:
@@ -227,13 +187,10 @@ export default function AboutPage() {
       </div>
 
       {/* ── Facilities & Tools — verbatim from source ──────────── */}
-      <div className="w-[90%] max-w-[1500px] mx-auto mb-36 md:mb-48">
-        <div className="grid md:grid-cols-12 gap-12 md:gap-20 items-start">
+      <div className="w-[90%] max-w-[1500px] mx-auto mb-10 md:mb-14">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
           <ScrollReveal className="md:col-span-5">
-            <h2
-              className="font-sans font-extrabold text-ink leading-[0.95] tracking-[-0.02em] m-0"
-              style={{ fontSize: "clamp(32px, 4.2vw, 60px)" }}
-            >
+            <h2 className="t-h2 font-sans font-extrabold text-ink leading-[0.95] tracking-[-0.02em] m-0">
               Facilities &amp; Tools
             </h2>
           </ScrollReveal>
@@ -255,14 +212,11 @@ export default function AboutPage() {
       </div>
 
       {/* ── Research and Outputs — verbatim from source, full-bleed band ── */}
-      <section className="w-full bg-paper-2 py-32 md:py-44">
+      <section className="w-full bg-paper-2 py-12 md:py-16">
         <div className="w-[90%] max-w-[1500px] mx-auto">
           <ScrollReveal>
-            <div className="grid md:grid-cols-12 gap-12 md:gap-20 items-start">
-              <h2
-                className="md:col-span-5 font-sans font-extrabold text-ink leading-[0.95] tracking-[-0.02em] m-0"
-                style={{ fontSize: "clamp(32px, 4.2vw, 60px)" }}
-              >
+            <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+              <h2 className="t-h2 md:col-span-5 font-sans font-extrabold text-ink leading-[0.95] tracking-[-0.02em] m-0">
                 Research and Outputs
               </h2>
               <div className="md:col-span-7 md:pt-3 space-y-5 text-md md:text-lg text-ink-2 leading-[1.7] max-w-[62ch]">

@@ -41,11 +41,11 @@ export default function TeamPage() {
         return (
           <section
             key={f.id}
-            className="relative w-[90%] max-w-[1500px] mx-auto pt-36 pb-0 mb-32 md:mb-44"
+            className="relative w-[90%] max-w-[1500px] mx-auto pt-20 pb-0 mb-10 md:mb-14"
           >
             {/* Portrait — desktop: absolute accent, top-right.
-                top-36 (144px) matches pt-36 so it sits flush with content start. */}
-            <div className="hidden md:block absolute top-36 right-0 w-[190px]">
+                top-20 (80px) matches pt-20 so it sits flush with content start. */}
+            <div className="hidden md:block absolute top-20 right-0 w-[190px]">
               <div className="relative w-full aspect-[3/4] rounded-[12px] overflow-hidden bg-paper-3">
                 <Image
                   src={f.image}
@@ -74,11 +74,8 @@ export default function TeamPage() {
             <div className="md:pr-[230px]">
 
               <ScrollReveal direction="up">
-                <h1
-                  className="font-sans font-extrabold text-ink leading-[0.88]
-                             tracking-[-0.045em] m-0 mb-6"
-                  style={{ fontSize: "clamp(72px, 11vw, 170px)" }}
-                >
+                <h1 className="t-display font-sans font-extrabold text-ink leading-[0.88]
+                             tracking-[-0.045em] m-0 mb-6">
                   {firstName}
                   {lastName && (
                     <>
@@ -90,7 +87,7 @@ export default function TeamPage() {
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={80}>
-                <p className="text-sm md:text-md text-ink-3 font-sans m-0 mb-12 md:mb-16">
+                <p className="text-sm md:text-md text-ink-3 font-sans m-0 mb-5 md:mb-7">
                   {f.role}
                 </p>
               </ScrollReveal>
@@ -119,14 +116,11 @@ export default function TeamPage() {
         )
       })}
 
-      {/* ── Lab Members — big-type roster with cursor portrait ─── */}
-      <section className="w-[90%] max-w-[1500px] mx-auto mb-36 md:mb-48">
+      {/* ── Lab Members — big-type roster ─────────────────────── */}
+      <section className="w-[90%] max-w-[1500px] mx-auto mb-10 md:mb-14">
         <ScrollReveal>
-          <div className="mb-10 md:mb-14 border-b border-rule pb-6">
-            <h2
-              className="font-sans font-extrabold text-ink leading-[0.92] tracking-[-0.03em] m-0"
-              style={{ fontSize: "clamp(32px, 4.2vw, 60px)" }}
-            >
+          <div className="mb-5 md:mb-7 border-b border-rule pb-5">
+            <h2 className="t-h2 font-sans font-extrabold text-ink leading-[0.92] tracking-[-0.03em] m-0">
               Lab members
             </h2>
           </div>
@@ -137,12 +131,9 @@ export default function TeamPage() {
 
       {/* ── Alumni — compact, only renders when non-empty ─────── */}
       {alumni.length > 0 && (
-        <section className="w-[90%] max-w-[1500px] mx-auto mb-36 md:mb-48">
+        <section className="w-[90%] max-w-[1500px] mx-auto mb-10 md:mb-14">
           <ScrollReveal>
-            <h2
-              className="font-sans font-extrabold text-ink leading-[0.92] tracking-[-0.03em] m-0 mb-10"
-              style={{ fontSize: "clamp(32px, 4.2vw, 60px)" }}
-            >
+            <h2 className="t-h2 font-sans font-extrabold text-ink leading-[0.92] tracking-[-0.03em] m-0 mb-8">
               Alumni
             </h2>
           </ScrollReveal>

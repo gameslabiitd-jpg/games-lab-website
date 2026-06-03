@@ -35,7 +35,7 @@ export const games: Game[] = [
     fullDescription:
       "Offerings of Noroi is a multiplayer word-guessing game where two teams compete to uncover more cards than their opponents using clues given by their teammates.\nEach team has a Shaman (clue giver) who provides hints, while the Clan Head (guesser) must interpret these clues and identify the correct cards on the board. The challenge lies in connecting the hints to the right words while avoiding dangerous ones.\nTeams have limited guesses, and every decision matters. Choosing the wrong card can strengthen the opposing team, while certain cards bring unexpected misfortune.\nMost importantly, players must beware of the Oni — a single cursed card that can end the game instantly if revealed.",
     image: "/images/games/offeringOfNorot.jpg",
-    tags: ["Party", "Japanese", "Two Teams"],
+    tags: ["Tabletop", "Party", "Japanese", "Two Teams"],
     authors: "Hrishitaa, Tanishq, Urja, Rugved, Shreya",
     featured: true,
     priority: "1st",
@@ -48,7 +48,7 @@ export const games: Game[] = [
     fullDescription:
       "Deep within a laboratory that reeks of radium and blood, a frantic scientist searches for the test subjects that slipped from their cages. In the shadows, six rats scurry through vents and tunnels, each desperate to find a way out.\nScavenge strange resources, construct harvesters, and sabotage rival rats as every round unfolds into a new story of bold alliances and brutal betrayals.\nUnder the constant watch of the evil scientist and the towering walls of the facility — what will it take you to be the first one to escape?",
     image: "/images/games/labRats.jpg",
-    tags: ["Strategy", "Card Game"],
+    tags: ["Tabletop", "Strategy", "Card Game"],
     authors: "Anirudh, Geetika, Harinarayanan, Kashika, Siddharth, Varun",
     priority: "1st",
   },
@@ -60,7 +60,7 @@ export const games: Game[] = [
     fullDescription:
       "K.O: No Mercy is a fast-paced two-player boxing duel where timing, prediction, and combo-building decide who stays standing.\nEach round simulates an explosive exchange in the ring. Players secretly select their moves, reveal them one by one, and score points based on impact, combinations, and momentum.\nBuild pressure. Land clean hits. Trigger combos. Push your opponent towards Knockout.",
     image: "/images/games/koNoMercy.jpg",
-    tags: ["Two Player", "Combat", "Phygital"],
+    tags: ["Tabletop", "Two Player", "Combat", "Phygital"],
     authors: "Subrata, Sidhart, Jeswin, Roshan, Om",
     priority: "1st",
   },
@@ -72,7 +72,7 @@ export const games: Game[] = [
     fullDescription:
       "Who Invited Them is a fast-paced party chaos game where players must work together to secretly clear a house full of guests before the host's parents arrive. Each turn brings fun prompts — dares, truths, confessions, performances, or surprise tasks decided by the group.\nCompleting challenges earns points and helps move the game forward, but the real goal is teamwork, laughter, and quick thinking under pressure. Expect singing, acting, bluffing, and plenty of dramatic moments as players race against time.\nIt's social, silly, and perfect for breaking the ice, energising a group, and turning any gathering into an unforgettable house-party adventure.",
     image: "/images/games/whoInvitedThem.jpg",
-    tags: ["Party", "Co-op", "Education"],
+    tags: ["Tabletop", "Party", "Co-op", "Education"],
     authors: "Ankita, Avani, Tanishq, Sumeet, Ravi, Siddhi",
     priority: "1st",
   },
@@ -84,7 +84,7 @@ export const games: Game[] = [
     fullDescription:
       "In Stranded, you and your crew are racing against time to avoid being completely destroyed.\nHowever, the space station about to crash is only a part of the problem. You and your crew are being stalked in the hallways by a deadly xenomorph — not for food, but for suitable hosts.\nBeing smart with your resources isn't enough to stay alive. The alien can break your team from the inside out, so it's a high-stakes game of trust. As the xenomorph takes over your teammates, they will start to work against your escape or to doom everyone onboard. The line between friend and enemy gets blurry.\nYou will soon realise that the person next to you is more dangerous than the monster in the vents.",
     image: "/images/games/stranded.jpg",
-    tags: ["Sci-Fi", "Survival", "Card Game"],
+    tags: ["Tabletop", "Sci-Fi", "Survival", "Card Game"],
     authors: "Adiraj, Aradhay, Fabi, Himanshu, Yuvaan",
     priority: "1st",
   },
@@ -99,7 +99,7 @@ export const games: Game[] = [
     fullDescription:
       "In Jungle, you'll need to collect and exchange support from the jungle animals at the waterhole to claim your territories on the jungle map. Don't forget about the fruit baskets, which can be used to help you gain more support from the animals.\nYou will need to outsmart your opponent and use your resources wisely to acquire as many territories as possible and become the next ruler of the jungle. But beware — your rivals will also be trying to claim territories and sabotage your progress with sneaky action cards.\nEvery game is a new adventure, with varying setups and outcomes.",
     image: "/images/games/jungleJungle.jpg",
-    tags: ["Card Game", "Education", "Animals"],
+    tags: ["Tabletop", "Card Game", "Education", "Animals"],
     authors: "Chinmay, Renuka, Vansh",
     priority: "2nd",
   },
@@ -111,7 +111,7 @@ export const games: Game[] = [
     fullDescription:
       "Shadowy Doobie Town is a strategic power-play game set in a city where control matters more than wealth. Players take on the roles of four key figures — Drug Lord, Money Manager, Landlord, and Police Officer — each competing to dominate critical regions of the town.\nThrough smart deals, calculated risks, and strategic moves, players must earn, buy, or seize control to win.",
     image: "/images/games/doobieTown.jpg",
-    tags: ["Strategy", "Power Play"],
+    tags: ["Tabletop", "Strategy", "Power Play"],
     authors: "Ella, Makrand, Niharika, Shivangi",
     priority: "2nd",
   },
@@ -123,7 +123,7 @@ export const games: Game[] = [
     fullDescription:
       "The game explores the exciting world of stocks and investments, where your strategy and timing dictate your success. Will you take risks, play it safe, or blend both approaches? The choice is yours.\nInvestors seek to maximise wealth through strategic buying and selling of stocks while adapting to market changes. By understanding trends and balancing risk, they compete to make the best investment decisions. The key is to buy low and sell high — timing is everything.",
     image: "/images/games/bazaarMafia.jpg",
-    tags: ["Strategy", "Stock Market"],
+    tags: ["Tabletop", "Strategy", "Stock Market"],
     authors: "Lab Members",
     priority: "2nd",
   },
@@ -138,7 +138,7 @@ export const games: Game[] = [
     fullDescription:
       "Gods of Crops is a competitive strategy card game where players battle to protect and strengthen their crops while weakening their opponent's farm through powerful attack, defence, and utility cards. Each crop has unique traits and reactions to different environmental conditions like sunlight, rain, insects, and chemicals, creating a dynamic and tactical gameplay experience.\nCombining resource management, strategy, and fast-paced decision-making, the game delivers an exciting farming-themed battle for survival and victory.",
     image: "/images/games/godsOfCrops.jpg",
-    tags: ["Card Game", "Strategy", "Farming"],
+    tags: ["Tabletop", "Card Game", "Strategy", "Farming"],
     authors: "Adiraj, Geetika, Fabi, Himanshu, Yuvaan",
   },
   {
@@ -149,7 +149,7 @@ export const games: Game[] = [
     fullDescription:
       "Feed Me is a strategic and educational card-based board game where players build food chains by connecting animals and organisms from different ecosystems. Using clever placement, action cards, and chain-building mechanics, players compete to create the strongest and highest-scoring ecosystem links.\nWith a mix of strategy, learning, and friendly competition, the game offers a fun way to explore how nature and food chains work together.",
     image: "/images/games/feedMe.jpg",
-    tags: ["Education", "Card Game", "Ecology"],
+    tags: ["Tabletop", "Education", "Card Game", "Ecology"],
     authors: "Hrishitaa, Tanishq, Urja, Rugved, Shreya",
   },
   {
@@ -160,7 +160,7 @@ export const games: Game[] = [
     fullDescription:
       "Mission Goldilocks is a sci-fi strategy board game where players compete to keep their planets stable and survive within the mysterious Goldilocks Zone — the perfect region for life. Using satellites, spaceships, and condition-based mechanics, players must carefully manage planetary balance while outsmarting their opponents in a race for survival and control.\nCombining space exploration, tactical planning, and competitive gameplay, the game delivers an exciting interstellar battle for the ideal planet.",
     image: "/images/games/missionGoldilocks.jpg",
-    tags: ["Sci-Fi", "Strategy", "Space"],
+    tags: ["Tabletop", "Sci-Fi", "Strategy", "Space"],
     authors: "Ankita, Avani, Tanishq, Sumeet, Siddhi",
   },
   {
@@ -171,7 +171,7 @@ export const games: Game[] = [
     fullDescription:
       "Building Lemuria is a competitive strategy board game where players race to develop and dominate sectors on the mysterious island of Lemuria. By managing resources, claiming territories, and building powerful stacks, players compete to gain the majority of Lem Coins and control the growing civilization.\nWith tactical decision-making, shifting alliances, and resource-based gameplay, the game creates an immersive battle for power, expansion, and survival in a newly discovered world.",
     image: "/images/games/buildingLemuria.jpg",
-    tags: ["Strategy", "Resource Management"],
+    tags: ["Tabletop", "Strategy", "Resource Management"],
     authors: "Subrata, Sidhart, Jeswin, Roshan, Om",
   },
 
@@ -182,7 +182,7 @@ export const games: Game[] = [
     title: "Cataclysm",
     description: "Full description coming soon.",
     image: "/images/games/cataclysm.jpg",
-    tags: ["TBA"],
+    tags: ["Tabletop", "TBA"],
     authors: "Lab Members",
   },
   {
@@ -190,7 +190,7 @@ export const games: Game[] = [
     title: "Don't Get Sick",
     description: "Full description coming soon.",
     image: "/images/games/dontGetSick.jpg",
-    tags: ["TBA"],
+    tags: ["Tabletop", "TBA"],
     authors: "Lab Members",
   },
 ]

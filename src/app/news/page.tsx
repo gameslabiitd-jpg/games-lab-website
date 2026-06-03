@@ -20,15 +20,12 @@ export default function NewsPage() {
 
   return (
     <>
-      <div className="w-[90%] max-w-[1400px] mx-auto pt-36 pb-20">
+      <div className="w-[90%] max-w-[1400px] mx-auto pt-20 pb-10">
         <ScrollReveal>
-          <h1
-            className="font-sans font-extrabold text-ink leading-[0.92] tracking-[-0.02em] mb-6"
-            style={{ fontSize: "clamp(52px, 8vw, 96px)" }}
-          >
+          <h1 className="t-display font-sans font-extrabold text-ink leading-[0.92] tracking-[-0.02em] mb-5">
             News &amp; updates
           </h1>
-          <p className="text-lg text-ink-2 leading-[1.75] max-w-[580px] mb-14">
+          <p className="text-lg text-ink-2 leading-[1.75] max-w-[580px] mb-10">
             Conferences, publications, events, and happenings from around the lab.
           </p>
         </ScrollReveal>
@@ -52,7 +49,7 @@ export default function NewsPage() {
                 <span className="inline-block text-xs font-medium font-sans px-2.5 py-1 rounded-full tracking-[0.08em] uppercase bg-white/15 text-white border border-white/25 mb-4 self-start">
                   {featured.tag}
                 </span>
-                <h2 className="font-sans font-extrabold text-paper leading-[0.95] tracking-tight mb-3 text-3xl md:text-4xl">
+                <h2 className="font-sans font-extrabold text-paper leading-[1.05] tracking-tight mb-3 text-2xl md:text-3xl">
                   {featured.title}
                 </h2>
                 <p className="text-paper/75 text-md max-w-[560px] leading-relaxed mb-3">

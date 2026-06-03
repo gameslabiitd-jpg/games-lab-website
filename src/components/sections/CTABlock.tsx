@@ -7,8 +7,8 @@ import ScrollReveal from "@/components/animations/ScrollReveal"
 
 export default function CTABlock() {
   return (
-    <section className="w-full pt-28 pb-40 md:pt-32 md:pb-48 bg-paper">
-      <div className="w-[90%] max-w-[1500px] mx-auto mb-20 md:mb-24">
+    <section className="w-full pt-10 pb-14 md:pt-12 md:pb-16 bg-paper">
+      <div className="w-[90%] max-w-[1500px] mx-auto mb-8 md:mb-10">
         <div className="h-px bg-rule" />
       </div>
 
@@ -16,8 +16,7 @@ export default function CTABlock() {
         <ScrollReveal>
           <div className="grid md:grid-cols-[1fr_auto] gap-12 items-end">
             <div>
-              <h2 className="font-sans font-extrabold text-ink leading-[0.92] tracking-[-0.02em] m-0"
-                  style={{ fontSize: "clamp(40px, 7vw, 96px)" }}>
+              <h2 className="t-display font-sans font-extrabold text-ink leading-[0.92] tracking-[-0.02em] m-0">
                 Interested in<br />collaborating<br />with us?
               </h2>
             </div>
@@ -34,8 +33,8 @@ export default function CTABlock() {
                   Text uses pure `text-white` (not the warm `text-paper` token)
                   so it stays high-contrast against ink AND accent burgundy. */}
               <a
-                href="mailto:info@games.iitd.ac.in"
-                aria-label="Email the GAMES Lab at info@games.iitd.ac.in"
+                href="mailto:gameslabiitd@gmail.com"
+                aria-label="Email the GAMES Lab at gameslabiitd@gmail.com"
                 className="group relative inline-flex items-center gap-3 overflow-hidden
                            bg-ink text-white font-semibold text-md font-sans
                            px-9 py-4 rounded-full
