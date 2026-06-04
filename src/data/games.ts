@@ -1,5 +1,8 @@
 /**
- * Games catalog — final list from "Table Top Game For website.xlsx".
+ * Games catalog — final list from "Table Top Game For website.xlsx"
+ * (Sheet1 = tabletop, "DP Projects" = digital). The `tags` array drives the
+ * category filter on /games; the first tag is the format ("Tabletop" |
+ * "Digital"). Keep tag spelling consistent so the derived filter joins.
  *
  * Schema:
  *   - description     → short blurb for cards/grid (~20–30 words)
@@ -35,7 +38,7 @@ export const games: Game[] = [
     fullDescription:
       "Offerings of Noroi is a multiplayer word-guessing game where two teams compete to uncover more cards than their opponents using clues given by their teammates.\nEach team has a Shaman (clue giver) who provides hints, while the Clan Head (guesser) must interpret these clues and identify the correct cards on the board. The challenge lies in connecting the hints to the right words while avoiding dangerous ones.\nTeams have limited guesses, and every decision matters. Choosing the wrong card can strengthen the opposing team, while certain cards bring unexpected misfortune.\nMost importantly, players must beware of the Oni — a single cursed card that can end the game instantly if revealed.",
     image: "/images/games/offeringOfNorot.jpg",
-    tags: ["Tabletop", "Party", "Japanese", "Two Teams"],
+    tags: ["Tabletop", "Player vs Player", "Party", "Japanese"],
     authors: "Hrishitaa, Tanishq, Urja, Rugved, Shreya",
     featured: true,
     priority: "1st",
@@ -48,7 +51,7 @@ export const games: Game[] = [
     fullDescription:
       "Deep within a laboratory that reeks of radium and blood, a frantic scientist searches for the test subjects that slipped from their cages. In the shadows, six rats scurry through vents and tunnels, each desperate to find a way out.\nScavenge strange resources, construct harvesters, and sabotage rival rats as every round unfolds into a new story of bold alliances and brutal betrayals.\nUnder the constant watch of the evil scientist and the towering walls of the facility — what will it take you to be the first one to escape?",
     image: "/images/games/labRats.jpg",
-    tags: ["Tabletop", "Strategy", "Card Game"],
+    tags: ["Tabletop", "Player vs Player", "Strategy", "Card Game"],
     authors: "Anirudh, Geetika, Harinarayanan, Kashika, Siddharth, Varun",
     priority: "1st",
   },
@@ -60,7 +63,7 @@ export const games: Game[] = [
     fullDescription:
       "K.O: No Mercy is a fast-paced two-player boxing duel where timing, prediction, and combo-building decide who stays standing.\nEach round simulates an explosive exchange in the ring. Players secretly select their moves, reveal them one by one, and score points based on impact, combinations, and momentum.\nBuild pressure. Land clean hits. Trigger combos. Push your opponent towards Knockout.",
     image: "/images/games/koNoMercy.jpg",
-    tags: ["Tabletop", "Two Player", "Combat", "Phygital"],
+    tags: ["Tabletop", "Card Game", "Player vs Player", "Two Player", "Combat", "Boxing"],
     authors: "Subrata, Sidhart, Jeswin, Roshan, Om",
     priority: "1st",
   },
@@ -72,7 +75,7 @@ export const games: Game[] = [
     fullDescription:
       "Who Invited Them is a fast-paced party chaos game where players must work together to secretly clear a house full of guests before the host's parents arrive. Each turn brings fun prompts — dares, truths, confessions, performances, or surprise tasks decided by the group.\nCompleting challenges earns points and helps move the game forward, but the real goal is teamwork, laughter, and quick thinking under pressure. Expect singing, acting, bluffing, and plenty of dramatic moments as players race against time.\nIt's social, silly, and perfect for breaking the ice, energising a group, and turning any gathering into an unforgettable house-party adventure.",
     image: "/images/games/whoInvitedThem.jpg",
-    tags: ["Tabletop", "Party", "Co-op", "Education"],
+    tags: ["Tabletop", "Player vs Game", "Party", "Education"],
     authors: "Ankita, Avani, Tanishq, Sumeet, Ravi, Siddhi",
     priority: "1st",
   },
@@ -84,7 +87,7 @@ export const games: Game[] = [
     fullDescription:
       "In Stranded, you and your crew are racing against time to avoid being completely destroyed.\nHowever, the space station about to crash is only a part of the problem. You and your crew are being stalked in the hallways by a deadly xenomorph — not for food, but for suitable hosts.\nBeing smart with your resources isn't enough to stay alive. The alien can break your team from the inside out, so it's a high-stakes game of trust. As the xenomorph takes over your teammates, they will start to work against your escape or to doom everyone onboard. The line between friend and enemy gets blurry.\nYou will soon realise that the person next to you is more dangerous than the monster in the vents.",
     image: "/images/games/stranded.jpg",
-    tags: ["Tabletop", "Sci-Fi", "Survival", "Card Game"],
+    tags: ["Tabletop", "Player vs Game", "Sci-Fi", "Alien", "Card Game"],
     authors: "Adiraj, Aradhay, Fabi, Himanshu, Yuvaan",
     priority: "1st",
   },
@@ -138,7 +141,7 @@ export const games: Game[] = [
     fullDescription:
       "Gods of Crops is a competitive strategy card game where players battle to protect and strengthen their crops while weakening their opponent's farm through powerful attack, defence, and utility cards. Each crop has unique traits and reactions to different environmental conditions like sunlight, rain, insects, and chemicals, creating a dynamic and tactical gameplay experience.\nCombining resource management, strategy, and fast-paced decision-making, the game delivers an exciting farming-themed battle for survival and victory.",
     image: "/images/games/godsOfCrops.jpg",
-    tags: ["Tabletop", "Card Game", "Strategy", "Farming"],
+    tags: ["Tabletop", "Card Game", "Strategy", "Education"],
     authors: "Adiraj, Geetika, Fabi, Himanshu, Yuvaan",
   },
   {
@@ -149,7 +152,7 @@ export const games: Game[] = [
     fullDescription:
       "Feed Me is a strategic and educational card-based board game where players build food chains by connecting animals and organisms from different ecosystems. Using clever placement, action cards, and chain-building mechanics, players compete to create the strongest and highest-scoring ecosystem links.\nWith a mix of strategy, learning, and friendly competition, the game offers a fun way to explore how nature and food chains work together.",
     image: "/images/games/feedMe.jpg",
-    tags: ["Tabletop", "Education", "Card Game", "Ecology"],
+    tags: ["Tabletop", "Education", "Animals", "Food Chain"],
     authors: "Hrishitaa, Tanishq, Urja, Rugved, Shreya",
   },
   {
@@ -192,5 +195,39 @@ export const games: Game[] = [
     image: "/images/games/dontGetSick.jpg",
     tags: ["Tabletop", "TBA"],
     authors: "Lab Members",
+  },
+
+  /* ── DIGITAL PROJECTS ───────────────────────────────────────────── */
+
+  {
+    id: "laminar",
+    title: "Laminar",
+    description:
+      "An interactive simulation that helps Indian youth build crowd-safety awareness — learning instinctive safe responses inside immersive crowd-distress scenarios.",
+    fullDescription:
+      "Laminar is an interactive play experience that aims to improve crowd preparedness in Indian youth, enabling them to understand probable crowd behaviours and take instinctive, safe decisions inside a crowd-distress simulation. The project bridges the preparedness gap for disasters that cannot be safely trained for in the real world.\nIt uses two mediums to communicate the context, each revealing different behavioural insights — from how an individual's planning and intuition together alter their decisions, to how intuition and immersion work their way together.\nLaminar not only promotes appropriate decision-making in players, but also surfaces shared and individual patterns of operation in such situations.",
+    image: "/images/games/laminar.jpg",
+    tags: ["Digital", "PC", "Education", "Training", "Safety"],
+    authors: "Radhika",
+  },
+  {
+    id: "care-paths",
+    title: "Care Paths",
+    description:
+      "A choice-based VR training game that helps pediatric healthcare workers experience care from a child's perspective — building empathy and patient-centred practice.",
+    fullDescription:
+      "Care Paths is a choice-based VR training game that helps pediatric healthcare workers and nurses understand the emotions, fears, and experiences of child patients by letting them experience healthcare from a child's perspective. Through immersive role-play, the game fosters empathy and encourages more compassionate, patient-centred care.",
+    image: "/images/games/carePaths.jpg",
+    tags: ["Digital", "VR", "Training", "Empathy", "Healthcare"],
+    authors: "Himanshu",
+  },
+  {
+    id: "echoes-of-aevum",
+    title: "Echoes of Aevum",
+    description:
+      "A VR game for the experiential learning of sound-related concepts — turning abstract physics into something you can hear, move through, and explore.",
+    image: "/images/games/echoesOfAevum.jpg",
+    tags: ["Digital", "VR", "Education", "Physics"],
+    authors: "Omya Sharma",
   },
 ]

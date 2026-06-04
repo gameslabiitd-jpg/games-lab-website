@@ -84,11 +84,11 @@ export default async function MemberPage({ params }: { params: Params }) {
         </div>
       )}
 
-      {/* Skills */}
+      {/* Areas of interest */}
       {member.skills && member.skills.length > 0 && (
         <div className="bg-paper border border-rule rounded-[12px] p-7 mb-4">
           <h2 className="font-sans font-extrabold text-ink mb-5 pb-3 border-b border-rule-soft text-xl">
-            Skills
+            Areas of Interest
           </h2>
           <div className="flex flex-wrap gap-2">
             {member.skills.map((s) => (

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useCallback, useMemo, useRef } from "react"
+import React, { useCallback, useMemo, useRef, useState } from "react"
 import { motion, useAnimationControls } from "motion/react"
 import { v4 as uuidv4 } from "uuid"
 
@@ -39,7 +39,9 @@ export const PixelTrail: React.FC<PixelTrailProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const dimensions = useDimensions(containerRef)
-  const trailId = useRef(uuidv4())
+  // Stable per-instance id used during render — useState (not useRef), since
+  // refs shouldn't be read during render.
+  const [trailId] = useState(() => uuidv4())
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
@@ -47,13 +49,13 @@ export const PixelTrail: React.FC<PixelTrailProps> = ({
       const rect = containerRef.current.getBoundingClientRect()
       const x = Math.floor((e.clientX - rect.left) / pixelSize)
       const y = Math.floor((e.clientY - rect.top)  / pixelSize)
-      const el = document.getElementById(`${trailId.current}-pixel-${x}-${y}`)
+      const el = document.getElementById(`${trailId}-pixel-${x}-${y}`)
       if (el) {
         const animatePixel = (el as HTMLDivElement & { __animatePixel?: () => void }).__animatePixel
         animatePixel?.()
       }
     },
-    [pixelSize],
+    [pixelSize, trailId],
   )
 
   const columns = useMemo(
@@ -76,7 +78,7 @@ export const PixelTrail: React.FC<PixelTrailProps> = ({
           {Array.from({ length: columns }).map((_, colIndex) => (
             <PixelDot
               key={`${colIndex}-${rowIndex}`}
-              id={`${trailId.current}-pixel-${colIndex}-${rowIndex}`}
+              id={`${trailId}-pixel-${colIndex}-${rowIndex}`}
               size={pixelSize}
               fadeDuration={fadeDuration}
               delay={delay}

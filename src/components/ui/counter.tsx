@@ -36,6 +36,9 @@ export function Counter({
     if (!el) return
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      // Reduced motion: skip the count-up and show the final value at once.
+      // matchMedia is client-only, so this can't move to the state initializer.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setValue(String(to).padStart(pad, "0"))
       return
     }

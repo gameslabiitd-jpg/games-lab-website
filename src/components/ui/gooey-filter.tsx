@@ -6,6 +6,12 @@
  * descendants get gooey-merged together. Higher `strength` = more blur =
  * larger merge radius.
  *
+ * Safari note: the host SVG is hidden with width/height 0 — NOT
+ * `display:none`. WebKit won't resolve `filter: url(#id)` when the SVG that
+ * defines the filter is `display:none`, which makes the effect silently fail
+ * (you'd see the raw, un-merged shapes). 0×0 keeps it out of layout while
+ * leaving the filter resolvable in every browser.
+ *
  * Source: 21st.dev gooey-filter recipe (danielpetho). Render once near
  * the consumer; multiple instances are fine if `id` is unique.
  */
@@ -17,7 +23,10 @@ export function GooeyFilter({
   strength?: number
 }) {
   return (
-    <svg className="hidden absolute" aria-hidden="true">
+    <svg
+      aria-hidden="true"
+      style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}
+    >
       <defs>
         <filter id={id}>
           <feGaussianBlur in="SourceGraphic" stdDeviation={strength} result="blur" />

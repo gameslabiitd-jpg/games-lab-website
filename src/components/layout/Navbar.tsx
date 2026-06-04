@@ -228,7 +228,14 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  useEffect(() => { setMenuOpen(false) }, [pathname])
+  /* Close the mobile menu whenever the route changes. Done during render
+     (React's documented "adjust state when a prop changes" pattern) rather
+     than in an effect, so there's no setState-in-effect cascade. */
+  const [menuPathname, setMenuPathname] = useState(pathname)
+  if (pathname !== menuPathname) {
+    setMenuPathname(pathname)
+    setMenuOpen(false)
+  }
 
   return (
     /*

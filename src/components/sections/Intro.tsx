@@ -1,11 +1,14 @@
 import ScrollReveal from "@/components/animations/ScrollReveal"
+import Button from "@/components/ui/Button"
+import MediaStack from "@/components/sections/MediaStack"
 
 /**
  * Hallmark · genre: editorial · component: intro · design-system: design.md
  *
- * Lab mission statement — eyebrow + large ink headline on the left,
- * body copy on the right. Mirrors the two-column rhythm used by
- * CTABlock so the page reads as one editorial system.
+ * Lab mission statement — large ink headline + body copy + a route to the
+ * About page on the left, paired with a cycling deck of project clips and
+ * game-jam photos (MediaStack) on the right. Mirrors the two-column rhythm
+ * used by CTABlock so the page reads as one editorial system.
  *
  * The "GAMES" acronym in the body is wrapped in <strong> so the
  * letter expansion (Gaming, Augmented & Mixed-Reality Experiences,
@@ -20,17 +23,22 @@ export default function Intro() {
       </div>
 
       <div className="w-[90%] max-w-[1500px] mx-auto">
-        {/* Asymmetric 5/7 split — headline narrower & taller, body wider.
-            Body column is pushed down so the H2 baseline sits above its
-            first line, giving the spread an editorial drop-cap rhythm. */}
-        <div className="grid md:grid-cols-12 gap-6 md:gap-16 items-start">
+        {/* Editorial header — headline + route to About on the left, body
+            copy on the right — sits above the full-width cinematic deck. */}
+        <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-end mb-10 md:mb-14">
           <ScrollReveal className="md:col-span-5">
             <h2 className="t-display font-sans font-extrabold text-ink leading-[0.92] tracking-[-0.03em] m-0">
               Transforming<br />through Play
             </h2>
+
+            <div className="mt-7 md:mt-9">
+              <Button href="/about" variant="outline">
+                About the Lab
+              </Button>
+            </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={120} className="md:col-span-7 md:pt-2 lg:pt-3">
+          <ScrollReveal delay={120} className="md:col-span-7 md:pb-2">
             <p className="font-sans text-ink-2 leading-[1.55] m-0 max-w-[58ch]"
                style={{ fontSize: "clamp(17px, 1.35vw, 22px)" }}>
               The{" "}
@@ -44,6 +52,11 @@ export default function Intro() {
             </p>
           </ScrollReveal>
         </div>
+
+        {/* Full-width widescreen media deck — the section's focal point. */}
+        <ScrollReveal delay={180}>
+          <MediaStack />
+        </ScrollReveal>
       </div>
     </section>
   )

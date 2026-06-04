@@ -14,8 +14,7 @@ import { useEffect, useState } from "react"
  * Adapted only for codebase formatting.
  */
 
-const SCREEN_SIZES = ["xs", "sm", "md", "lg", "xl", "2xl"] as const
-export type ScreenSize = (typeof SCREEN_SIZES)[number]
+export type ScreenSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 
 const sizeOrder: Record<ScreenSize, number> = {
   xs: 0,

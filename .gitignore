@@ -42,3 +42,8 @@ next-env.d.ts
 
 # Local video/source backups (not for deploy)
 .backups/
+
+# agent / editor tooling artifacts (not part of the site)
+/.agents/
+/.claude/
+/.hallmark/
