@@ -50,6 +50,11 @@ export function GamesCatalog({ games }: { games: Game[] }) {
     [games, activeTag]
   )
 
+  /* Games with a photo become image cards; those still awaiting one drop into
+     a tidy text list at the end so the grid never shows an empty picture. */
+  const withImage = filtered.filter((g) => g.image)
+  const withoutImage = filtered.filter((g) => !g.image)
+
   return (
     <>
       {/* ── Category filter ─────────────────────────────────── */}
@@ -78,15 +83,18 @@ export function GamesCatalog({ games }: { games: Game[] }) {
         })}
       </div>
 
-      {/* ── Catalog grid ────────────────────────────────────── */}
-      {filtered.length === 0 ? (
+      {/* ── Empty state (nothing matches at all) ────────────── */}
+      {filtered.length === 0 && (
         <p className="py-20 text-center text-ink-3 font-sans text-sm">
           No games match this filter.
         </p>
-      ) : (
+      )}
+
+      {/* ── Catalog grid (games with photos) ────────────────── */}
+      {withImage.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           <AnimatePresence mode="popLayout">
-            {filtered.map((game, i) => (
+            {withImage.map((game, i) => (
               <motion.article
                 key={game.id}
                 layout
@@ -98,7 +106,7 @@ export function GamesCatalog({ games }: { games: Game[] }) {
               >
                 <div className="relative w-full aspect-[4/3] overflow-hidden bg-paper-3">
                   <Image
-                    src={game.image}
+                    src={game.image!}
                     alt={game.title}
                     fill
                     className="object-cover card-img-zoom"
@@ -134,6 +142,48 @@ export function GamesCatalog({ games }: { games: Game[] }) {
               </motion.article>
             ))}
           </AnimatePresence>
+        </div>
+      )}
+
+      {/* ── More games (awaiting photos) — clean text list ──── */}
+      {withoutImage.length > 0 && (
+        <div className={withImage.length > 0 ? "mt-14 md:mt-20" : ""}>
+          {withImage.length > 0 && (
+            <div className="flex items-baseline justify-between gap-4 mb-1 pb-3 border-b border-rule">
+              <h2 className="text-xl md:text-2xl font-semibold font-sans text-ink m-0 tracking-[-0.01em]">
+                More games
+              </h2>
+              <span className="text-xs text-ink-3 font-sans shrink-0">
+                Photos coming soon
+              </span>
+            </div>
+          )}
+
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 list-none m-0 p-0">
+            {withoutImage.map((game) => (
+              <li
+                key={game.id}
+                className="group flex flex-col gap-1.5 py-5 border-b border-rule-soft"
+              >
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="text-base md:text-lg font-semibold font-sans text-ink m-0 leading-snug tracking-[-0.01em]">
+                    {game.title}
+                  </h3>
+                  <span className="text-xs text-ink-3 font-sans shrink-0 text-right max-w-[45%] truncate">
+                    {game.authors}
+                  </span>
+                </div>
+                <p className="text-sm text-ink-2 leading-relaxed m-0 line-clamp-2">
+                  {game.description}
+                </p>
+                <div className="flex flex-wrap gap-1.5 mt-1">
+                  {game.tags.map((t) => (
+                    <Tag key={t} label={t} />
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </>

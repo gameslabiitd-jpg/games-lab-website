@@ -4,7 +4,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useRef } from "react"
 import { games } from "@/data/games"
-import { research } from "@/data/research"
 import Tag from "@/components/ui/Tag"
 import Button from "@/components/ui/Button"
 import { gsap } from "@/lib/gsap"
@@ -22,19 +21,21 @@ type Card = {
   id: string
   title: string
   description: string
-  image: string
+  image?: string
   authors: string
   tags: string[]
   href: string
 }
 
+const byId = (id: string) => games.find((g) => g.id === id)!
+
 const highlighted: Card[] = [
-  { ...games[0],    href: "/games" },
-  { ...games[1],    href: "/games" },
-  { ...research[0], href: "/publications" },
-  { ...games[2],    href: "/games" },
-  { ...games[3],    href: "/games" },
-  { ...research[1], href: "/publications" },
+  { ...games[0],                href: "/games" },
+  { ...games[1],                href: "/games" },
+  { ...byId("laminar"),         href: "/games" }, // Radhika's project
+  { ...games[2],                href: "/games" },
+  { ...games[3],                href: "/games" },
+  { ...byId("echoes-of-aevum"), href: "/games" }, // Omya's project
 ]
 
 export default function HighlightedWorks() {
@@ -83,14 +84,16 @@ export default function HighlightedWorks() {
               className="hw-card group flex flex-col no-underline"
             >
               <div className="relative w-full aspect-[4/3] overflow-hidden rounded-[12px] bg-paper-3 mb-4">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover card-img-zoom"
-                  sizes="(max-width:640px) 100vw,(max-width:1024px) 50vw,33vw"
-                  loading="lazy"
-                />
+                {item.image && (
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover card-img-zoom"
+                    sizes="(max-width:640px) 100vw,(max-width:1024px) 50vw,33vw"
+                    loading="lazy"
+                  />
+                )}
               </div>
 
               <div className="flex flex-col flex-1">

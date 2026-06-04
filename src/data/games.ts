@@ -9,9 +9,11 @@
  *   - fullDescription → long-form for detail pages and showcase. \n becomes
  *     a paragraph break when rendered.
  *   - priority        → "1st" | "2nd" | undefined. Use for sort/featuring.
- *   - image           → /images/games/<id>.jpg. The first six already exist;
- *     the remaining eight reference paths the team still needs to upload.
- *     Until then those cards render the bg-paper-3 placeholder.
+ *   - image           → /images/games/<id>.jpg. OPTIONAL: games still awaiting
+ *     a photo leave it commented out / undefined. The /games catalog moves
+ *     image-less games into a clean text list at the end instead of showing an
+ *     empty picture. To promote one back into the card grid, just uncomment
+ *     its `image` line once the file is uploaded to public/images/games/.
  *   - featured        → renders the big dark hero card on /games. ONE only.
  */
 
@@ -20,7 +22,7 @@ export type Game = {
   title: string
   description: string
   fullDescription?: string
-  image: string
+  image?: string
   tags: string[]
   authors: string
   featured?: boolean
@@ -113,7 +115,7 @@ export const games: Game[] = [
       "A shadowy power-play game where Drug Lord, Money Manager, Landlord, and Police Officer compete to dominate the regions of a corrupt city.",
     fullDescription:
       "Shadowy Doobie Town is a strategic power-play game set in a city where control matters more than wealth. Players take on the roles of four key figures — Drug Lord, Money Manager, Landlord, and Police Officer — each competing to dominate critical regions of the town.\nThrough smart deals, calculated risks, and strategic moves, players must earn, buy, or seize control to win.",
-    image: "/images/games/doobieTown.jpg",
+    // image: "/images/games/doobieTown.jpg", // TODO: awaiting photo
     tags: ["Tabletop", "Strategy", "Power Play"],
     authors: "Ella, Makrand, Niharika, Shivangi",
     priority: "2nd",
@@ -125,7 +127,7 @@ export const games: Game[] = [
       "Buy low, sell high — a stock-market game where strategy and timing decide whether you take risks, play safe, or do both.",
     fullDescription:
       "The game explores the exciting world of stocks and investments, where your strategy and timing dictate your success. Will you take risks, play it safe, or blend both approaches? The choice is yours.\nInvestors seek to maximise wealth through strategic buying and selling of stocks while adapting to market changes. By understanding trends and balancing risk, they compete to make the best investment decisions. The key is to buy low and sell high — timing is everything.",
-    image: "/images/games/bazaarMafia.jpg",
+    // image: "/images/games/bazaarMafia.jpg", // TODO: awaiting photo
     tags: ["Tabletop", "Strategy", "Stock Market"],
     authors: "Lab Members",
     priority: "2nd",
@@ -140,7 +142,7 @@ export const games: Game[] = [
       "A competitive farming card battle where players strengthen their crops and weaken rivals using sunlight, rain, insects, and chemicals.",
     fullDescription:
       "Gods of Crops is a competitive strategy card game where players battle to protect and strengthen their crops while weakening their opponent's farm through powerful attack, defence, and utility cards. Each crop has unique traits and reactions to different environmental conditions like sunlight, rain, insects, and chemicals, creating a dynamic and tactical gameplay experience.\nCombining resource management, strategy, and fast-paced decision-making, the game delivers an exciting farming-themed battle for survival and victory.",
-    image: "/images/games/godsOfCrops.jpg",
+    // image: "/images/games/godsOfCrops.jpg", // TODO: awaiting photo
     tags: ["Tabletop", "Card Game", "Strategy", "Education"],
     authors: "Adiraj, Geetika, Fabi, Himanshu, Yuvaan",
   },
@@ -151,7 +153,7 @@ export const games: Game[] = [
       "Build food chains by connecting animals across ecosystems — an educational card-and-board game about how nature links together.",
     fullDescription:
       "Feed Me is a strategic and educational card-based board game where players build food chains by connecting animals and organisms from different ecosystems. Using clever placement, action cards, and chain-building mechanics, players compete to create the strongest and highest-scoring ecosystem links.\nWith a mix of strategy, learning, and friendly competition, the game offers a fun way to explore how nature and food chains work together.",
-    image: "/images/games/feedMe.jpg",
+    // image: "/images/games/feedMe.jpg", // TODO: awaiting photo
     tags: ["Tabletop", "Education", "Animals", "Food Chain"],
     authors: "Hrishitaa, Tanishq, Urja, Rugved, Shreya",
   },
@@ -162,7 +164,7 @@ export const games: Game[] = [
       "A sci-fi strategy game where players manage planets within the Goldilocks Zone — balancing satellites, ships, and survival conditions.",
     fullDescription:
       "Mission Goldilocks is a sci-fi strategy board game where players compete to keep their planets stable and survive within the mysterious Goldilocks Zone — the perfect region for life. Using satellites, spaceships, and condition-based mechanics, players must carefully manage planetary balance while outsmarting their opponents in a race for survival and control.\nCombining space exploration, tactical planning, and competitive gameplay, the game delivers an exciting interstellar battle for the ideal planet.",
-    image: "/images/games/missionGoldilocks.jpg",
+    // image: "/images/games/missionGoldilocks.jpg", // TODO: awaiting photo
     tags: ["Tabletop", "Sci-Fi", "Strategy", "Space"],
     authors: "Ankita, Avani, Tanishq, Sumeet, Siddhi",
   },
@@ -173,7 +175,7 @@ export const games: Game[] = [
       "Race to dominate the sectors of a mysterious island — manage resources, build stacks, and seize majority control of Lem Coins.",
     fullDescription:
       "Building Lemuria is a competitive strategy board game where players race to develop and dominate sectors on the mysterious island of Lemuria. By managing resources, claiming territories, and building powerful stacks, players compete to gain the majority of Lem Coins and control the growing civilization.\nWith tactical decision-making, shifting alliances, and resource-based gameplay, the game creates an immersive battle for power, expansion, and survival in a newly discovered world.",
-    image: "/images/games/buildingLemuria.jpg",
+    // image: "/images/games/buildingLemuria.jpg", // TODO: awaiting photo
     tags: ["Tabletop", "Strategy", "Resource Management"],
     authors: "Subrata, Sidhart, Jeswin, Roshan, Om",
   },
@@ -184,7 +186,7 @@ export const games: Game[] = [
     id: "cataclysm",
     title: "Cataclysm",
     description: "Full description coming soon.",
-    image: "/images/games/cataclysm.jpg",
+    // image: "/images/games/cataclysm.jpg", // TODO: awaiting photo
     tags: ["Tabletop", "TBA"],
     authors: "Lab Members",
   },
@@ -192,7 +194,7 @@ export const games: Game[] = [
     id: "dont-get-sick",
     title: "Don't Get Sick",
     description: "Full description coming soon.",
-    image: "/images/games/dontGetSick.jpg",
+    // image: "/images/games/dontGetSick.jpg", // TODO: awaiting photo
     tags: ["Tabletop", "TBA"],
     authors: "Lab Members",
   },

@@ -26,10 +26,14 @@ type MediaItem =
 const ITEMS: MediaItem[] = [
   { id: "game-jam-1", type: "image", src: "/images/home/game-jam-1.jpg", alt: "Students collaborating at a GAMES Lab game jam" },
   { id: "omya-project", type: "video", src: "/videos/omya-project.mp4", poster: "/images/home/omya-project-poster.jpg", alt: "Playthrough of a GAMES Lab student project" },
-  { id: "game-jam-2", type: "image", src: "/images/home/game-jam-2.jpg", alt: "Playtesting tabletop prototypes at a game jam" },
+  { id: "stack-2", type: "image", src: "/images/home/stack-2.jpg", alt: "Players testing a board game prototype at the GAMES Lab" },
   { id: "gameplay-2", type: "video", src: "/videos/gameplay-2.mp4", poster: "/images/home/gameplay-2-poster.jpg", alt: "Gameplay clip from a GAMES Lab project" },
-  { id: "game-jam-4", type: "image", src: "/images/home/game-jam-4.jpg", alt: "Designers sketching ideas during a game jam" },
+  { id: "stack-1", type: "image", src: "/images/home/stack-1.jpg", alt: "A close-up of a tabletop card game in play at the GAMES Lab" },
+  { id: "game-jam-2", type: "image", src: "/images/home/game-jam-2.jpg", alt: "Playtesting tabletop prototypes at a game jam" },
+  { id: "stack-3", type: "image", src: "/images/home/stack-3.jpg", alt: "A mentor discussing a project with students during a game-dev session" },
   { id: "omya-photo", type: "image", src: "/images/home/omya-project.jpg", alt: "A GAMES Lab project on show" },
+  { id: "stack-4", type: "image", src: "/images/home/stack-4.jpg", alt: "Group photo of participants at a GAMES Lab event" },
+  { id: "game-jam-4", type: "image", src: "/images/home/game-jam-4.jpg", alt: "Designers sketching ideas during a game jam" },
   { id: "game-jam-3", type: "image", src: "/images/home/game-jam-3.jpg", alt: "Team presenting their game at a jam" },
 ]
 
