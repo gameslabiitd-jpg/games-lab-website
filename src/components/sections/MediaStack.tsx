@@ -24,8 +24,8 @@ type MediaItem =
   | { id: string; type: "video"; src: string; poster: string; alt: string }
 
 const ITEMS: MediaItem[] = [
-  { id: "game-jam-1", type: "image", src: "/images/home/game-jam-1.jpg", alt: "Students collaborating at a GAMES Lab game jam" },
   { id: "omya-project", type: "video", src: "/videos/omya-project.mp4", poster: "/images/home/omya-project-poster.jpg", alt: "Playthrough of a GAMES Lab student project" },
+  { id: "game-jam-1", type: "image", src: "/images/home/game-jam-1.jpg", alt: "Students collaborating at a GAMES Lab game jam" },
   { id: "stack-2", type: "image", src: "/images/home/stack-2.jpg", alt: "Players testing a board game prototype at the GAMES Lab" },
   { id: "gameplay-2", type: "video", src: "/videos/gameplay-2.mp4", poster: "/images/home/gameplay-2-poster.jpg", alt: "Gameplay clip from a GAMES Lab project" },
   { id: "stack-1", type: "image", src: "/images/home/stack-1.jpg", alt: "A close-up of a tabletop card game in play at the GAMES Lab" },

@@ -312,20 +312,32 @@ export default function Hero() {
           </span>
         </div>
 
-        {/* ── Scroll cue ─────────────────────────────────────────────── */}
+        {/* ── Scroll cue (chevron, not a bare line) ──────────────────── */}
         <button
           type="button"
           onClick={skipIntro}
           aria-label="Skip intro and scroll down"
           className={[
-            "absolute bottom-8 left-1/2 -translate-x-1/2 z-40",
-            "flex flex-col items-center",
-            "cursor-pointer bg-transparent border-0 p-2",
-            "transition-opacity duration-500",
+            "absolute bottom-6 left-1/2 -translate-x-1/2 z-40",
+            "flex items-center justify-center",
+            "cursor-pointer bg-transparent border-0 p-2 text-ink/35",
+            "transition-opacity duration-500 hover:text-ink/60",
             complete ? "opacity-0 pointer-events-none" : "opacity-100",
           ].join(" ")}
         >
-          <div className="w-px h-11 bg-ink/30" />
+          <svg
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M6 9l6 6 6-6" />
+          </svg>
         </button>
       </div>
     </section>

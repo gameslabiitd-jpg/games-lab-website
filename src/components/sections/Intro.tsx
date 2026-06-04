@@ -17,11 +17,7 @@ import MediaStack from "@/components/sections/MediaStack"
 
 export default function Intro() {
   return (
-    <section className="w-full pt-8 pb-10 md:pt-10 md:pb-12 bg-paper">
-      <div className="w-[90%] max-w-[1500px] mx-auto mb-6 md:mb-8">
-        <div className="h-px bg-rule" />
-      </div>
-
+    <section className="w-full pt-10 pb-10 md:pt-14 md:pb-12 bg-paper">
       <div className="w-[90%] max-w-[1500px] mx-auto">
         {/* Editorial header — headline + route to About on the left, body
             copy on the right — sits above the full-width cinematic deck. */}
