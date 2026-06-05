@@ -61,13 +61,23 @@ export default function Hero() {
   const [textFading, setTextFading]     = useState(false)
   const [complete, setComplete]         = useState(false)
   const [mounted, setMounted]           = useState(false)
+  const [isWebkit, setIsWebkit]         = useState(false)
 
   const screen    = useScreenSize()
   const pixelSize = screen.lessThan("md") ? 28 : 36
 
-  /* Mount fade-in (client-only → no hydration mismatch). */
+  /* Mount fade-in + WebKit detection (client-only → no hydration mismatch).
+     The SVG gooey filter still rasterises blocky on Safari/WebKit even with
+     the filter resolving correctly, so the cursor trail is dropped there
+     (Chrome/Firefox render it fine). */
   useEffect(() => {
-    const id = setTimeout(() => setMounted(true), 80)
+    const webkit =
+      typeof navigator !== "undefined" &&
+      navigator.vendor === "Apple Computer, Inc."
+    const id = setTimeout(() => {
+      setMounted(true)
+      if (webkit) setIsWebkit(true)
+    }, 80)
     return () => clearTimeout(id)
   }, [])
 
@@ -217,15 +227,19 @@ export default function Hero() {
       {/* Sticky pinned visual — stays in view while the section scrolls. */}
       <div className="sticky top-0 h-dvh w-full flex flex-col overflow-hidden">
 
-        {/* ── Gooey cursor trail ─────────────────────────────────────── */}
-        <GooeyFilter id="hero-goo" strength={6} />
-        {/* z-[15]: above the video (z-10) so the trail continues over it,
-            but below the masthead/footer text (z-20) so they stay legible. */}
-        <div className="absolute inset-0 z-[15] pointer-events-none" aria-hidden="true">
-          <div className="absolute inset-0 pointer-events-auto" style={{ filter: "url(#hero-goo)" }}>
-            <PixelTrail pixelSize={pixelSize} fadeDuration={700} delay={80} pixelClassName="bg-ink" />
-          </div>
-        </div>
+        {/* ── Gooey cursor trail (not on Safari/WebKit — blocky there) ─── */}
+        {!isWebkit && (
+          <>
+            <GooeyFilter id="hero-goo" strength={6} />
+            {/* z-[15]: above the video (z-10) so the trail continues over it,
+                but below the masthead/footer text (z-20) so they stay legible. */}
+            <div className="absolute inset-0 z-[15] pointer-events-none" aria-hidden="true">
+              <div className="absolute inset-0 pointer-events-auto" style={{ filter: "url(#hero-goo)" }}>
+                <PixelTrail pixelSize={pixelSize} fadeDuration={700} delay={80} pixelClassName="bg-ink" />
+              </div>
+            </div>
+          </>
+        )}
 
         <h1 className="sr-only">GAMES Lab — IIT Delhi</h1>
 

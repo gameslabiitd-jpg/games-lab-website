@@ -19,8 +19,8 @@ import { cn } from "@/lib/cn"
 
 const FLAP_CHARS = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$()-+&=;:'\"%,./?°"
 
-const BOARD_ROWS = 6
-const BOARD_COLS = 22
+const BOARD_ROWS = 2
+const BOARD_COLS = 28
 
 const BASE_COL_DELAY = 30
 const BASE_ROW_DELAY = 20
@@ -49,7 +49,7 @@ const ACCENT_COLORS: AccentColor[] = [
 ]
 
 const CELL_TEXT_STYLE: React.CSSProperties = {
-  fontSize: "clamp(10px, 3vw, 56px)",
+  fontSize: "clamp(8px, 2.35vw, 44px)",
   lineHeight: 1,
 }
 

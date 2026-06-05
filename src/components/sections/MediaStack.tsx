@@ -24,16 +24,15 @@ type MediaItem =
   | { id: string; type: "video"; src: string; poster: string; alt: string }
 
 const ITEMS: MediaItem[] = [
+  // Top video stays fixed; the rest is the final compiled set (3 videos + 6 photos).
   { id: "omya-project", type: "video", src: "/videos/omya-project.mp4", poster: "/images/home/omya-project-poster.jpg", alt: "Playthrough of a GAMES Lab student project" },
-  { id: "game-jam-1", type: "image", src: "/images/home/game-jam-1.jpg", alt: "Students collaborating at a GAMES Lab game jam" },
-  { id: "stack-2", type: "image", src: "/images/home/stack-2.jpg", alt: "Players testing a board game prototype at the GAMES Lab" },
-  { id: "gameplay-2", type: "video", src: "/videos/gameplay-2.mp4", poster: "/images/home/gameplay-2-poster.jpg", alt: "Gameplay clip from a GAMES Lab project" },
-  { id: "stack-1", type: "image", src: "/images/home/stack-1.jpg", alt: "A close-up of a tabletop card game in play at the GAMES Lab" },
   { id: "game-jam-2", type: "image", src: "/images/home/game-jam-2.jpg", alt: "Playtesting tabletop prototypes at a game jam" },
+  { id: "gameplay-2", type: "video", src: "/videos/gameplay-2.mp4", poster: "/images/home/gameplay-2-poster.jpg", alt: "Gameplay clip from a GAMES Lab project" },
   { id: "stack-3", type: "image", src: "/images/home/stack-3.jpg", alt: "A mentor discussing a project with students during a game-dev session" },
-  { id: "omya-photo", type: "image", src: "/images/home/omya-project.jpg", alt: "A GAMES Lab project on show" },
-  { id: "stack-4", type: "image", src: "/images/home/stack-4.jpg", alt: "Group photo of participants at a GAMES Lab event" },
   { id: "game-jam-4", type: "image", src: "/images/home/game-jam-4.jpg", alt: "Designers sketching ideas during a game jam" },
+  { id: "vr-360", type: "video", src: "/videos/vr-360.mp4", poster: "/images/home/vr-360-poster.jpg", alt: "A 360° VR scene from a GAMES Lab project" },
+  { id: "stack-4", type: "image", src: "/images/home/stack-4.jpg", alt: "Group photo of participants at a GAMES Lab event" },
+  { id: "omya-photo", type: "image", src: "/images/home/omya-project.jpg", alt: "A GAMES Lab project on show" },
   { id: "game-jam-3", type: "image", src: "/images/home/game-jam-3.jpg", alt: "Team presenting their game at a jam" },
 ]
 
@@ -96,7 +95,7 @@ export default function MediaStack() {
   return (
     <div className="w-full">
       {/* extra padding gives the peeking cards room so they aren't clipped */}
-      <div className="relative w-full aspect-[16/9] pr-10 pb-10 md:pr-[68px] md:pb-12">
+      <div className="relative w-full aspect-[16/9] md:aspect-[21/9] pr-10 pb-10 md:pr-[68px] md:pb-12">
         {ITEMS.map((item, i) => {
           const depth = (i - active + ITEMS.length) % ITEMS.length
           const d = depth < DEPTHS.length ? DEPTHS[depth] : HIDDEN
@@ -173,7 +172,7 @@ export default function MediaStack() {
       </div>
 
       {/* progress dots / manual navigation */}
-      <div className="mt-5 flex items-center gap-2" role="group" aria-label="Media gallery navigation">
+      <div className="mt-4 flex items-center gap-2" role="group" aria-label="Media gallery navigation">
         {ITEMS.map((item, i) => {
           const isActive = i === active
           return (

@@ -4,30 +4,18 @@ import { useCallback, useEffect, useState } from "react"
 import { TextFlippingBoard } from "@/components/ui/text-flipping-board"
 
 /**
- * StatsFlipboard — full-screen About hero board.
+ * StatsFlipboard — slim About hero board (2 rows).
  *
- * Cycles two information-dense messages every 8 seconds:
- *   1. Identity + tagline (brand anchor)
- *   2. The four lab stats (numbers the page would otherwise list)
- *
- * Each message uses 4 lines on the 22×6 grid so it centers vertically
- * with a blank row top + bottom. ∞ isn't in FLAP_CHARS so playtests
- * reads "INFINITE PLAYTESTS".
+ * Cycles a set of short, punchy framings every 8 seconds — identity,
+ * tagline, and what the lab is about — with no numbers. Each message is
+ * 2 lines so it fills the 22×2 grid edge to edge.
  */
 
 const MESSAGES: string[] = [
-  [
-    "GAMES LAB",
-    "@ IIT DELHI",
-    "WHERE PLAY MEETS",
-    "PURPOSE",
-  ].join("\n"),
-  [
-    "04 FUNDED PROJECTS",
-    "03 APPLICATION AREAS",
-    "14 TABLETOP GAMES",
-    "INFINITE PLAYTESTS",
-  ].join("\n"),
+  ["GAMES LAB", "IIT DELHI"].join("\n"),
+  ["WHERE PLAY", "MEETS PURPOSE"].join("\n"),
+  ["EDUCATION ·", "WELLBEING · ACCESS"].join("\n"),
+  ["RESEARCH", "THROUGH DESIGN"].join("\n"),
 ]
 
 const CYCLE_MS = 8000
