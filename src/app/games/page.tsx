@@ -18,11 +18,30 @@ export const metadata: Metadata = {
   description: "Game design projects from GAMES Lab at IIT Delhi — board games, card games, digital, AR/VR.",
 }
 
+// Curated display order — the most fleshed-out / flagship projects lead the
+// catalog; anything not listed keeps its data order after these (image-less
+// games still drop into the "More games" text list inside the catalog).
+const LEAD_ORDER = [
+  "narrative-sandbox",
+  "laminar",
+  "care-paths",
+  "offerings-of-noroi",
+  "cyto-polis",
+  "lab-rat",
+  "ko-no-mercy",
+  "who-invited-them",
+  "stranded",
+  "jungle",
+  "echoes-of-aevum",
+]
+const rank = (id: string) => {
+  const i = LEAD_ORDER.indexOf(id)
+  return i === -1 ? LEAD_ORDER.length : i
+}
+
 export default function GamesPage() {
-  // Featured first, then the rest — but every card is the same size.
-  const ordered = [...games].sort(
-    (a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0)
-  )
+  // Content-rich / flagship projects first; the rest follow (stable) in data order.
+  const ordered = [...games].sort((a, b) => rank(a.id) - rank(b.id))
 
   return (
     <>

@@ -179,6 +179,17 @@ export const games: Game[] = [
     tags: ["Tabletop", "Strategy", "Resource Management"],
     authors: "Subrata, Sidhart, Jeswin, Roshan, Om",
   },
+  {
+    id: "cyto-polis",
+    title: "Cyto-Polis",
+    description:
+      "A co-operative board game where players become Nanobots, harnessing organelle powers to collaborate, strategise, and revive a cell city collapsing under a dangerous infection.",
+    fullDescription:
+      "Cyto-Polis is a co-operative board game where you and your team are a group of Nanobots, assigned to a cell city collapsing under a dangerous infection. Your team is the last hope to bring it back to life.\nHarness the unique abilities and powers of various cell organelles to collaborate, strategise, and revive the Cyto-Polis.",
+    image: "/images/highlights/cyto-polis/1.jpg",
+    tags: ["Tabletop", "Education", "Cell Biology", "Cooperative"],
+    authors: "Radhika, Shuriti, Suchalika, Adhiraj & Vinay",
+  },
 
   /* ── STUBS — copy + image pending from team ─────────────────────── */
 
@@ -230,6 +241,17 @@ export const games: Game[] = [
       "A VR game for the experiential learning of sound-related concepts — turning abstract physics into something you can hear, move through, and explore.",
     image: "/images/games/echoesOfAevum.jpg",
     tags: ["Digital", "VR", "Education", "Physics"],
+    authors: "Omya Sharma",
+  },
+  {
+    id: "narrative-sandbox",
+    title: "Narrative Sandbox",
+    description:
+      "An AR sandbox where children aged 5–7 shape sand and place tokens to trigger AI-generated biomes, co-creating narrative worlds through embodied pretend play.",
+    fullDescription:
+      "We explore how augmented reality and generative AI can transform children's play. Using a custom AR Sandbox — a physical sand table augmented with real-time AI-generated visuals, depth sensing, and tangible tokens — we study how young children (ages 5–7) engage in co-located, embodied pretend play.\nOur work sits at the intersection of Tangible User Interfaces, Child-Computer Interaction, and generative AI, asking how technology can support imagination and collaborative storytelling without overshadowing the play itself. Children interact with the sandbox by shaping sand and placing themed tokens that trigger dynamic biome projections, co-creating narrative worlds together in real time.\nThrough iterative Research-through-Design methods, we aim to uncover design principles that keep the child at the centre of play.",
+    image: "/images/highlights/narrative-sandbox/1.jpg",
+    tags: ["Digital", "AR", "Pretend Play", "Child-Computer Interaction"],
     authors: "Omya Sharma",
   },
 ]
