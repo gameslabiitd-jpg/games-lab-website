@@ -27,28 +27,13 @@ export default function PublicationsPage() {
 
         {/* ── Hero ───────────────────────────────────────────── */}
         <ScrollReveal>
-          <div className="flex items-end justify-between gap-8 pb-8 mb-12 border-b border-rule">
-            <div>
-              <h1 className="t-display font-sans font-extrabold text-ink leading-[0.88] tracking-[-0.04em] m-0 mb-5">
-                Publications.
-              </h1>
-              <p className="text-lg text-ink-2 leading-[1.7] max-w-[50ch] m-0">
-                Papers, book chapters, and conference contributions from the GAMES Lab.
-              </p>
-            </div>
-
-            {/* Faint large counter — decorative */}
-            <div className="shrink-0 text-right hidden md:block">
-              <p
-                className="t-display font-extrabold font-sans leading-none tabular-nums m-0 select-none"
-                style={{ color: "oklch(15% 0.006 50 / 0.07)" }}
-              >
-                {String(research.length).padStart(2, "0")}
-              </p>
-              <p className="text-[10px] uppercase tracking-[0.24em] text-ink-3 font-sans m-0 mt-1.5">
-                papers
-              </p>
-            </div>
+          <div className="pb-8 mb-12 border-b border-rule">
+            <h1 className="t-display font-sans font-extrabold text-ink leading-[0.88] tracking-[-0.04em] m-0 mb-5">
+              Publications.
+            </h1>
+            <p className="text-lg text-ink-2 leading-[1.7] max-w-[50ch] m-0">
+              Papers, book chapters, and conference contributions from the GAMES Lab.
+            </p>
           </div>
         </ScrollReveal>
 

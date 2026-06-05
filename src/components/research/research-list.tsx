@@ -2,47 +2,102 @@
 
 import { useState, useMemo } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import type { Research } from "@/data/research"
+import type { Research, PubType } from "@/data/research"
 import Tag from "@/components/ui/Tag"
 
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1]
 const EASE_IO  = "cubic-bezier(0.65,0,0.35,1)"
 
+/** Fixed display order for the three primary publication types. */
+const TYPE_ORDER: PubType[] = ["Conference Paper", "Journal Article", "Extended Abstracts"]
+
 /**
- * ResearchList — interactive editorial index.
+ * ResearchList — interactive editorial index with a two-tier filter.
  *
- * Features:
- *  - Tag filter pills with AnimatePresence in/out
- *  - Hover: non-hovered rows dim to 28%, active row title nudges right
- *  - Empty-state message when a filter returns no results
+ *  - Primary row: the three publication TYPES (Conference Paper / Journal
+ *    Article / Extended Abstracts) + All.
+ *  - Secondary row: TOPIC keywords, scoped to whatever the active type
+ *    surfaces (so you can't pick a dead-end combination).
+ *  - The two tiers combine (AND). Switching type resets the topic.
+ *  - Hover: non-hovered rows dim to 28%, active row title nudges right.
  */
 export function ResearchList({ items }: { items: Research[] }) {
-  const [hovered,   setHovered]   = useState<Research | null>(null)
-  const [activeTag, setActiveTag] = useState<string | null>(null)
+  const [hovered,     setHovered]     = useState<Research | null>(null)
+  const [activeType,  setActiveType]  = useState<PubType | null>(null)
+  const [activeTopic, setActiveTopic] = useState<string | null>(null)
 
-  /* Collect unique tags */
-  const allTags = useMemo(() => {
-    const seen = new Set<string>()
-    items.forEach(r => r.tags.forEach(t => seen.add(t)))
-    return Array.from(seen)
-  }, [items])
-
-  /* Filtered list */
-  const filtered = useMemo(
-    () => activeTag ? items.filter(r => r.tags.includes(activeTag)) : items,
-    [items, activeTag]
+  /* Primary types actually present in the data, in fixed order. */
+  const types = useMemo(
+    () => TYPE_ORDER.filter((t) => items.some((r) => r.type === t)),
+    [items],
   )
+
+  /* Narrow by the active type first… */
+  const typeFiltered = useMemo(
+    () => (activeType ? items.filter((r) => r.type === activeType) : items),
+    [items, activeType],
+  )
+
+  /* …then offer only the topics available within that type slice. */
+  const availableTopics = useMemo(() => {
+    const seen = new Set<string>()
+    typeFiltered.forEach((r) => r.topics.forEach((t) => seen.add(t)))
+    return Array.from(seen)
+  }, [typeFiltered])
+
+  /* Ignore a stale topic that the current type no longer offers. */
+  const shownTopic = activeTopic && availableTopics.includes(activeTopic)
+    ? activeTopic
+    : null
+
+  const filtered = useMemo(
+    () => (shownTopic ? typeFiltered.filter((r) => r.topics.includes(shownTopic)) : typeFiltered),
+    [typeFiltered, shownTopic],
+  )
+
+  /* Selecting a type resets the secondary topic to avoid empty combos. */
+  const selectType = (t: PubType | null) => {
+    setActiveType(t)
+    setActiveTopic(null)
+  }
 
   return (
     <>
-      {/* ── Tag filter ─────────────────────────────────────── */}
-      <div className="flex flex-wrap gap-2 mb-14 md:mb-16">
-        {[null, ...allTags].map((tag) => {
-          const isActive = tag === null ? !activeTag : tag === activeTag
+      {/* ── Primary filter — publication type ───────────────── */}
+      <div className="flex flex-wrap gap-2 mb-4">
+        {[null, ...types].map((t) => {
+          const isActive = t === null ? !activeType : t === activeType
           return (
             <button
-              key={tag ?? "__all__"}
-              onClick={() => setActiveTag(tag === activeTag ? null : tag)}
+              key={t ?? "__all__"}
+              onClick={() => selectType(t === activeType ? null : t)}
+              className="text-sm font-semibold font-sans px-5 py-2 rounded-full border
+                         outline-none focus-visible:ring-2 focus-visible:ring-ink/30
+                         cursor-pointer"
+              style={{
+                background:   isActive ? "var(--color-ink)"   : "transparent",
+                color:        isActive ? "var(--color-paper)"  : "var(--color-ink-2)",
+                borderColor:  isActive ? "var(--color-ink)"    : "oklch(80% 0.010 80 / 0.7)",
+                transition:   `background 280ms ${EASE_IO}, color 280ms ${EASE_IO}, border-color 280ms ${EASE_IO}`,
+              }}
+            >
+              {t ?? "All"}
+            </button>
+          )
+        })}
+      </div>
+
+      {/* ── Secondary filter — topic ────────────────────────── */}
+      <div className="flex flex-wrap items-center gap-2 mb-14 md:mb-16">
+        <span className="text-[10px] uppercase tracking-[0.22em] text-ink-3 font-sans font-semibold mr-1 select-none">
+          Topic
+        </span>
+        {availableTopics.map((topic) => {
+          const isActive = topic === shownTopic
+          return (
+            <button
+              key={topic}
+              onClick={() => setActiveTopic(topic === shownTopic ? null : topic)}
               className="text-xs font-semibold font-sans px-4 py-1.5 rounded-full border
                          outline-none focus-visible:ring-2 focus-visible:ring-ink/30
                          cursor-pointer"
@@ -53,7 +108,7 @@ export function ResearchList({ items }: { items: Research[] }) {
                 transition:   `background 280ms ${EASE_IO}, color 280ms ${EASE_IO}, border-color 280ms ${EASE_IO}`,
               }}
             >
-              {tag ?? "All"}
+              {topic}
             </button>
           )
         })}
@@ -94,12 +149,13 @@ export function ResearchList({ items }: { items: Research[] }) {
                       transition: `opacity 420ms ${EASE_IO}`,
                     }}
                   >
-                    <div className="grid grid-cols-[48px_1fr] md:grid-cols-[64px_1fr_210px] gap-x-6 md:gap-x-10 items-start">
+                    <div className="grid grid-cols-[24px_1fr] md:grid-cols-[32px_1fr_210px] gap-x-5 md:gap-x-8 items-start">
 
-                      {/* ── Index number ─────────────────────── */}
-                      <span className="pt-[3px] text-xs font-semibold font-sans text-ink-3 tabular-nums select-none">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
+                      {/* ── Bullet marker ────────────────────── */}
+                      <span
+                        aria-hidden
+                        className="block mt-[9px] ml-1 h-1.5 w-1.5 rounded-full bg-ink/45 select-none"
+                      />
 
                       {/* ── Main content ─────────────────────── */}
                       <div
@@ -129,23 +185,34 @@ export function ResearchList({ items }: { items: Research[] }) {
                           <span className="font-medium text-ink-2">Authors —</span>{" "}{item.authors}
                         </p>
 
-                        {/* Mobile: tags below content */}
+                        <p className="text-xs text-ink-3 font-sans m-0 mt-1.5">
+                          <span className="font-medium text-ink-2">Venue —</span>{" "}{item.venue}
+                        </p>
+
+                        {item.link && (
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block mt-2 text-xs font-mono text-ink-3 hover:text-ink transition-colors duration-200 break-all"
+                          >
+                            DOI: {item.link.replace(/^https?:\/\/(dx\.)?doi\.org\//, "")}
+                          </a>
+                        )}
+
+                        {/* Mobile: type + topics below content */}
                         <div className="md:hidden mt-4 flex flex-wrap gap-1.5 items-center">
-                          {item.tags.map(t => <Tag key={t} label={t} />)}
-                          {item.year && (
-                            <span className="text-xs text-ink-3 font-sans">{item.year}</span>
-                          )}
+                          <Tag label={item.type} className="bg-ink/10 text-ink border-ink/15" />
+                          {item.topics.map((t) => <Tag key={t} label={t} />)}
                         </div>
                       </div>
 
                       {/* ── Desktop meta — right column ────────── */}
                       <div className="hidden md:flex flex-col items-end gap-2.5 pt-0.5">
+                        <Tag label={item.type} className="bg-ink/10 text-ink border-ink/15" />
                         <div className="flex flex-wrap gap-1.5 justify-end">
-                          {item.tags.map(t => <Tag key={t} label={t} />)}
+                          {item.topics.map((t) => <Tag key={t} label={t} />)}
                         </div>
-                        {item.year && (
-                          <span className="text-xs text-ink-3 font-sans tabular-nums">{item.year}</span>
-                        )}
                       </div>
 
                     </div>

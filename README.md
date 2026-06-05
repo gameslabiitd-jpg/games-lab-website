@@ -18,7 +18,7 @@ updates, with an editorial visual language and motion‑led interactions.
 | Styling | [Tailwind CSS v4](https://tailwindcss.com) (oklch design tokens) |
 | Animation | [`motion`](https://motion.dev) (Framer Motion), [GSAP](https://gsap.com) + ScrollTrigger, [Lenis](https://lenis.darkroom.engineering) smooth scroll |
 | Fonts | Inter via `next/font` |
-| Deploy | Vercel (auto‑deploys the `main` branch) |
+| Deploy | Cloudflare Pages — static export (`out/`), auto‑deploys the `main` branch |
 
 > **Note:** This is Next.js **16**, which has breaking changes vs. older versions.
 > See `AGENTS.md` — read the relevant guide in `node_modules/next/dist/docs/`
@@ -122,7 +122,13 @@ component, for homepage media).
 
 ## Deployment
 
-The `main` branch auto‑deploys via Vercel. To ship changes:
+The site is a **fully static export** (`output: "export"` in `next.config.ts`),
+hosted on **Cloudflare Pages**. `npm run build` produces an `out/` folder with
+all HTML/CSS/JS and assets — no Node server is needed at runtime.
+
+### Ship changes
+
+The `main` branch auto‑deploys. To ship:
 
 ```bash
 git add .
@@ -130,4 +136,25 @@ git commit -m "your message"
 git push origin main
 ```
 
-Run `npm run build` locally first to catch type or build errors before pushing.
+Run `npm run build` locally first to catch type/build errors and confirm `out/`
+is generated before pushing.
+
+### One‑time Cloudflare Pages setup (dashboard)
+
+Connect the GitHub repo in the Cloudflare dashboard → **Workers & Pages → Create
+→ Pages → Connect to Git**, then set:
+
+| Setting | Value |
+| --- | --- |
+| Production branch | `main` |
+| Build command | `npm run build` |
+| Build output directory | `out` |
+| Environment variable | `NODE_VERSION` = `20` (matches `.nvmrc`) |
+
+Then attach the custom domain under the Pages project → **Custom domains → Set up
+a domain**. Since the domain is registered with Cloudflare, DNS records are added
+automatically — no manual nameserver changes needed.
+
+> Static-export notes: `next/image` runs with `images.unoptimized` (Cloudflare
+> has no Next image server), and every route is prerendered at build time. Keep
+> any single file in `public/` under Cloudflare's 25 MiB per‑file limit.

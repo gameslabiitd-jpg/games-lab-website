@@ -29,7 +29,7 @@ export default function GamesPage() {
       <div className="w-[90%] max-w-[1400px] mx-auto pt-20 pb-10">
         <ScrollReveal>
           <h1 className="t-display font-sans font-extrabold text-ink leading-[0.95] tracking-[-0.02em] mb-4">
-            Games
+            Games.
           </h1>
           <p className="text-md md:text-lg text-ink-2 leading-[1.7] max-w-[560px] mb-7 md:mb-9">
             From tabletop to digital, every project in the lab is a real game —
