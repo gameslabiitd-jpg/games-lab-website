@@ -19,7 +19,7 @@ export const team: TeamMember[] = [
   {
     id: "aakash-johry",
     name: "Aakash Johry",
-    role: "Faculty · GAMES Lab, IIT Delhi",
+    role: "Faculty",
     image: "/images/Team/Aakash.jpg",
     bio:
       "Aakash leads the GAMES Lab at IIT Delhi. His research looks at how games, immersive media, and tangible interfaces can support learning, accessibility, wellbeing, and lasting changes in behaviour. He comes from a background in design and HCI, and is interested in how play can lead to real change in people's lives.",
