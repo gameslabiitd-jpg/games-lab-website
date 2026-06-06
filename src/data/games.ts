@@ -239,7 +239,7 @@ export const games: Game[] = [
     title: "Echoes of Aevum",
     description:
       "A VR game for the experiential learning of sound-related concepts — turning abstract physics into something you can hear, move through, and explore.",
-    image: "/images/games/Group 358.png",
+    image: "/images/games/echoesOfAevum.jpg",
     tags: ["Digital", "VR", "Education", "Physics"],
     authors: "Omya Sharma",
   },
