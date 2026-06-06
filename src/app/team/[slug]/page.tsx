@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { team } from "@/data/team"
+import LinkedInLink from "@/components/ui/LinkedInLink"
 
 /**
  * Hallmark · genre: editorial · macrostructure: Long Document · design-system: design.md · designed-as-app
@@ -49,17 +50,7 @@ export default async function MemberPage({ params }: { params: Params }) {
               <h1 className="font-sans font-extrabold text-ink m-0 mb-1 text-2xl md:text-3xl">{member.name}</h1>
               <p className="text-sm text-ink-3 font-sans m-0">{member.role}</p>
             </div>
-            {member.linkedin && (
-              <a
-                href={member.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-ink text-paper text-sm font-medium font-sans px-4 py-2 rounded-full hover:opacity-90 transition-opacity shrink-0"
-              >
-                <Image src="/images/Team/linkedinIcon.png" alt="" width={13} height={13} className="invert" />
-                LinkedIn
-              </a>
-            )}
+            {member.linkedin && <LinkedInLink href={member.linkedin} className="shrink-0" />}
           </div>
           {member.specialisation && (
             <p className="text-md text-ink-2 leading-relaxed mb-4 max-w-[480px]">

@@ -4,6 +4,7 @@ import Link from "next/link"
 import { team } from "@/data/team"
 import ScrollReveal from "@/components/animations/ScrollReveal"
 import CTABlock from "@/components/sections/CTABlock"
+import LinkedInLink from "@/components/ui/LinkedInLink"
 
 /**
  * Hallmark · genre: editorial · macrostructure: Long Document
@@ -102,7 +103,7 @@ export default function TeamPage() {
                   )}
 
                   {/* Links — anchored to the bottom so they align across cards */}
-                  <div className="mt-auto pt-5 flex flex-col items-start gap-2">
+                  <div className="mt-auto pt-5 flex flex-wrap items-center gap-3">
                     <Link
                       href={`/team/${m.id}`}
                       className="text-sm font-semibold font-sans text-ink no-underline inline-flex items-center gap-1.5
@@ -110,17 +111,7 @@ export default function TeamPage() {
                     >
                       View profile <span aria-hidden>→</span>
                     </Link>
-                    {m.linkedin && (
-                      <a
-                        href={m.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm font-medium font-sans text-ink-3 hover:text-ink transition-colors inline-flex items-center gap-1.5"
-                      >
-                        <Image src="/images/Team/linkedinIcon.png" alt="" width={13} height={13} />
-                        LinkedIn
-                      </a>
-                    )}
+                    {m.linkedin && <LinkedInLink href={m.linkedin} />}
                     {m.email && (
                       <a
                         href={`mailto:${m.email}`}

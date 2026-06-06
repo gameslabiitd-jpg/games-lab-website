@@ -1,10 +1,12 @@
 "use client"
 
 import Image from "next/image"
-import { useMemo, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import type { Game } from "@/data/games"
 import Tag from "@/components/ui/Tag"
+import ProjectModal from "@/components/ui/ProjectModal"
+import { showcaseById, type ShowcaseProject } from "@/data/highlights"
 
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1]
 const EASE_IO = "cubic-bezier(0.65,0,0.35,1)"
@@ -24,6 +26,19 @@ const HIDDEN_FROM_FILTER = new Set(["TBA"])
  */
 export function GamesCatalog({ games }: { games: Game[] }) {
   const [activeTag, setActiveTag] = useState<string | null>(null)
+
+  /* Detail popup — only the showcase projects (those with a compiled write-up
+     + photo gallery) open one; the rest stay non-interactive for now. */
+  const [active, setActive] = useState<ShowcaseProject | null>(null)
+  const triggerRef = useRef<HTMLElement | null>(null)
+  const openModal = (p: ShowcaseProject, el: HTMLElement) => {
+    triggerRef.current = el
+    setActive(p)
+  }
+  const closeModal = () => {
+    setActive(null)
+    triggerRef.current?.focus()
+  }
 
   /* Derive filter vocabulary from the tags themselves. */
   const categories = useMemo(() => {
@@ -94,7 +109,9 @@ export function GamesCatalog({ games }: { games: Game[] }) {
       {withImage.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           <AnimatePresence mode="popLayout">
-            {withImage.map((game, i) => (
+            {withImage.map((game, i) => {
+              const showcase = showcaseById(game.id)
+              return (
               <motion.article
                 key={game.id}
                 layout
@@ -102,7 +119,24 @@ export function GamesCatalog({ games }: { games: Game[] }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8, transition: { duration: 0.2 } }}
                 transition={{ duration: 0.5, delay: (i % 3) * 0.06, ease: EASE_OUT }}
-                className="group bg-paper border border-rule rounded-[12px] overflow-hidden card-lift hover:border-ink/30 flex flex-col h-full"
+                onClick={showcase ? (e) => openModal(showcase, e.currentTarget) : undefined}
+                onKeyDown={
+                  showcase
+                    ? (e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault()
+                          openModal(showcase, e.currentTarget)
+                        }
+                      }
+                    : undefined
+                }
+                role={showcase ? "button" : undefined}
+                tabIndex={showcase ? 0 : undefined}
+                aria-haspopup={showcase ? "dialog" : undefined}
+                className={
+                  "group bg-paper border border-rule rounded-[12px] overflow-hidden card-lift hover:border-ink/30 flex flex-col h-full " +
+                  (showcase ? "cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ink/30" : "")
+                }
               >
                 <div className="relative w-full aspect-[4/3] overflow-hidden bg-paper-3">
                   <Image
@@ -140,7 +174,8 @@ export function GamesCatalog({ games }: { games: Game[] }) {
                   </div>
                 </div>
               </motion.article>
-            ))}
+              )
+            })}
           </AnimatePresence>
         </div>
       )}
@@ -186,6 +221,8 @@ export function GamesCatalog({ games }: { games: Game[] }) {
           </ul>
         </div>
       )}
+
+      <ProjectModal project={active} onClose={closeModal} />
     </>
   )
 }

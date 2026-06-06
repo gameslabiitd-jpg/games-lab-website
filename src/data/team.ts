@@ -23,7 +23,7 @@ export const team: TeamMember[] = [
     image: "/images/Team/Aakash.jpg",
     bio:
       "Aakash leads the GAMES Lab at IIT Delhi. His research looks at how games, immersive media, and tangible interfaces can support learning, accessibility, wellbeing, and lasting changes in behaviour. He comes from a background in design and HCI, and is interested in how play can lead to real change in people's lives.",
-    email: "gameslabiitd@gmail.com",
+    linkedin: "https://www.linkedin.com/in/aakash-johry",
     specialisation: "Game Design · Immersive Media · Accessibility · Interactive Storytelling",
     skills: ["Game Design", "HCI", "Accessibility", "Research-through-design"],
     isFaculty: true,
