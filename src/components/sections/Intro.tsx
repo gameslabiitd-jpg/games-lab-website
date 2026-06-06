@@ -1,5 +1,5 @@
 import ScrollReveal from "@/components/animations/ScrollReveal"
-import Button from "@/components/ui/Button"
+import PlayCTA from "@/components/ui/PlayCTA"
 import MediaStack from "@/components/sections/MediaStack"
 
 /**
@@ -31,9 +31,7 @@ export default function Intro() {
             </h2>
 
             <div className="mt-5 md:mt-6">
-              <Button href="/about" variant="outline">
-                About the Lab
-              </Button>
+              <PlayCTA href="/about">About the Lab</PlayCTA>
             </div>
           </ScrollReveal>
 
