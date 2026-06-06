@@ -47,11 +47,11 @@ export default function Footer() {
           {/* Brand column */}
           <div className="flex flex-col gap-5">
             <Image
-              src="/images/Brand/Logo.svg"
+              src="/images/Brand/Logo 1.svg"
               alt="GAMES Lab"
               width={140}
               height={44}
-              className="h-auto w-[140px] [filter:brightness(0)_invert(1)]"
+              className="h-auto w-[140px]"
             />
             <p className="text-sm leading-relaxed text-paper/55 max-w-[280px] m-0">
               IIT Delhi Game Design Lab. Exploring innovation through gaming,
