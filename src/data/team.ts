@@ -40,9 +40,22 @@ export const team: TeamMember[] = [
     skills: ["Visual Communication", "Virtual Reality", "Game Design", "Music Production", "Photography"],
     publications: [
       {
-        title: "Gamifying Mental Well-Being Assessment",
-        venue: "Conference Paper, 2025",
-        year: "2025",
+        title: "Gamifying Mental Well-Being Assessment: A New Approach for College-Going Students Using the 'Oxford Happiness Questionnaire'",
+        venue: "15th International Conference of Human-Computer Interaction",
+        year: "2024",
+        doi: "10.1007/978-3-031-80832-6_8",
+      },
+      {
+        title: "Implementation of a multi-stage orbital launcher assembly simulation using virtual reality: Practical lessons learned for hands-on outreach",
+        venue: "77th International Astronautical Congress",
+        year: "2026",
+        doi: "Accepted",
+      },
+      {
+        title: "Educational technology for space science: Capturing higher secondary students' perceptions of its integration into the curriculum in India",
+        venue: "7th International Conference on Information Technology and Education Technology",
+        year: "2026",
+        doi: "Accepted",
       },
     ],
   },
