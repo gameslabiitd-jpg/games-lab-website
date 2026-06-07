@@ -30,6 +30,19 @@ export type Research = {
  */
 export const research: Research[] = [
   {
+    id: "Educational technology for space",
+    title:
+      "Educational technology for space science: Capturing higher secondary students' perceptions of its integration into the curriculum in India",
+    description:
+      "",
+    type: "Conference Paper",
+    topics: ["VR", "Embodied Learning", "Space education"],
+    authors: "Krishnadas M, Sreelal S, &  Aakash Johry",
+    venue:
+      "7th International Conference on Information Technology and Education Technology (ITET 2026), Hiroshima, Japan",
+    link: "Accepted",
+  },
+  {
     id: "responsible-democratization-genai",
     title:
       "Mapping the Responsible Democratization of Generative AI through Participatory Futuring",
