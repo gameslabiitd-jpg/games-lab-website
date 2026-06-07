@@ -8,7 +8,7 @@ export type TeamMember = {
   linkedin?: string
   specialisation?: string
   skills?: string[]
-  publications?: { title: string; venue: string; year: string }[]
+  publications?: { title: string; venue: string; year: string; doi: string }[]
   projects?: { title: string; description: string }[]
   isFaculty?: boolean
   isAlumni?: boolean
