@@ -30,16 +30,29 @@ export type Research = {
  */
 export const research: Research[] = [
   {
+    id: "Implementation launcher assembly",
+    title:
+      "Implementation of a multi-stage orbital launcher assembly simulation using virtual reality: Practical lessons learned for hands-on outreach",
+    description:
+      "",
+    type: "Conference Paper",
+    topics: ["VR", "Embodied Learning", "Space education"],
+    authors: "Krishnadas M, Juben Basumatary, Sreelal S, &  Aakash Johry",
+    venue:
+      "77th International Astronautical Congress (IAC 2026)",
+    link: "Accepted",
+  },
+  {
     id: "Educational technology for space",
     title:
       "Educational technology for space science: Capturing higher secondary students' perceptions of its integration into the curriculum in India",
     description:
       "",
     type: "Conference Paper",
-    topics: ["VR", "Embodied Learning", "Space education"],
+    topics: ["STEM Education", "Space education", "Educational technology"],
     authors: "Krishnadas M, Sreelal S, &  Aakash Johry",
     venue:
-      "7th International Conference on Information Technology and Education Technology (ITET 2026), Hiroshima, Japan",
+      "7th International Conference on Information Technology and Education Technology (ITET 2026)",
     link: "Accepted",
   },
   {
