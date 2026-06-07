@@ -49,7 +49,7 @@ export const research: Research[] = [
     description:
       "",
     type: "Conference Paper",
-    topics: ["STEM Education", "Space education", "Educational technology"],
+    topics: ["STEM Education", "Space education"],
     authors: "Krishnadas M, Sreelal S, &  Aakash Johry",
     venue:
       "7th International Conference on Information Technology and Education Technology (ITET 2026)",
