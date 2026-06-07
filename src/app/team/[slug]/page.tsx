@@ -105,6 +105,8 @@ export default async function MemberPage({ params }: { params: Params }) {
               <li key={i}>
                 <p className="text-md font-semibold font-sans text-ink m-0 mb-0.5">{pub.title}</p>
                 <p className="text-sm text-ink-3 font-sans m-0">{pub.venue}</p>
+                <p className="text-sm text-ink-3 font-sans m-0">{pub.year}</p>
+                <p className="text-sm text-ink-3 font-sans m-0">{pub.doi}</p>
               </li>
             ))}
           </ul>
