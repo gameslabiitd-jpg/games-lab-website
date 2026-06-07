@@ -8,7 +8,7 @@ export type TeamMember = {
   linkedin?: string
   specialisation?: string
   skills?: string[]
-  publications?: { title: string; venue: string; year: string; doi: string }[]
+  publications?: { title: string; venue: string; year: string; link: string }[]
   projects?: { title: string; description: string }[]
   isFaculty?: boolean
   isAlumni?: boolean
@@ -43,19 +43,19 @@ export const team: TeamMember[] = [
         title: "Gamifying Mental Well-Being Assessment: A New Approach for College-Going Students Using the 'Oxford Happiness Questionnaire'",
         venue: "15th International Conference of Human-Computer Interaction",
         year: "2024",
-        doi: "10.1007/978-3-031-80832-6_8",
+        link: "10.1007/978-3-031-80832-6_8",
       },
       {
         title: "Implementation of a multi-stage orbital launcher assembly simulation using virtual reality: Practical lessons learned for hands-on outreach",
         venue: "77th International Astronautical Congress",
         year: "2026",
-        doi: "Accepted",
+        link: "Accepted",
       },
       {
         title: "Educational technology for space science: Capturing higher secondary students' perceptions of its integration into the curriculum in India",
         venue: "7th International Conference on Information Technology and Education Technology",
         year: "2026",
-        doi: "Accepted",
+        link: "Accepted",
       },
     ],
   },
@@ -72,7 +72,7 @@ export const team: TeamMember[] = [
         title: "Gamifying Mental Well-Being Assessment: A New Approach for College-Going Students Using the 'Oxford Happiness Questionnaire'",
         venue: "15th International Conference of Human-Computer Interaction",
         year: "2024",
-        doi: "10.1007/978-3-031-80832-6_8",
+        link: "10.1007/978-3-031-80832-6_8",
       },
     ],
   },
@@ -84,5 +84,12 @@ export const team: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/juben-basumatary-866a01215/",
     specialisation: "Leveraging digital tools to make elderly lives more meaningful, independent, and connected.",
     skills: ["AR", "VR", "MR", "Game Design", "Assistive Technology", "Behavioral Markers"],
+    publications: [
+      {
+        title: "Implementation of a multi-stage orbital launcher assembly simulation using virtual reality: Practical lessons learned for hands-on outreach",
+        venue: "77th International Astronautical Congress",
+        year: "2026",
+        link: "Accepted",
+      },
   },
 ]
