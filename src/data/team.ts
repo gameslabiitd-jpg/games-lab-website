@@ -69,9 +69,10 @@ export const team: TeamMember[] = [
     skills: ["Data-Enabled Design", "Co-Design", "Inclusive Design", "Assistive Technology", "Game-Based Learning", "HCI"],
     publications: [
       {
-        title: "Gamifying Mental Well-Being Assessment",
-        venue: "Conference Paper, 2025",
-        year: "2025",
+        title: "Gamifying Mental Well-Being Assessment: A New Approach for College-Going Students Using the 'Oxford Happiness Questionnaire'",
+        venue: "15th International Conference of Human-Computer Interaction",
+        year: "2024",
+        doi: "10.1007/978-3-031-80832-6_8",
       },
     ],
   },
