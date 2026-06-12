@@ -91,5 +91,6 @@ export const team: TeamMember[] = [
         year: "2026",
         link: "Accepted",
       },
+    ],
   },
 ]

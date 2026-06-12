@@ -1,112 +1,104 @@
 import Link from "next/link"
 import Image from "next/image"
+import BackToTop from "@/components/ui/BackToTop"
 
 /**
  * Hallmark · genre: editorial · component: footer · design-system: design.md
  *
- * Dark closing band — a deliberate departure from the cream body so the
- * page ends on a strong note. Burgundy radial glow + a giant faint
- * "GAMES LAB" watermark behind masthead-style info columns. The dark
- * logo is rendered as a white silhouette to read on ink.
+ * "Game menu screen" footer — playful and on-brand for a games lab, but
+ * fully accessible. Nav is an arcade-style menu: a ▶ selector + neon glow
+ * snaps to whichever entry you hover OR keyboard-focus (group-hover +
+ * group-focus-visible, so it works for mouse, keyboard and touch alike). It
+ * floats on the approved animated mesh gradient with a faint CRT scanline.
+ * Real data only; mesh + scanline freeze under prefers-reduced-motion.
  */
 
-const links = [
-  { label: "Home",      href: "/" },
-  { label: "About Us",  href: "/about" },
-  { label: "Publications",  href: "/publications" },
-  { label: "Games",     href: "/games" },
-  { label: "Team",      href: "/team" },
-  { label: "News",      href: "/news" },
+const nav = [
+  { label: "Home",         href: "/" },
+  { label: "About",        href: "/about" },
+  { label: "Publications", href: "/publications" },
+  { label: "Games",        href: "/games" },
+  { label: "Team",         href: "/team" },
+  { label: "News",         href: "/news" },
 ]
 
 export default function Footer() {
   return (
-    <footer className="relative w-full overflow-hidden bg-ink text-paper">
-      {/* Burgundy radial glow — top-right accent */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-1/3 -right-1/4 w-[70%] h-[180%]"
-        style={{
-          background:
-            "radial-gradient(circle at 70% 35%, oklch(45% 0.14 30 / 0.40), transparent 62%)",
-        }}
-      />
+    <footer className="relative w-full overflow-hidden isolate text-paper">
+      {/* Animated mesh gradient field */}
+      <div aria-hidden className="footer-mesh absolute inset-0 -z-10" />
 
-      {/* Giant faint watermark — anchored bottom-left, clipped by overflow */}
-      <span
-        aria-hidden
-        className="pointer-events-none select-none absolute left-0 -bottom-[0.18em] whitespace-nowrap font-black font-sans leading-none tracking-[-0.04em] text-paper/[0.045]"
-        style={{ fontSize: "clamp(90px, 17vw, 260px)" }}
-      >
-        GAMES LAB
-      </span>
+      <div className="relative w-[92%] max-w-[1100px] mx-auto py-14 md:py-20">
+        {/* The "screen" */}
+        <div className="relative overflow-hidden rounded-3xl border border-white/20 bg-ink/40 backdrop-blur-2xl shadow-[0_30px_90px_-20px_rgba(0,0,0,0.65)] ring-1 ring-inset ring-white/10">
+          {/* Dynamic gradient — a slowly rotating conic sweep (same palette
+              as the mesh) that gives the glass a living, iridescent sheen. */}
+          <div
+            aria-hidden
+            className="footer-aurora pointer-events-none absolute left-1/2 top-1/2 h-[160%] w-[160%] -translate-x-1/2 -translate-y-1/2 opacity-30 blur-2xl mix-blend-screen"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white/[0.10] to-transparent"
+          />
 
-      <div className="relative w-[90%] max-w-[1500px] mx-auto pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-12 md:gap-20">
-
-          {/* Brand column */}
-          <div className="flex flex-col gap-5">
+          <div className="relative px-6 py-10 md:px-10 md:py-14 flex flex-col items-center gap-8 md:gap-10">
             <Image
-              src="/images/Brand/Logo 1.svg"
+              src="/images/Brand/Logo.svg"
               alt="GAMES Lab"
-              width={140}
-              height={44}
-              className="h-auto w-[140px]"
+              width={150}
+              height={47}
+              className="h-auto w-[140px] [filter:invert(1)]"
             />
-            <p className="text-sm leading-relaxed text-paper/55 max-w-[280px] m-0">
-              IIT Delhi Game Design Lab. Exploring innovation through gaming,
-              immersive media, and storytelling.
-            </p>
-          </div>
 
-          {/* Nav links */}
-          <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-paper/40 font-semibold font-sans mb-5">
-              Pages
-            </h4>
-            <ul className="flex flex-col gap-2.5 list-none p-0 m-0">
-              {links.map(({ label, href }) => (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    className="text-sm text-paper/70 hover:text-paper transition-colors duration-200 font-sans"
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] text-paper/40 font-semibold font-sans mb-5">
-              Contact
-            </h4>
-            <div className="flex flex-col gap-5 text-sm text-paper/70 leading-relaxed">
-              <address className="not-italic">
-                IIT Campus, Hauz Khas,<br />
-                New Delhi, Delhi 110016
-              </address>
-              <div>
-                <p className="text-paper/40 text-xs uppercase tracking-[0.2em] font-sans mb-1.5">Email</p>
-                <a
-                  href="mailto:gameslabiitd@gmail.com"
-                  className="text-paper hover:text-paper/60 transition-colors font-sans"
+            {/* Arcade menu */}
+            <nav className="flex flex-col items-center gap-1.5 md:gap-2">
+              {nav.map(({ label, href }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="group relative flex items-center justify-center py-1.5 text-lg md:text-xl font-semibold tracking-tight text-paper/65 transition-colors duration-200 hover:text-paper focus-visible:text-paper outline-none"
                 >
-                  gameslabiitd@gmail.com
-                </a>
-              </div>
+                  {/* ▶ selector — appears on hover or keyboard focus */}
+                  <span
+                    aria-hidden
+                    className="absolute right-full mr-3 flex items-center text-paper opacity-0 -translate-x-1 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:translate-x-0 group-focus-visible:opacity-100 group-focus-visible:translate-x-0 motion-reduce:transition-none"
+                  >
+                    <svg width="13" height="13" viewBox="0 0 12 12" fill="currentColor"><path d="M2 1.5v9l8-4.5-8-4.5Z" /></svg>
+                  </span>
+                  <span className="transition-transform duration-200 ease-out group-hover:scale-[1.06] group-focus-visible:scale-[1.06] group-hover:[text-shadow:0_0_20px_rgba(255,255,255,0.5)] group-focus-visible:[text-shadow:0_0_20px_rgba(255,255,255,0.5)] motion-reduce:transition-none motion-reduce:group-hover:scale-100">
+                    {label}
+                  </span>
+                </Link>
+              ))}
+            </nav>
+
+            {/* Contact line */}
+            <div className="flex flex-col items-center gap-1.5 text-center">
+              <a
+                href="mailto:gameslabiitd@gmail.com"
+                className="group relative inline-block text-paper text-[15px] font-medium"
+              >
+                gameslabiitd@gmail.com
+                <span
+                  aria-hidden
+                  className="absolute left-0 -bottom-0.5 h-px w-full origin-center scale-x-0 bg-paper/80 transition-transform duration-300 ease-out group-hover:scale-x-100"
+                />
+              </a>
+              <p className="text-sm text-paper/55 m-0">
+                IIT Campus, Hauz Khas, New Delhi, Delhi 110016
+              </p>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Bottom bar */}
-      <div className="relative border-t border-paper/15 py-5 text-center">
-        <p className="text-xs text-paper/40 font-sans m-0">
-          © 2026 IIT Delhi GAMES Lab
-        </p>
+          {/* Bottom bar inside the screen */}
+          <div className="relative border-t border-white/12 px-6 md:px-10 py-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-xs text-paper/55 font-sans m-0 text-center sm:text-left">
+              © 2026 IIT Delhi GAMES Lab
+            </p>
+            <BackToTop />
+          </div>
+        </div>
       </div>
     </footer>
   )

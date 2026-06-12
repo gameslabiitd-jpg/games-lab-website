@@ -187,6 +187,46 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ============================================================
+   FOOTER — premium animated mesh gradient
+   Layered radial-gradients over a dark plum base; the whole mesh
+   slowly shifts via background-position (resolution-independent,
+   smooth, no JS). Glass panel sits on top of this.
+   ============================================================ */
+@keyframes footer-mesh-shift {
+  0%   { background-position: 0% 0%,   100% 0%,  50% 100%, 100% 60%; }
+  50%  { background-position: 40% 35%, 60% 25%,  35% 60%,  70% 40%; }
+  100% { background-position: 0% 0%,   100% 0%,  50% 100%, 100% 60%; }
+}
+.footer-mesh {
+  background-color: #160f1c;
+  background-image:
+    radial-gradient(circle at 18% 26%, #a32c52 0%, transparent 50%),
+    radial-gradient(circle at 82% 20%, #d9468c 0%, transparent 50%),
+    radial-gradient(circle at 48% 88%, #5b4bd6 0%, transparent 52%),
+    radial-gradient(circle at 92% 72%, #e8744e 0%, transparent 46%);
+  background-size: 180% 180%;
+  background-repeat: no-repeat;
+  animation: footer-mesh-shift 22s ease-in-out infinite;
+}
+
+/* Dynamic gradient sheen for the glass panel — a slowly rotating conic
+   gradient in the mesh palette. */
+@keyframes footer-aurora-spin {
+  to { transform: translate(-50%, -50%) rotate(1turn); }
+}
+.footer-aurora {
+  background: conic-gradient(
+    from 0deg,
+    #a32c52,
+    #d9468c,
+    #5b4bd6,
+    #e8744e,
+    #a32c52
+  );
+  animation: footer-aurora-spin 18s linear infinite;
+}
+
+/* ============================================================
    REDUCED MOTION
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
@@ -201,5 +241,11 @@ a { color: inherit; text-decoration: none; }
   .reveal-fade {
     opacity: 1;
     transform: none;
+  }
+  /* Freeze the mesh + aurora. */
+  .footer-mesh { animation: none !important; }
+  .footer-aurora {
+    animation: none !important;
+    transform: translate(-50%, -50%) !important;
   }
 }

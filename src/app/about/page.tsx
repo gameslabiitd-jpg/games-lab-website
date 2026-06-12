@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import ScrollReveal from "@/components/animations/ScrollReveal"
 import CTABlock from "@/components/sections/CTABlock"
 import { StatsFlipboard } from "@/components/about/stats-flipboard"
@@ -24,9 +25,9 @@ export const metadata: Metadata = {
 
 /** Verbatim from source copy. */
 const verticals = [
-  { label: "A", title: "Education",       desc: "Curricular games, training and simulation." },
-  { label: "B", title: "Health/Wellbeing", desc: "Promoting healthy behaviors and sensitization." },
-  { label: "C", title: "Accessibility",    desc: "Games for and with people with disability — e.g. ID and visual impairment." },
+  { label: "A", title: "Education",       desc: "Curricular games, training and simulation.", img: "/images/verticals/edu.jpg" },
+  { label: "B", title: "Health/Wellbeing", desc: "Promoting healthy behaviors and sensitization.", img: "/images/verticals/well.jpg" },
+  { label: "C", title: "Accessibility",    desc: "Games for and with people with disability — e.g. ID and visual impairment.", img: "/images/verticals/acc.jpg" },
 ]
 
 /** Verbatim from source copy. */
@@ -125,9 +126,13 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* ── Application verticals — static editorial grid ──────────
-          Replaced the pinned horizontal-scroll section with a calm
-          three-up grid that matches the rest of the page's rhythm. */}
+      {/* ── Application verticals — image cards ────────────────────
+          Full-bleed photography carrying a single shared ink grade
+          (desaturate + bottom-anchored ink scrim) so three sourced
+          images read as one cohesive set. On hover the image gives a
+          slow zoom, the scrim deepens and the copy lifts — pure CSS
+          group-hover, transform/opacity only, disabled for users who
+          prefer reduced motion. Cards are not links. */}
       <div className="w-[90%] max-w-[1500px] mx-auto mb-10 md:mb-14">
         <ScrollReveal>
           <h2 className="t-h2 font-sans font-extrabold text-ink leading-[0.95] tracking-[-0.02em] m-0 mb-5 md:mb-7">
@@ -138,22 +143,49 @@ export default function AboutPage() {
         <div className="grid gap-5 md:grid-cols-3">
           {verticals.map((v, i) => (
             <ScrollReveal key={v.label} delay={i * 80}>
-              <div className="relative h-full bg-paper-2 rounded-[14px] p-8 md:p-10 overflow-hidden">
+              <div className="group relative h-full min-h-[320px] md:min-h-[380px] rounded-[14px] overflow-hidden bg-ink isolate">
+                {/* Background photograph — slow zoom on hover */}
+                <Image
+                  src={v.img}
+                  alt=""
+                  aria-hidden="true"
+                  fill
+                  sizes="(min-width: 768px) 33vw, 90vw"
+                  className="object-cover grayscale-[35%] contrast-[1.05] scale-[1.02] transition-transform duration-[900ms] ease-out group-hover:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-[1.02]"
+                />
+                {/* Shared ink grade — unifies colour + guarantees legibility */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-t from-ink/92 via-ink/55 to-ink/25"
+                />
+                {/* Hover deepen — fades a touch more ink in on hover */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-ink/25 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 motion-reduce:transition-none"
+                />
+                {/* Oversized index letter */}
                 <span
-                  className="absolute right-5 top-1 font-extrabold text-ink/[0.06] select-none pointer-events-none leading-none"
-                  style={{ fontSize: "clamp(96px, 12vw, 150px)" }}
+                  className="absolute right-4 top-0 font-extrabold text-paper/10 select-none pointer-events-none leading-none transition-transform duration-700 ease-out group-hover:-translate-y-1 motion-reduce:transition-none"
+                  style={{ fontSize: "clamp(110px, 13vw, 168px)" }}
                   aria-hidden="true"
                 >
                   {v.label}
                 </span>
-                <div className="relative">
-                  <p className="text-xs uppercase tracking-[0.2em] font-semibold text-ink-3 mb-3 font-sans">
+
+                {/* Copy — anchored in the dark zone, lifts on hover */}
+                <div className="absolute inset-x-0 bottom-0 p-7 md:p-8 transition-transform duration-500 ease-out group-hover:-translate-y-1.5 motion-reduce:transition-none">
+                  <p className="text-xs uppercase tracking-[0.2em] font-semibold text-paper/70 mb-2.5 font-sans">
                     Vertical {v.label}
                   </p>
-                  <h3 className="t-title font-sans font-extrabold text-ink leading-[1.05] tracking-[-0.02em] mb-4 m-0">
+                  <h3 className="t-title font-sans font-extrabold text-paper leading-[1.05] tracking-[-0.02em] mb-3 m-0">
                     {v.title}
                   </h3>
-                  <p className="text-md text-ink-2 leading-[1.6] m-0">
+                  {/* Accent rule — wipes in on hover */}
+                  <span
+                    aria-hidden="true"
+                    className="block h-px w-10 bg-paper/40 mb-3 origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100 motion-reduce:scale-x-100 motion-reduce:transition-none"
+                  />
+                  <p className="text-md text-paper/85 leading-[1.55] m-0 max-w-[34ch]">
                     {v.desc}
                   </p>
                 </div>
