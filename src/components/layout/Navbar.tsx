@@ -5,10 +5,11 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import {
-  motion, AnimatePresence,
+  motion,
   useMotionValue, useSpring,
 } from "motion/react"
 import { cn } from "@/lib/cn"
+import MobileTabBar from "@/components/layout/MobileTabBar"
 
 /**
  * Hallmark · genre: editorial · component: nav · design-system: design.md
@@ -214,7 +215,6 @@ function ContactCTA() {
 
 export default function Navbar() {
   const pathname  = usePathname()
-  const [menuOpen,    setMenuOpen]    = useState(false)
   const [scrolled,    setScrolled]    = useState(false)
   const [hoveredHref, setHoveredHref] = useState<string | null>(null)
 
@@ -228,21 +228,13 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  /* Close the mobile menu whenever the route changes. Done during render
-     (React's documented "adjust state when a prop changes" pattern) rather
-     than in an effect, so there's no setState-in-effect cascade. */
-  const [menuPathname, setMenuPathname] = useState(pathname)
-  if (pathname !== menuPathname) {
-    setMenuPathname(pathname)
-    setMenuOpen(false)
-  }
-
   return (
-    /*
-     * Outer wrapper is pointer-events-none so the transparent space above
-     * the pill doesn't swallow scroll / click events on the page behind it.
-     * Pill and dropdown restore pointer events individually.
-     */
+   <>
+    {/*
+      * Outer wrapper is pointer-events-none so the transparent space above
+      * the pill doesn't swallow scroll / click events on the page behind it.
+      * Pill restores pointer events individually.
+      */}
     <nav
       className="fixed top-0 left-0 w-full z-50 flex flex-col items-center px-4 pt-4"
       style={{ pointerEvents: "none" }}
@@ -320,102 +312,28 @@ export default function Navbar() {
           <ContactCTA />
         </motion.div>
 
-        {/* Hamburger — mobile */}
-        <motion.button
+        {/* Contact — mobile (page nav lives in the bottom dock) */}
+        <motion.a
+          href="mailto:gameslabiitd@gmail.com"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen(o => !o)}
-          className="pointer-events-auto md:hidden flex flex-col justify-center
-                     items-center gap-[5px] w-10 h-10 rounded-xl ml-auto mr-1
-                     hover:bg-ink/[0.05] transition-colors duration-200 cursor-pointer"
+          aria-label="Contact GAMES Lab at gameslabiitd@gmail.com"
+          className="pointer-events-auto md:hidden flex items-center justify-center
+                     w-10 h-10 rounded-xl ml-auto mr-1 text-ink-2
+                     hover:bg-ink/[0.05] hover:text-ink transition-colors duration-200"
           style={{ touchAction: "manipulation", WebkitTapHighlightColor: "transparent" }}
         >
-          <motion.span
-            className="block h-[1.5px] w-5 rounded-full bg-ink-2"
-            animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6.5 : 0 }}
-            transition={FAST_SPRING}
-          />
-          <motion.span
-            className="block h-[1.5px] rounded-full bg-ink-2"
-            animate={{ opacity: menuOpen ? 0 : 1, width: menuOpen ? 8 : 12 }}
-            transition={FAST_SPRING}
-          />
-          <motion.span
-            className="block h-[1.5px] w-5 rounded-full bg-ink-2"
-            animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6.5 : 0 }}
-            transition={FAST_SPRING}
-          />
-        </motion.button>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+        </motion.a>
       </motion.div>
-
-      {/* ── Mobile dropdown ──────────────────────────────────────── */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, scaleY: 0.85, y: -10 }}
-            animate={{ opacity: 1, scaleY: 1.0,  y:   0 }}
-            exit={{   opacity: 0, scaleY: 0.9,   y:  -6 }}
-            transition={PILL_SPRING}
-            style={{ originY: 0, pointerEvents: "auto" }}
-            className="w-full max-w-[1100px] mt-2
-                       bg-paper rounded-2xl border border-rule
-                       shadow-[0_8px_32px_rgba(22,19,16,0.12)] overflow-hidden"
-            aria-label="Mobile navigation"
-          >
-            <ul className="list-none m-0 p-3 flex flex-col gap-0.5">
-              {navLinks.map(({ label, href }, i) => {
-                const active = pathname === href
-                return (
-                  <motion.li
-                    key={href}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1,  x:   0 }}
-                    transition={{ ...FAST_SPRING, delay: i * 0.045 }}
-                  >
-                    <Link
-                      href={href}
-                      className={cn(
-                        "flex items-center gap-2.5 px-4 py-3 rounded-xl",
-                        "text-md font-sans",
-                        "transition-[background-color,color] duration-150",
-                        active
-                          ? "font-semibold text-ink bg-ink/[0.07]"
-                          : "font-medium text-ink-2 hover:text-ink hover:bg-ink/[0.04]",
-                      )}
-                    >
-                      {active && (
-                        <span className="block w-1.5 h-1.5 rounded-full bg-accent shrink-0" aria-hidden="true" />
-                      )}
-                      {label}
-                    </Link>
-                  </motion.li>
-                )
-              })}
-
-              <motion.li
-                className="mt-2 pt-2 border-t border-rule"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: navLinks.length * 0.045 + 0.04 }}
-              >
-                <a
-                  href="mailto:gameslabiitd@gmail.com"
-                  className="flex items-center justify-between px-4 py-3 rounded-xl
-                             text-sm font-medium font-sans bg-ink text-paper
-                             hover:opacity-85 transition-opacity duration-150"
-                >
-                  <span>gameslabiitd@gmail.com</span>
-                  <span aria-hidden="true" className="opacity-60">→</span>
-                </a>
-              </motion.li>
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </nav>
+
+    {/* Always-visible bottom navigation dock (mobile only) */}
+    <MobileTabBar />
+   </>
   )
 }
