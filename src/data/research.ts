@@ -185,4 +185,17 @@ export const research: Research[] = [
       "International Conference on Research into Design (ICORD 2023) · Best Paper Award",
     link: "https://doi.org/10.1007/978-981-99-0428-0_59",
   },
+  {
+    id: "existing-knowledge-research-through-design",
+    title:
+      "DEVELOPING A HIGH-FIDELITY 360 VIRTUAL TOUR FOR THE VSSC SPACE MUSEUM: A TECHNICAL CASE STUDY AND LESSONS LEARNED",
+    description:
+      "To expand public access to ISRO's restricted VSSC Space Museum, researchers developed a low-cost, 5.7K WebGL 360° virtual tour using consumer-grade hardware. This lightweight digital twin successfully preserves heritage integrity while providing scalable, browser-accessible space science outreach for remote students.",
+    type: "Conference Paper",
+    topics: ["STEM Education", "Space education""],
+    authors: "M. Krishnadas,  Prodyut Sardar, Venkatesh SS  Harikrishnan R ",
+    venue:
+      "77th International Astronautical Congress 2026",
+    link: "Accepted",
+  },
 ]
