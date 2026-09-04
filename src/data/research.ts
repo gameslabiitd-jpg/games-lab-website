@@ -192,7 +192,7 @@ export const research: Research[] = [
     description:
       "To expand public access to ISRO's restricted VSSC Space Museum, researchers developed a low-cost, 5.7K WebGL 360° virtual tour using consumer-grade hardware. This lightweight digital twin successfully preserves heritage integrity while providing scalable, browser-accessible space science outreach for remote students.",
     type: "Conference Paper",
-    topics: ["STEM Education", "Space education""],
+    topics: ["STEM Education", "Space education"],
     authors: "M. Krishnadas,  Prodyut Sardar, Venkatesh SS  Harikrishnan R ",
     venue:
       "77th International Astronautical Congress 2026",
