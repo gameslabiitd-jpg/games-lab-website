@@ -53,7 +53,7 @@ export const research: Research[] = [
     authors: "Krishnadas M, Sreelal S, &  Aakash Johry",
     venue:
       "7th International Conference on Information Technology and Education Technology (ITET 2026)",
-    link: "Accepted",
+    link: "https://doi.org/10.1109/ITET70052.2026.11650816",
   },
   {
     id: "responsible-democratization-genai",
