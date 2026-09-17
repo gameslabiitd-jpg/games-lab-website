@@ -93,4 +93,33 @@ export const team: TeamMember[] = [
       },
     ],
   },
+  {
+    id: "renuka",
+    name: "Renuka Singh",
+    role: "Research Scholar",
+    image: "/images/Team/renuka.jpg",
+    linkedin: "https://www.linkedin.com/in/renuka-singh-64baa4159/",
+    specialisation: "Pediatric Healthcare Environment · Environment-Behaviour Research · Evidence-Based Desgin · Design for Health and Wellbeing",
+    skills: ["Healthcare", "Architecture",  "Urban Design", "Participatory Design", "Game Design"],
+    publications: [
+      {
+        title: "Gamifying Mental Well-Being Assessment: A New Approach for College-Going Students Using the 'Oxford Happiness Questionnaire'",
+        venue: "15th International Conference of Human-Computer Interaction",
+        year: "2024",
+        link: "10.1007/978-3-031-80832-6_8",
+      },
+      {
+        title: "How Does the Physical Environment Influence Behaviors of Parents/Caregivers in a Pediatric Waiting Space? Findings From an Environment-Behavior Study in a Pediatric Hospital in New Delhi, India",
+        venue: "Proceedings of the Human Factors and Ergonomics Society Annual Meeting",
+        year: "2026",
+        link: "10.1177/10711813261485204",
+      },
+      {
+        title: "Impact of Physical Environment of Pediatric Inpatient Wards on Children: A Systematic Literature Review",
+        venue: "HERD: Health Environments Research & Design Journal",
+        year: "2026",
+        link: "10.1177/19375867261451751",
+      },
+    ],
+  },
 ]
