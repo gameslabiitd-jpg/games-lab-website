@@ -204,7 +204,7 @@ export const research: Research[] = [
       "Impact of Physical Environment of Pediatric Inpatient Wards on Children: A Systematic Literature Review",
     description:
       "The review findings highlight significant knowledge gaps. The study also tries to bridge existing gaps between research and practice by systematically identifying environmental elements, offering actionable insights to architects, designers, healthcare providers, and policymakers.",
-    type: "Jorunal Paper",
+    type: "Journal Article",
     topics: ["Pediatric inpatient ward", "Human-environment interaction"],
     authors: "Renuka Singh,  Sachit Anand, Aakash Johry & Gourab Kar",
     venue:
