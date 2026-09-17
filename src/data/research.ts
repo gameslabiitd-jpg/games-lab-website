@@ -193,9 +193,22 @@ export const research: Research[] = [
       "To expand public access to ISRO's restricted VSSC Space Museum, researchers developed a low-cost, 5.7K WebGL 360° virtual tour using consumer-grade hardware. This lightweight digital twin successfully preserves heritage integrity while providing scalable, browser-accessible space science outreach for remote students.",
     type: "Conference Paper",
     topics: ["STEM Education", "Space education"],
-    authors: "M. Krishnadas,  Prodyut Sardar, Venkatesh SS  Harikrishnan R ",
+    authors: "M. Krishnadas,  Prodyut Sardar, Venkatesh SS & Harikrishnan R ",
     venue:
       "77th International Astronautical Congress 2026",
     link: "Accepted",
+  },
+  {
+    id: "Impact-of-Physical-Environment-of-Pediatric-Inpatien",
+    title:
+      "Impact of Physical Environment of Pediatric Inpatient Wards on Children: A Systematic Literature Review",
+    description:
+      "The review findings highlight significant knowledge gaps. The study also tries to bridge existing gaps between research and practice by systematically identifying environmental elements, offering actionable insights to architects, designers, healthcare providers, and policymakers.",
+    type: "Jorunal Paper",
+    topics: ["Pediatric inpatient ward", "Human-environment interaction"],
+    authors: "Renuka Singh,  Sachit Anand, Aakash Johry & Gourab Kar",
+    venue:
+      "HERD: Health Environments Research & Design Journal",
+    link: "https://doi.org/10.1177/19375867261451751",
   },
 ]
