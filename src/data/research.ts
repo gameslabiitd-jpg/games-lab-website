@@ -211,4 +211,17 @@ export const research: Research[] = [
       "HERD: Health Environments Research & Design Journal",
     link: "https://doi.org/10.1177/19375867261451751",
   },
+  {
+    id: "Impact-of-Physical-Environment-of-Pediatric-Inpatien",
+    title:
+      "How Does the Physical Environment Influence Behaviors of Parents/Caregivers in a Pediatric Waiting Space? Findings From an Environment-Behavior Study in a Pediatric Hospital in New Delhi, India",
+    description:
+      "An observational study of Indian pediatric hospital waiting areas found that caregivers actively provide care and navigate institutional barriers despite severe overcrowding and inadequate amenities, underscoring the need for evidence-based designs that treat parents as active users rather than passive bystanders.",
+    type: "Conference Paper",
+    topics: ["Pediatric inpatient ward", "Human-environment interaction"],
+    authors: "Renuka Singh, Aakash Johry, Sachit Anand & Gourab Kar",
+    venue:
+      "Proceedings of the Human Factors and Ergonomics Society Annual Meeting",
+    link: "https://doi.org/10.1177/10711813261485204",
+  },
 ]
