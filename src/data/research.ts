@@ -212,7 +212,7 @@ export const research: Research[] = [
     link: "https://doi.org/10.1177/19375867261451751",
   },
   {
-    id: "Impact-of-Physical-Environment-of-Pediatric-Inpatien",
+    id: "Physical Environment Influence Behaviors of Parents",
     title:
       "How Does the Physical Environment Influence Behaviors of Parents/Caregivers in a Pediatric Waiting Space? Findings From an Environment-Behavior Study in a Pediatric Hospital in New Delhi, India",
     description:
@@ -223,5 +223,18 @@ export const research: Research[] = [
     venue:
       "Proceedings of the Human Factors and Ergonomics Society Annual Meeting",
     link: "https://doi.org/10.1177/10711813261485204",
+  },
+  {
+    id: "Understanding Digital Health Engagement",
+    title:
+      "Understanding Digital Health Engagement Among Older Adults in India: A Cultural Probe Based Study",
+    description:
+      "Remote health monitoring technologies offer opportunities for improved healthcare management; however, existing design guidelines often fail to address the cultural realities of Indian senior citizens. In this study, we identified six critical interaction areas for remote cardiac health monitoring, including self-monitoring, emergency response, and assistance-seeking patterns.",
+    type: "Conference Paper",
+    topics: ["Design for Health", "Design for Research"],
+    authors: "Radhika Sharma & Aakash Johry",
+    venue:
+      "DRS Biennial Confrence Series",
+    link: "https://doi.org/10.21606/drs.2026.1517",
   },
 ]
