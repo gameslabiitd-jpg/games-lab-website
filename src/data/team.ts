@@ -35,6 +35,8 @@ export const team: TeamMember[] = [
     name: "Renuka Singh",
     role: "Research Scholar",
     image: "/images/Team/renuka.jpg",
+    bio:
+      "Renuka Singh is an architect and urban designer interested in how physical environment affects healthcare experiences of children and families in Pediatric Healthcare Environments. She has completed her B.Arch. from School of Planning and Architecture (S.P.A.), New Delhi, India with the Gold Medal and M.Arch. in Urban Design (major) and Conservation (minor) from Centre of Environmental Planning and Technology (CEPT University), Ahmedabad, India. After her master's, she worked for a year as an architect, and next three-and-half years as an Assistant Professor of Architecture at IIT(BHU) Varanasi, India. Throughout her academic journey, she has developed a strong interest in the field of Healthcare Architecture, and as a female researcher she intends to mainstream gender-responsiveness in environmental design. Her specific areas of expertise include children's environments (healthcare, playscapes), environment-behaviour research, evidence-based design, design for health-and-wellbeing, universal/inclusive design.",  
     linkedin: "https://www.linkedin.com/in/renuka-singh-64baa4159/",
     specialisation: "Pediatric Healthcare Environment · Environment-Behaviour Research · Evidence-Based Desgin · Design for Health and Wellbeing",
     skills: ["Healthcare", "Architecture",  "Urban Design", "Participatory Design", "Game Design"],
