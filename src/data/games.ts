@@ -254,17 +254,54 @@ export const games: Game[] = [
     tags: ["Digital", "AR", "Pretend Play", "Child-Computer Interaction"],
     authors: "Omya Sharma",
   },
-  {
-    id: "Toddle",
-    title: "Toddle - Language learning application",
-    description:
-      "Toddle, a data-enabled design probe supporting early literacy in children with intellectual disabilities via playful learning and educator dashboards",
-    fullDescription:
-      "Toddle is based on a adapted Data-enabled Design (DeD) approach to support early literacy skills in children with intellectual disabilities (ID). Addressing key challenges such as retention difficulties, diverse cognitive profiles, and high educator dependence, the authors developed Toddle, a multisensory digital learning probe. The application includes a Student Mode featuring nine interactive games structured across three modules aligned with Bloom’s Taxonomy—Alphabet Adventures, Picture Party, and Word Builder—alongside a Teacher Mode dashboard that tracks metrics like accuracy, completion rates, and time spent to provide actionable intervention insights. Rather than deploying probes immediately as in traditional DeD frameworks, this work adapts the methodology by beginning with an independent, design-oriented co-creation cycle with special educators, ensuring pedagogical continuity and minimal disruption to daily classroom routines",
-    image: "/images/highlights/narrative-sandbox/1.jpg",
-    tags: ["play-based learning", "Early intervention", "language literacy", "Data-enabled design"],
-    authors: "Shivangi Anand",
 
+  /* ── RESEARCH APPLICATIONS & PROBES ─────────────────────────────
+     Digital learning apps and design probes. Image-less for now, so the
+     catalog lists them as text at the end (uncomment `image` once a photo
+     is added to promote a card). First tag is the format filter. */
+
+  {
+    id: "toddle",
+    title: "Toddle — Language Learning Application",
+    description:
+      "A data-enabled design probe supporting early literacy in children with intellectual disabilities via playful learning and educator dashboards.",
+    fullDescription:
+      "Toddle is based on an adapted Data-enabled Design (DeD) approach to support early literacy skills in children with intellectual disabilities (ID). Addressing key challenges such as retention difficulties, diverse cognitive profiles, and high educator dependence, the authors developed Toddle, a multisensory digital learning probe. The application includes a Student Mode featuring nine interactive games structured across three modules aligned with Bloom's Taxonomy — Alphabet Adventures, Picture Party, and Word Builder — alongside a Teacher Mode dashboard that tracks metrics like accuracy, completion rates, and time spent to provide actionable intervention insights. Rather than deploying probes immediately as in traditional DeD frameworks, this work adapts the methodology by beginning with an independent, design-oriented co-creation cycle with special educators, ensuring pedagogical continuity and minimal disruption to daily classroom routines.",
+    // image: "/images/games/toddle.jpg", // TODO: awaiting photo
+    tags: ["Digital", "Child-Computer Interaction"],
+    authors: "Shivangi Anand",
   },
-  
+  {
+    id: "pachi",
+    title: "Pachi: A Verbal Language Learning Application",
+    description:
+      "A tablet app supporting Hindi speech and language therapy for hearing-impaired children.",
+    fullDescription:
+      "Pachi is an innovative tablet-based digital application designed to facilitate verbal language development and speech therapy in Hindi for hearing-impaired (HI) children aged 0 to 48 months, along with their facilitators. Developed to bridge the gap in formal therapy access caused by geographic and socio-economic barriers in India, Pachi translates clinical expertise into an engaging, home-friendly digital platform. Structured to serve communities lacking regular access to speech therapists, Pachi delivers concise, 10–12-minute daily activity modules tailored to the child's developmental profile according to the ISD scale. For example, modules calibrated for a 'Hearing Age' of 13–15 months provide four targeted, interactive games mapping directly to each of the four core developmental stages — scaffolding early auditory training, vocabulary building, pronunciation, and articulation into accessible everyday practice.",
+    // image: "/images/games/pachi.jpg", // TODO: awaiting photo
+    tags: ["Digital", "Early Literacy Intervention", "Speech-Language Therapy", "Assistive Learning Technology"],
+    authors: "Radhika Sharma",
+  },
+  {
+    id: "cardiac-probes",
+    title: "Cultural Probes for Remote Cardiac Monitoring",
+    description:
+      "A cultural probe toolkit of six interactive physical formats (cards, boards, mock-ups) exploring older adults' natural behaviours in remote cardiac monitoring.",
+    fullDescription:
+      "The cultural probe toolkit was developed within a qualitative participatory framework to investigate how older adults in India interact with remote cardiac health monitoring technologies. Derived from a hierarchical task analysis of five existing cardiac applications, the kit targets six critical interaction areas: receiving guidance, addressing symptoms, device self-monitoring, sending manual data transmissions, responding to emergencies, and seeking assistance. To accommodate varying digital and textual literacy levels, the toolkit employs physical, interactive artifacts rather than abstract questionnaires. These tangible materials include instruction cards presented across text, audio, and graphic formats, anatomy boards paired with symptom vocabulary cards, mock-up device cards covering tools of varying invasiveness, simulation workflows featuring a stethoscope prototype, and scenario-based cards probing emergency responses and help-seeking thresholds. Deployed among 27 participants aged 59–86, the probes elicited intuitive behaviours and contextual nuances shaped by Indian socio-cultural and dependency dynamics.",
+    // image: "/images/games/cardiac-probes.jpg", // TODO: awaiting photo
+    tags: ["Physical", "Cultural Probes", "Remote Cardiac Monitoring", "User Dependency Status"],
+    authors: "Lab Members", // TODO: confirm author (source entry had a copy-paste error)
+  },
+  {
+    id: "voice-user-interface",
+    title: "Voice User Interface for Designing Inclusive Games for Children with Visual Impairment",
+    description:
+      "Using Alexa voice interfaces to enable inclusive, accessible game play for visually impaired and sighted children in Indian classrooms.",
+    fullDescription:
+      "Children with visual impairment (VI) face significant challenges in experiencing inclusive play due to limited accessibility to games. This study explores how Voice User Interfaces (VUIs), specifically Amazon's Alexa, can facilitate inclusive play experiences among visually impaired and sighted children. We conducted contextual inquiry studies and a series of co-design workshops with special educators and students with mixed visual abilities, identifying key challenges and deriving opportunities for game design on VUI. We shared a game prototype demonstrating a dynamic and inclusive play experience with a VUI in a low-resource environment. Through evaluation and testing, design insights and challenges are shared with the game development community, which will help them to develop accessible games relevant to Indian schools.",
+    // image: "/images/games/voice-user-interface.jpg", // TODO: awaiting photo
+    tags: ["Digital", "Visually Impaired", "Inclusive Play", "Voice User Interface"],
+    authors: "Monica",
+  },
 ]

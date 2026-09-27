@@ -116,7 +116,7 @@ export default function ProjectModal({
               </div>
 
               {project.gallery.length > 1 && (
-                <div className="flex gap-2.5 mt-3">
+                <div className="flex flex-wrap gap-2.5 mt-3">
                   {project.gallery.map((g, idx) => (
                     <button
                       key={g}
