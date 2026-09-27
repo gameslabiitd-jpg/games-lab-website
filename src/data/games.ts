@@ -291,7 +291,7 @@ export const games: Game[] = [
       "The cultural probe toolkit was developed within a qualitative participatory framework to investigate how older adults in India interact with remote cardiac health monitoring technologies. Derived from a hierarchical task analysis of five existing cardiac applications, the kit targets six critical interaction areas: receiving guidance, addressing symptoms, device self-monitoring, sending manual data transmissions, responding to emergencies, and seeking assistance. To accommodate varying digital and textual literacy levels, the toolkit employs physical, interactive artifacts rather than abstract questionnaires. These tangible materials include instruction cards presented across text, audio, and graphic formats, anatomy boards paired with symptom vocabulary cards, mock-up device cards covering tools of varying invasiveness, simulation workflows featuring a stethoscope prototype, and scenario-based cards probing emergency responses and help-seeking thresholds. Deployed among 27 participants aged 59–86, the probes elicited intuitive behaviours and contextual nuances shaped by Indian socio-cultural and dependency dynamics.",
     // image: "/images/games/cardiac-probes.jpg", // TODO: awaiting photo
     tags: ["Physical", "Cultural Probes", "Remote Cardiac Monitoring", "User Dependency Status"],
-    authors: "Lab Members", // TODO: confirm author (source entry had a copy-paste error)
+    authors: "Radhika Sharma",
   },
   {
     id: "voice-user-interface",
