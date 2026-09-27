@@ -267,7 +267,7 @@ export const games: Game[] = [
       "A data-enabled design probe supporting early literacy in children with intellectual disabilities via playful learning and educator dashboards.",
     fullDescription:
       "Toddle is based on an adapted Data-enabled Design (DeD) approach to support early literacy skills in children with intellectual disabilities (ID). Addressing key challenges such as retention difficulties, diverse cognitive profiles, and high educator dependence, the authors developed Toddle, a multisensory digital learning probe. The application includes a Student Mode featuring nine interactive games structured across three modules aligned with Bloom's Taxonomy — Alphabet Adventures, Picture Party, and Word Builder — alongside a Teacher Mode dashboard that tracks metrics like accuracy, completion rates, and time spent to provide actionable intervention insights. Rather than deploying probes immediately as in traditional DeD frameworks, this work adapts the methodology by beginning with an independent, design-oriented co-creation cycle with special educators, ensuring pedagogical continuity and minimal disruption to daily classroom routines.",
-    // image: "/images/games/toddle.jpg", // TODO: awaiting photo
+    image: "/images/highlights/toddle/1.jpg",
     tags: ["Digital", "Child-Computer Interaction"],
     authors: "Shivangi Anand",
   },
