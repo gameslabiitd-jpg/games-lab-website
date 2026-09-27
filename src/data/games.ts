@@ -105,7 +105,7 @@ export const games: Game[] = [
       "In Jungle, you'll need to collect and exchange support from the jungle animals at the waterhole to claim your territories on the jungle map. Don't forget about the fruit baskets, which can be used to help you gain more support from the animals.\nYou will need to outsmart your opponent and use your resources wisely to acquire as many territories as possible and become the next ruler of the jungle. But beware — your rivals will also be trying to claim territories and sabotage your progress with sneaky action cards.\nEvery game is a new adventure, with varying setups and outcomes.",
     image: "/images/games/jungleJungle.jpg",
     tags: ["Tabletop", "Card Game", "Education", "Animals"],
-    authors: "Chinmay, Renuka, Vansh",
+    authors: "Renuka, Chinmay, Vansh",
     priority: "2nd",
   },
   {
